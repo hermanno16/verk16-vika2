@@ -26,7 +26,8 @@ public:
     void openDataBase();
     vector<Scientist> getAllScientistsAtoZ();
     vector<Scientist> getAllScientistsZtoA();
-    vector<Scientist> getAllScientistsByAgeAsc();
+    vector<Scientist> getAllScientistsByYearOfBirthAsc();
+    vector<Scientist> getAllScientistsByYearOfBirthDes();
     vector<Scientist> getAllMaleScientistsAtoZ();
     vector<Scientist> getAllFemaleScientistsAtoZ();
     vector<Scientist> getAllAliveScientistsAtoZ();

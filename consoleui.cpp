@@ -253,39 +253,15 @@ void ConsoleUI::scientistListAllMenu()
 
         scientistListAllMenu();
     }
-    else if(input == "3")    //Year of birth ascending
+    else if(input == "3")
     {
-        vector<Scientist> scientists = _service.getAllScientistsByAgeAsc();
-        scientistNameColumn();
-        printScientist(scientists);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-        scientistListAllMenu();
+        scientistListAllYearOfBirthMenu();
     }
-    else if(input == "4")    //Year of birth descending
-    {
-        /*
-        vector<Scientist> scientists = _service.sortAllScientistsByYearOfBirthDesc();
-        scientistNameColumn();
-        //printScientists(scientists);
-
-        for(unsigned int i = 0; i < scientists.size(); i++)
-        {
-            cout << scientists[i];
-        }
-
-
-        */
-        cout << "Eftir að klára." << endl;
-        scientistListAllMenu();
-
-    }
-    else if(input == "5")    //Gender
+    else if(input == "4")    //Gender
     {
         scientistListAllGenderMenu();
     }
-    else if(input == "6")    //Dead or Alive.
+    else if(input == "5")    //Dead or Alive.
     {
         scientistListAllDeadOrAliveMenu();
     }
@@ -367,6 +343,51 @@ void ConsoleUI::scientistListAllDeadOrAliveMenu()
 
     scientistListAllDeadOrAliveMenu();
 }
+void ConsoleUI::scientistListAllYearOfBirthMenu()
+{
+    scientistListAllYearOfBirthMenuPrint();
+    char yearOfBirth = ' ';
+    cin >> yearOfBirth;
+
+    if(yearOfBirth == '1')    //Year of birth
+    {
+        vector<Scientist> scientists = _service.getAllScientistsByYearOfBirthAsc();
+        scientistNameColumn();
+        printScientist(scientists);
+
+        cout << "  ======================================================================================= " << endl << endl;
+
+        scientistListAllMenu();
+    }
+    else if(yearOfBirth == '2')    //Year of birth descending
+    {
+
+        vector<Scientist> scientists = _service.getAllScientistsByYearOfBirthDes();
+        scientistNameColumn();
+        printScientist(scientists);
+
+
+        cout << "  ======================================================================================= " << endl << endl;
+
+
+    }
+    else if(yearOfBirth == 'b' || yearOfBirth == 'B')
+    {
+        scientistListAllMenu();
+    }
+    else if (yearOfBirth == 'q' || yearOfBirth == 'Q')
+    {
+        quitSystem();
+    }
+    else
+    {
+        cout << "  Wrong input!" << endl;
+        cout << endl;
+        scientistListAllYearOfBirthMenu();
+    }
+    scientistListAllYearOfBirthMenu();
+}
+
 //Computer scientist - Print functions.
 void ConsoleUI::scientistMenuPrint()
 {
@@ -408,12 +429,21 @@ void ConsoleUI::scientistListAllDeadOrAliveMenuPrint()
 void ConsoleUI::scientistListAllMenuPrint()
 {
     cout << "  ======================================================================================= " << endl;
-    cout << " | 1. A-Z                 2. Z-A                       3. Year of birth (A-Z)            | " << endl;
-    cout << " | 4. Year of birth (Z-A) 5. Gender                    6. Alive/deceased                 | " << endl;
+    cout << " | 1. A-Z                 2. Z-A                          3. Year of birth               | " << endl;
+    cout << " | 4. Gender              5. Alive/deceased                                              | " << endl;
     cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
+}
+void ConsoleUI::scientistListAllYearOfBirthMenuPrint()
+{
+    cout << "  ======================================================================================== " << endl;
+    cout << " |     1. Year of birth(A-Z).                                  2. Year of birth(Z-A).     |" << endl;
+    cout << " |                                                                                        |" << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                       |" << endl;
+    cout << "  ======================================================================================== " << endl;
+    cout << " > Please enter a number: ";
 }
 void ConsoleUI::printScientist(vector<Scientist> temp)
 {

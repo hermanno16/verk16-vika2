@@ -26,11 +26,19 @@ vector<Scientist> Service::getAllScientistsZtoA()
 
     return allScientists;
 }
-vector<Scientist> Service::getAllScientistsByAgeAsc()
+vector<Scientist> Service::getAllScientistsByYearOfBirthAsc()
 {
     vector<Scientist> allScientists;
 
-    allScientists = _dAccess.getAllScientistsByAgeAsc();
+    allScientists = _dAccess.getAllScientistsByYearOfBirthAsc();
+
+    return allScientists;
+}
+vector<Scientist> Service::getAllScientistsByYearOfBirthDes()
+{
+    vector<Scientist> allScientists;
+
+    allScientists = _dAccess.getAllScientistsByYearOfBirthDes();
 
     return allScientists;
 }
@@ -121,6 +129,15 @@ ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overload
 
     return os;
 }
+vector<Scientist> Service::getAllDeceasedScientistsAtoZ()
+{
+    vector<Scientist> allScientists;
+
+    allScientists = _dAccess.getAllDeceasedScientistsAtoZ();
+
+    return allScientists;
+}
+
 //Gamalt
 
 void Service::addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)

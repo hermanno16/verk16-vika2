@@ -28,12 +28,14 @@ public:
     void scientistListAllMenu();
     void scientistListAllGenderMenu();
     void scientistListAllDeadOrAliveMenu();
+    void scientistListAllYearOfBirthMenu();
     //Computer scientist - Print functions.
     void scientistMenuPrint();
     void scientistListMenuPrint();
     void scientistListAllMenuPrint();
     void scientistListAllGenderMenuPrint();
     void scientistListAllDeadOrAliveMenuPrint();
+    void scientistListAllYearOfBirthMenuPrint();
     //Computer scientist - Other functions.
     void scientistNameColumn();
     void addScientist();

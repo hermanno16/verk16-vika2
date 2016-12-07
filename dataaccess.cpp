@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 
 using namespace std;
-
+//-- Constructors --//
 DataAccess::DataAccess()
 {
     openDataBase();
@@ -22,9 +22,9 @@ vector<Scientist> DataAccess::getAllScientistsAtoZ()
     vector<Scientist> allScientists;
 
     QSqlQuery query;
-    query.prepare("SELECT FirstName,Gender,YearOfBirth,YearOfDeath FROM Scientists ORDER BY FirstName Asc");
+    query.prepare("SELECT Name,Gender,YearOfBirth,YearOfDeath FROM Scientists ORDER BY Name Asc");
     query.exec();
-    int idName = query.record().indexOf("FirstName");
+    int idName = query.record().indexOf("Name");
     int idGender = query.record().indexOf("Gender");
     int idYearOfBirth = query.record().indexOf("YearOfBirth");
     int idYearOfDeath = query.record().indexOf("YearOfDeath");
@@ -374,6 +374,12 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
      query.exec();
 
 }
+
+
+//-- Computers--//
+
+
+
 
 
 //-- Connect to database --//

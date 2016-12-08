@@ -165,9 +165,9 @@ vector<Computer> Service::getAllComputersZtoA()
 ostream& operator <<(ostream& os, Computer& TempClass)    // Operator Overloader fyrir cout << Computer.
 {
         os << " | ";os.width(5); os << left << TempClass.getId();
-        os.width(30); os << left << TempClass.getName();
-        os << "  " ;os.width(13); os << left << TempClass.getType();
-        os << "  " ;os.width(15); os << left << TempClass.getYearBuilt();
+        os.width(24); os << left << TempClass.getName();
+        os << "  " ;os.width(21); os << left << TempClass.getType();
+        os << "  " ;os.width(13); os << left << TempClass.getYearBuilt();
         os << "  " ;os.width(17); os << left << TempClass.getDevelopment() << "|";
         os << endl;
 

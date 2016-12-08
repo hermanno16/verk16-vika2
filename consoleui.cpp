@@ -654,7 +654,6 @@ void ConsoleUI::computerListAllMenu()
 {
     char input = ' ';
     computerListAllMenuPrint();
-    cout << "Eg er i computerListAllMenu" << endl;
     cin >> input;
 
 
@@ -708,7 +707,7 @@ void ConsoleUI::computerListAllMenu()
     }
     else if(input == '5')    //Original Or Developed
     {
-        computerListAllOriginalOrDevelopedMenu();
+        computerListAllDevelopmentMenu();
     }
     else if(input == 'b' || input == 'B')    //Go back
     {
@@ -792,40 +791,40 @@ void ConsoleUI::computerListAllBuildYearMenu()
     }
     computerListAllBuildYearMenu();
 }
-void ConsoleUI::computerListAllOriginalOrDevelopedMenu()
+void ConsoleUI::computerListAllDevelopmentMenu()
 {
-    char originalOrDeveloped;
+    char development = ' ';
 
-    computerListAllOriginalOrDevelopedMenuPrint();
-    cin >> originalOrDeveloped;
+    computerListAllDevelopmentMenuPrint();
+    cin >> development;
 
-    if (originalOrDeveloped == '1')
+    if (development == '1')
     {
         cout << "  Her kemur ORIGINAL listi!" << endl;
         // TODO!
     }
-    else if (originalOrDeveloped == '2')
+    else if (development == '2')
     {
         cout << "  Her kemur DEVELOPED listi!" << endl;
         //TODO!
     }
-    else if (originalOrDeveloped == '3')
+    else if (development == '3')
     {
         cout << "  Her kemur listi af ORIGINAL og DEVELOPED." << endl;
     }
-    else if(originalOrDeveloped == 'b' || originalOrDeveloped == 'B')
+    else if(development == 'b' || development == 'B')
     {
         computerListAllMenu();
     }
-    else if (originalOrDeveloped == 'q' || originalOrDeveloped == 'Q')
+    else if (development == 'q' || development == 'Q')
     {
         quitSystem();
     }
-    else if (originalOrDeveloped != '1' && originalOrDeveloped != '2' && originalOrDeveloped!= '3')
+    else if (development != '1' && development != '2' && development!= '3')
     {
         cout << "  Wrong input!" << endl;
         cout << endl;
-        computerListAllOriginalOrDevelopedMenu();
+        computerListAllDevelopmentMenu();
     }
     /*vector<Scientist> scientists = _service.getAllDeadOrAliveScientistsAtoZ(aliveOrDeseaced);
             scientistNameColumn();
@@ -838,7 +837,7 @@ void ConsoleUI::computerListAllOriginalOrDevelopedMenu()
 
             cout << "  ======================================================================================= " << endl << endl;
             */
-    computerListAllOriginalOrDevelopedMenu();
+    computerListAllDevelopmentMenu();
 
 }
 
@@ -892,7 +891,7 @@ void ConsoleUI::computerListAllBuiltYearMenuPrint()
     cout << "  ======================================================================================== " << endl;
     cout << " > Please enter a number: ";
 }
-void ConsoleUI::computerListAllOriginalOrDevelopedMenuPrint()
+void ConsoleUI::computerListAllDevelopmentMenuPrint()
 {
     cout << "  ===================================================================================== " << endl;
     cout << " |     1. Only Original.          2. Only Developed.            3. All.                  | " << endl;

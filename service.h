@@ -16,7 +16,7 @@ class Service
 {
 public:
     Service();
-
+    //Scientist functions
     vector<Scientist> getAllScientistsAtoZ();
     vector<Scientist> getAllScientistsZtoA();
     vector<Scientist> getAllScientistsByYearOfBirthAsc();
@@ -28,7 +28,9 @@ public:
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     vector<Scientist> getScientistsByGenderAtoZ(string gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
-    //Tengitöflu föllin
+    //Computer functions
+    vector<Scientist> getAllComputersAtoZ();
+    //Connection tables
     vector<Scientist> connectComputerToScientist(int idNumber);
     //Bool check
     bool isAddScientistValid(string name, string gender, string yearOfBirth, string yearOfDeath);

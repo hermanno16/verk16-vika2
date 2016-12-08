@@ -47,14 +47,14 @@ public:
     void computerListAllMenu();
     void computerListAllTypeMenu();
     void computerListAllBuildYearMenu();
-    void computerListAllOriginalOrDevelopedMenu();
+    void computerListAllDevelopmentMenu();
     //Computers - Print functions.
     void computerMenuPrint();
     void computerListMenuPrint();
     void computerListAllMenuPrint();
     void computerListAllTypeMenuPrint();
     void computerListAllBuiltYearMenuPrint();
-    void computerListAllOriginalOrDevelopedMenuPrint();
+    void computerListAllDevelopmentMenuPrint();
 
     //Computer scientist - Other functions.
     void computerNameColumn();

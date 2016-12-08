@@ -815,18 +815,29 @@ void ConsoleUI::computerListAllTypeMenu()
         computerListAllTypeMenu();
         */
     }
-    else if (type == '2') //All type Z-A
+    else if (type == '2') //2. Electronic
     {
-        cout << "Z-A";
-        /*
-        vector<Computer> computers = _service.getAllTypeComputersZtoA();
-        computerNameColumn();
-        printComputer(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-        computerListAllTypeMenu();
-        */
+        cout << "2. Electronic";
+    }
+    else if (type == '3')
+    {
+        cout << "3. Mechanical";
+    }
+    else if (type == '4')
+    {
+    cout << "4. Electronic/Mechanical";
+    }
+    else if (type == '5')
+    {
+    cout << "5. Transistor";
+    }
+    else if (type == '6')
+    {
+        cout << "6. Microcomputer";
+    }
+    else if (type == '7')
+    {
+    cout << "7. Ternary";
     }
     else if(type == 'b' || type == 'B')
     {
@@ -836,7 +847,6 @@ void ConsoleUI::computerListAllTypeMenu()
     {
         quitSystem();
     }
-
         cout << "  Wrong input!" << endl;
         cout << endl;
         computerListAllTypeMenu();
@@ -957,6 +967,7 @@ void ConsoleUI::computerMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << " |     1. List - List of computers.                            2. Add - Add computer.    | " << endl;
     cout << " |     3. Developer - Enter the ID of a Computer for a list of developers                | " << endl;
+    cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  =======================================================================================  " << endl;
     cout << "  > Please enter a number: ";
@@ -984,20 +995,22 @@ void ConsoleUI::computerListAllMenuPrint()
 }
 void ConsoleUI::computerListAllTypeMenuPrint()
 {
-    cout << "  ========================================================================================  " << endl;
-    cout << " |     1. Type(A-Z).                                            2. Type(Z-A).             | " << endl;
-    cout << " |                                                                                        | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                       | " << endl;
-    cout << "  ========================================================================================  " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |     1. Type(A-Z)                  2. Electronic              3. Mechanical            | " << endl;
+    cout << " |     4. Electronic/Mechanical      5. Transistor              6. Microcomputer         | " << endl;
+    cout << " |     7. Ternary                                                                        | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
     cout << " > Please enter a number: ";
 }
 void ConsoleUI::computerListAllYearBuiltMenuPrint()
 {
-    cout << "  ======================================================================================== " << endl;
-    cout << " |     1. Built year(A-Z).                                      2. Built year(Z-A).       |" << endl;
-    cout << " |                                                                                        |" << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                       |" << endl;
-    cout << "  ======================================================================================== " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |     1. Built year(A-Z).                                      2. Built year(Z-A).      |" << endl;
+    cout << " |                                                                                       |" << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      |" << endl;
+    cout << "  ======================================================================================= " << endl;
     cout << " > Please enter a number: ";
 }
 void ConsoleUI::computerListAllDevelopmentMenuPrint()
@@ -1028,14 +1041,16 @@ void ConsoleUI::workedOn()
 void ConsoleUI::computerNameColumn()
 {
     cout << "  ======================================================================================= " << endl;
-    cout.width(36);
-    cout << left << " |  Name:";
-    cout.width(10);
+    cout.width(8);
+    cout << left << " | ID:";
+    cout.width(26);
+    cout << "Name:";
+    cout.width(23);
     cout << left << "Type:";
-    cout.width(18);
+    cout.width(15);
     cout << left << "Built year:";
-    cout.width(20);
-    cout << left << "Original or Deverloped:";
+    cout.width(17);
+    cout << left << "Development:";
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
 }

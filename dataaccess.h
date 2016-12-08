@@ -47,11 +47,19 @@ public:
     vector<Computer> getAllComputerInfoFromDataBase(QString queryCommand);
     vector<Computer> getAllComputersAtoZ();
     vector<Computer> getAllComputersZtoA();
-    vector<Computer> getAllComputersTypeAtoZ();
-    vector<Computer> getAllComputersTypeZtoA();
     vector<Computer> getAllComputersYearBuiltAtoZ();
     vector<Computer> getAllComputersYearBuiltZtoA();
-    vector<Computer> getAllComputersDevelopment();
+    vector<Computer> getAllComputersTypeAtoZ();
+    vector<Computer> getAllComputersTypeElectronic();
+    vector<Computer> getAllComputersTypeElectronicMechanical();
+    vector<Computer> getAllComputersTypeMechanical();
+    vector<Computer> getAllComputersTransistor();
+    vector<Computer> getAllComputersTypeMicrocomputer();
+    vector<Computer> getAllComputersTypeTernary();
+    vector<Computer> getAllComputersDeveloped();
+    vector<Computer> getAllComputersOriginal();
+    vector<Computer> getAllComputersDevelopedAndOriginal();
+
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);

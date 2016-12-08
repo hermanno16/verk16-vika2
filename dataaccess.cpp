@@ -315,13 +315,41 @@ vector<Computer> DataAccess::getAllComputersTypeAtoZ()
 {
     return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Type Asc");
 }
-vector<Computer> DataAccess::getAllComputersTypeZtoA()
+vector<Computer> DataAccess::getAllComputersTypeElectronic()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Type Desc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Type = 'Electronic' ORDER BY ComputerName Asc");
 }
-vector<Computer> DataAccess::getAllComputersDevelopment()
+vector<Computer> DataAccess::getAllComputersTypeElectronicMechanical()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computer WHERE Development is NOT NULL ORDER BY ComputerName Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Type = 'Electronic/Mechancial' ORDER BY ComputerName Asc");
+}
+vector<Computer> DataAccess::getAllComputersTypeMechanical()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Type = 'Mechanical' ORDER BY ComputerName Asc");
+}
+vector<Computer> DataAccess::getAllComputersTransistor()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Type = 'Transistor' ORDER BY ComputerName Asc");
+}
+vector<Computer> DataAccess::getAllComputersTypeMicrocomputer()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Type = 'Microcomputer' ORDER BY ComputerName Asc");
+}
+vector<Computer> DataAccess::getAllComputersTypeTernary()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Type = 'Ternary' ORDER BY ComputerName Asc");
+}
+vector<Computer> DataAccess::getAllComputersDeveloped()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computes WHERE Development = 'Developed' ORDER BY ComputerName Asc");
+}
+vector<Computer> DataAccess::getAllComputersOriginal()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Development = 'Original' ORDER BY ComputerName Asc");
+}
+vector<Computer> DataAccess::getAllComputersDevelopedAndOriginal()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Developement Asc");
 }
     //Computers - search functions
 vector<Computer> DataAccess::searchForComputersByName(string inputName)

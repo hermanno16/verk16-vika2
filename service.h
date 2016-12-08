@@ -39,11 +39,10 @@ public:
     //Computer Sort functions
     vector<Computer> getAllComputersAtoZ();
     vector<Computer> getAllComputersZtoA();
-    vector<Computer> getAllTypeComputersAtoZ();
-    vector<Computer> getAllTypeComputersZtoA();
-    vector<Computer> getAllBuildYearComputersAtoZ();
-    vector<Computer> getAllBuildYearComputersZtoA();
-    vector<Computer> getAllDevelopmentComputers();
+    vector<Computer> getAllTypesComputersAtoZ(string type);
+    vector<Computer> getAllComputersDevelopment();
+    vector<Computer> getAllBuildYearComputers(string yearBuilt);
+    vector<Computer> getAllDevelopmentAndOriginalComputers(string development);
     //Computer Search functions
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);

@@ -107,8 +107,6 @@ vector<Scientist> Service::getScientistsByGenderAtoZ(string gender)
 {
     vector<Scientist> genderScientists;
 
-    cout << gender << endl;
-
     if(gender == "1")
     {
         genderScientists = _dAccess.getAllFemaleScientistsAtoZ();
@@ -176,41 +174,74 @@ ostream& operator <<(ostream& os, Computer& TempClass)    // Operator Overloader
 
     return os;
 }
-vector<Computer> Service::getAllTypeComputersAtoZ()
+vector<Computer> Service::getAllTypesComputersAtoZ(string type)
 {
-    vector<Computer> allComputers;
-    allComputers = _dAccess.getAllComputersTypeAtoZ();
+    vector<Computer> typeComputer;
 
-    return allComputers;
+    if(type == "1")
+    {
+        typeComputer = _dAccess.getAllComputersTypeAtoZ();
+    }
+    else if(type == "2")
+    {
+       typeComputer = _dAccess.getAllComputersTypeElectronic();
+    }
+    else if(type == "3")
+    {
+       typeComputer = _dAccess.getAllComputersTypeMechanical();
+    }
+    else if(type == "4")
+    {
+       typeComputer = _dAccess.getAllComputersTypeElectronicMechanical();
+    }
+    else if(type == "5")
+    {
+       typeComputer = _dAccess.getAllComputersTransistor();
+    }
+    else if(type == "6")
+    {
+       typeComputer = _dAccess.getAllComputersTypeMicrocomputer();
+    }
+    else if (type == "7")
+    {
+        typeComputer = _dAccess.getAllComputersTypeTernary();
+    }
+    return typeComputer;
 }
-
-vector<Computer> Service::getAllTypeComputersZtoA()
+vector<Computer> Service::getAllBuildYearComputers(string yearBuilt)
 {
-    vector<Computer> allComputers;
-    allComputers = _dAccess.getAllComputersTypeZtoA();
+    vector<Computer> yearBuiltComputer;
 
-    return allComputers;
+    if(yearBuilt == "1")
+    {
+        yearBuiltComputer = _dAccess.getAllComputersYearBuiltAtoZ();
+    }
+    else if(yearBuilt == "2")
+    {
+       yearBuiltComputer = _dAccess.getAllComputersYearBuiltZtoA();
+    }
+
+    return yearBuiltComputer;
 }
-vector<Computer> Service::getAllBuildYearComputersAtoZ()
+vector<Computer> Service::getAllDevelopmentAndOriginalComputers(string development)
 {
-    vector<Computer> allComputers;
-    allComputers = _dAccess.getAllComputersYearBuiltAtoZ();
+    vector<Computer> developmentComputer;
 
-    return allComputers;
-}
-vector<Computer> Service::getAllBuildYearComputersZtoA()
-{
-    vector<Computer> allComputers;
-    allComputers = _dAccess.getAllComputersYearBuiltZtoA();
+    if (development == "1")
+    {
+        developmentComputer = _dAccess.getAllComputersOriginal();
+    }
+    else if (development == "2")
+    {
+        developmentComputer = _dAccess.getAllComputersDeveloped();
 
-    return allComputers;
-}
-vector<Computer> Service::getAllDevelopmentComputers()
-{
-    vector<Computer> allComputers;
-    allComputers = _dAccess.getAllComputersDevelopment();
+    }
+    else if (development == "3")
+    {
+        developmentComputer =_dAccess.getAllComputersDevelopedAndOriginal();
+    }
 
-    return allComputers;
+    return developmentComputer;
 }
 //-- Computer Search Functions --//
 vector<Computer> Service::searchForComputersByName(string inputName)

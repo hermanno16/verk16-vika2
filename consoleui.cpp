@@ -13,7 +13,7 @@ ConsoleUI::ConsoleUI()
 
 //-- Booting functions --//
 //Booting - Print functions.
-void ConsoleUI::removeScientist()
+void ConsoleUI::removeScientistFromDatabase()
 {
     int idOfScientist;
     char areYouSure;
@@ -27,7 +27,7 @@ void ConsoleUI::removeScientist()
 
     if(areYouSure == 'y' || areYouSure == 'Y')
     {
-        _service.removeScientist(idOfScientist);
+        _service.removeScientistFromDatabase(idOfScientist);
         mainMenu();
     }
     else if(areYouSure == 'b' || areYouSure == 'B')
@@ -130,7 +130,7 @@ void ConsoleUI::scientistWhatToDo()
 
     if(whatToDo == '1')
     {
-        removeScientist();
+        removeScientistFromDatabase();
     }
     else if(whatToDo == '2')
     {
@@ -556,19 +556,47 @@ void ConsoleUI::addScientist()
     cout << "  > Input year of death if applicable, if not please enter N/A): ";
     getline(cin, yearOfDeath);
 
+    char yesOrNo = ' ';
+
 
     if(_service.isAddScientistValid(name, gender, yearOfBirth, yearOfDeath))
     {
         _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
 
-        scientistMenu();
+        cout << "Is this scientist connected to any famous computers ?" << endl;
+
+        cin >> yesOrNo;
+        if(yesOrNo == 'Y' || yesOrNo == 'y')
+        {
+            int howMany = 0;
+            int idNumber = 0;
+            cout << "How many computers is he/she connected with?" << endl;
+            cin >> howMany;
+            for(int i = 0; i < howMany; i++)
+            {
+                _service.addComputerToData();
+                _service.connectComputerToScientist(idNumber);
+
+            }
+        }
+        else if(yesOrNo == 'n' || yesOrNo == 'N')
+        {
+            scientistMenu();
+        }
+        else
+        {
+            cout << "Invalid input! " << endl;
+            addScientist();
+        }
+
     }
 
-    {
-        cout << "  > Invalid input!" << endl;
 
-        scientistMenu();
-    }
+
+    cout << "  > Invalid input!" << endl;
+
+    scientistMenu();
+
 }
 void ConsoleUI::scientistNameColumn()
 {

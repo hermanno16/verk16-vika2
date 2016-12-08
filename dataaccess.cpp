@@ -181,7 +181,7 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
 
 }
     //Scientist - other functions.
-void DataAccess::removeScientist(int idOfScientist)
+void DataAccess::removeScientistFromDatabase(int idOfScientist)
 {
     QSqlQuery query;
     query.prepare("DELETE FROM Scientists where ID = (:id)");
@@ -193,6 +193,8 @@ void DataAccess::removeScientist(int idOfScientist)
     }
     else
     {
+
+
         cout << "Thorir er bestur" << endl;
     }
 

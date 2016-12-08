@@ -127,9 +127,9 @@ vector<Scientist> Service::getScientistsByGenderAtoZ(string gender)
 
     return genderScientists;
 }
-void Service::removeScientist(int idOfScientist)
+void Service::removeScientistFromDatabase(int idOfScientist)
 {
-    _dAccess.removeScientist(idOfScientist);
+    _dAccess.removeScientistFromDatabase(idOfScientist);
 }
 
 //--Computer and Scientist functions--//

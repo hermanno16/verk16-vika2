@@ -31,7 +31,7 @@ public:
     vector<Scientist> getScientistsByGenderAtoZ(string gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
         //Scientist - other functions.
-    void removeScientist(int idOfScientist);
+    void removeScientistFromDatabase(int idOfScientist);
 
     //--Scientists and computers--//
 

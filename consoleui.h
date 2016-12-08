@@ -42,7 +42,8 @@ public:
         //Computer scientist - Other functions.
     void scientistNameColumn();
     void addScientist();
-    void removeScientist();
+    void removeScientistFromDatabase();
+
 
     //-- Computers --//
 

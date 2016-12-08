@@ -1,7 +1,7 @@
 #include "computer.h"
 
 using namespace std;
-
+//--Constructors--//
 Computer::Computer()
 {
 
@@ -14,6 +14,7 @@ Computer::Computer(int id, string name, string type, int builtYear, string devel
     _builtYear = builtYear;
     _development = development;
 }
+//--Get funcitons--//
 int Computer::getId() const
 {
     return _id;
@@ -34,6 +35,7 @@ string Computer::getDevelopment() const
 {
     return _development;
 }
+//--Set functions--//
 void Computer::setId(int id)
 {
     _id = id;
@@ -54,4 +56,3 @@ void Computer::setDevelopment(string development)
 {
     _development = development;
 }
-

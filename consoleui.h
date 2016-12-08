@@ -15,40 +15,41 @@ public:
     ConsoleUI();
 
     //-- Booting functions --//
-    //Booting - Print functions.
+        //Booting - Print functions.
     void beginingOfProgramPrint();
     void mainMenuPrint();
-    //Booting - Other functions.
+        //Booting - Other functions.
     void mainMenu();
 
     //-- Computer scientists --//
-    //Computer scientist - Menu functions.
+        //Computer scientist - Menu functions.
     void scientistMenu();
     void scientistListMenu();
     void scientistListAllMenu();
     void scientistListAllGenderMenu();
     void scientistListAllDeadOrAliveMenu();
     void scientistListAllYearOfBirthMenu();
-    //Computer scientist - Print functions.
+        //Computer scientist - Print functions.
     void scientistMenuPrint();
     void scientistListMenuPrint();
     void scientistListAllMenuPrint();
     void scientistListAllGenderMenuPrint();
     void scientistListAllDeadOrAliveMenuPrint();
     void scientistListAllYearOfBirthMenuPrint();
-    //Computer scientist - Other functions.
+        //Computer scientist - Other functions.
     void scientistNameColumn();
     void addScientist();
 
     //-- Computers --//
-    //--Computer - Menu functions.
+
+        //--Computer - Menu functions.
     void computerMenu();
     void computerListMenu();
     void computerListAllMenu();
     void computerListAllTypeMenu();
     void computerListAllBuildYearMenu();
     void computerListAllDevelopmentMenu();
-    //Computers - Print functions.
+        //Computers - Print functions.
     void computerMenuPrint();
     void computerListMenuPrint();
     void computerListAllMenuPrint();
@@ -57,11 +58,11 @@ public:
     void computerListAllDevelopmentMenuPrint();
     void printComputers(vector<Computer> temp);
 
-    //Computer scientist - Other functions.
+        //Computer scientist - Other functions.
     void computerNameColumn();
     void addComputer();
 
-    //Computers and computer scientists --//
+        //Computers and computer scientists --//
     void workedOn();
     void run();
     void openDataBase();

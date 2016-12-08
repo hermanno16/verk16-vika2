@@ -21,10 +21,13 @@ class DataAccess
 {
 
 public:
+    //--Constructors--//
     DataAccess();
     ~DataAccess();
+    //--Booting functions--//
     QSqlDatabase readDataBase();
     void openDataBase();
+    //--Scientists--//
     vector<Scientist> getAllScientistInfoFromDataBase(QString queryCommand);
     vector<Scientist> getAllScientistsAtoZ();
     vector<Scientist> getAllScientistsZtoA();
@@ -38,7 +41,7 @@ public:
     vector<Scientist> searchForScientistsByYearOfBirthAtoZ(string yearToFind);
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     void addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
-    //--Computer--//
+    //--Computers--//
     vector<Computer> getAllComputerInfoFromDataBase(QString queryCommand);
     vector<Computer> getAllComputersAtoZ();
     vector<Computer> getAllComputersZtoA();
@@ -50,7 +53,7 @@ public:
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByBuiltYear(string builtYearToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
-    //Tengitöflu föllin
+    //--Scientists and computers--//
     vector<Scientist> connectComputerToScientist(int idNumber);
 
 private:

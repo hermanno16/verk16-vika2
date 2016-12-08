@@ -7,13 +7,16 @@ using namespace std;
 class Computer
 {
 public:
+    //--Constructors--//
     Computer();
     Computer(int id, string name, string type, int builtYear, string development);
+    //--Set functions--//
     void setId(int id);
     void setName(string name);
     void setType(string type);
     void setBuiltYear(int builtYear);
     void setDevelopment(string developement);
+    //--Get funcitons--//
     int getId() const;
     string getName() const;
     string getType() const;

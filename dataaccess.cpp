@@ -30,7 +30,6 @@ vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryComma
     {
         int id = query.value(query.record().indexOf("ID")).toUInt();
         QString name = query.value(query.record().indexOf("FirstName")).toString();
-
         QString gender = query.value(query.record().indexOf("Gender")).toString();
         int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
         int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
@@ -80,7 +79,7 @@ vector<Scientist> DataAccess::getAllDeceasedScientistsAtoZ()
 {
     return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE YearOfDeath is NOT NULL ORDER BY FirstName Asc");
 }
-//Scientist - search functions.
+    //Scientist - search functions.
 vector<Scientist> DataAccess::searchForScientistsByName(string searchString)
 {
     QString qSearchString = QString::fromStdString(searchString);
@@ -181,8 +180,7 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
 
 
 }
-
-
+    //Scientist - other functions.
 void DataAccess::addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)
 {
 
@@ -197,45 +195,42 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
      query.exec();
 
 }
-//Tengitöflu föllin
-/*
+//--Scientists and computers--//
+
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;
 
     QSqlQuery query;
 
-    query.prepare("SELECT FirstName,Gender,YearOfBirth,YearOfDeath FROM Scientists, ConnectionTable WHERE Scientists.ID = ConnectionTable.ID AND ConnectionTable.Cid = (:something)");
+    query.prepare("SELECT ID,FirstName,Gender,YearOfBirth,YearOfDeath FROM Scientists, ConnectionTable WHERE Scientists.ID = ConnectionTable.ID AND ConnectionTable.Cid = (:something)");
     query.bindValue(":something", idNumber);
     query.exec();
 
-    int idName = query.record().indexOf("FirstName");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
     while(query.next())
     {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
+        int id = query.value(query.record().indexOf("ID")).toUInt();
+        QString name = query.value(query.record().indexOf("FirstName")).toString();
+        QString gender = query.value(query.record().indexOf("Gender")).toString();
+        int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
+        int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
+
+        cout << id << endl;
 
         Scientist newScientist(
+                    id,
                     name.toStdString(),
                     gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
+                    YearOfBirth,
+                    yearOfDeath
                     );
 
         allScientists.push_back(newScientist);
     }
 
-
-
     return allScientists;
 }
-
-  Commenta þetta inn þegar Computer.h/cpp er komið
+/*
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;
@@ -250,6 +245,7 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 }
 */
 //-- Computers--//
+    //All Computers - functions.
 vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)
 {
     vector<Computer> allComputers;
@@ -281,7 +277,6 @@ vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand
 
     return allComputers;
 }
-
 vector<Computer> DataAccess::getAllComputersAtoZ()
 {
     return getAllComputerInfoFromDataBase("SELECT ComputerName,BuiltYear,Type,Developed FROM Scientists ORDER BY Name Asc");
@@ -310,9 +305,7 @@ vector<Computer> DataAccess::getAllComputersDevelopment()
 {
     return getAllComputerInfoFromDataBase("SELECT * FROM Computer WHERE Development is NOT NULL ORDER BY ComputerName Asc");
 }
-//--Computer--//
-//search functions
-
+    //Computers - search functions
 vector<Computer> DataAccess::searchForComputersByName(string inputName)
 {
     QString qSearchString = QString::fromStdString(inputName);

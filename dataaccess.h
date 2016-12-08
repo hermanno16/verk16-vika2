@@ -41,6 +41,8 @@ public:
     vector<Scientist> searchForScientistsByYearOfBirthAtoZ(string yearToFind);
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     void addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
+    void removeScientist(int idOfScientist);
+
     //--Computers--//
     vector<Computer> getAllComputerInfoFromDataBase(QString queryCommand);
     vector<Computer> getAllComputersAtoZ();

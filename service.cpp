@@ -129,9 +129,12 @@ vector<Scientist> Service::getScientistsByGenderAtoZ(string gender)
 
     return genderScientists;
 }
+void Service::removeScientist(int idOfScientist)
+{
+    _dAccess.removeScientist(idOfScientist);
+}
 
-// Tengitöflu föllin
-
+//--Computer and Scientist functions--//
 vector<Scientist> Service::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;

@@ -55,6 +55,7 @@ public:
     void computerListAllTypeMenuPrint();
     void computerListAllBuiltYearMenuPrint();
     void computerListAllDevelopmentMenuPrint();
+    void printComputers(vector<Computer> temp);
 
     //Computer scientist - Other functions.
     void computerNameColumn();
@@ -72,6 +73,7 @@ private:
 
 };
 
-ostream& operator <<(ostream& outs, Scientist& s);
+ostream& operator <<(ostream& os, Scientist& TempClass);
+ostream& operator <<(ostream& os, Computer& TempClass);
 
 #endif // CONSOLEUI_H

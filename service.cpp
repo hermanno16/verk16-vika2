@@ -8,7 +8,6 @@ Service::Service()
 {
 
 }
-
 //-- Computer scientists --// Vector föll sem skila af sér tilheyrandi vector
 vector<Scientist> Service::getAllScientistsAtoZ()
 {
@@ -119,7 +118,7 @@ vector<Scientist> Service::searchForScientistsByYearOfDeathAtoZ(string yearToFin
 
     return allScientists;
 }
-ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overloader fyrir cout << Scientist.
+ostream& operator <<(ostream& os, Scientist &TempClass)    // Operator Overloader fyrir cout << Scientist.
 {
         os << " | ";os.width(5); os << left << TempClass.getID();
         os.width(30); os << left << TempClass.getName();
@@ -130,6 +129,19 @@ ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overload
 
     return os;
 }
+ostream& operator <<(ostream& os, Computer& TempClass)    // Operator Overloader fyrir cout << Computer.
+{
+        os << " | ";os.width(5); os << left << TempClass.getId();
+        os.width(30); os << left << TempClass.getName();
+        os << "  " ;os.width(13); os << left << TempClass.getType();
+        os << "  " ;os.width(15); os << left << TempClass.getBuiltYear();
+        os << "  " ;os.width(17); os << left << TempClass.getDevelopment() << "|";
+        os << endl;
+
+    return os;
+}
+
+
 vector<Scientist> Service::getAllDeceasedScientistsAtoZ()
 {
     vector<Scientist> allScientists;

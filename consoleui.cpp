@@ -1,6 +1,7 @@
 #include "consoleui.h"
 #include "scientist.h"
 #include "service.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -451,6 +452,14 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     {
         cout << temp[i];
     }
+    int prump = temp.size();
+    cout << "  =======================================================================================" << endl;
+    cout << " | ";
+    cout << setfill(' ') << setw(50);
+    cout << right << "Number of results return: ";
+    cout << setw(36);
+    cout << left << prump;
+    cout << setw(1) << "|" << endl;
 }
 //Computer scientist - Other functions.
 void ConsoleUI::addScientist()
@@ -900,6 +909,22 @@ void ConsoleUI::computerListAllDevelopmentMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << " > Please enter a number: ";
 }
+void ConsoleUI::printComputers(vector<Computer> temp)
+{
+    for(unsigned int i = 0; i < temp.size(); i++)
+    {
+        cout << temp[i];
+    }
+    cout << "  =======================================================================================" << endl;
+    cout << " | ";
+    cout << setfill(' ') << setw(50);
+    cout << right << "Number of results returned: ";
+    cout << setw(36);
+    cout << left << temp.size();
+    cout << setw(1) << "|" << endl;
+}
+
+
 
 //Computer scientist - Other functions.
 void ConsoleUI::addComputer()

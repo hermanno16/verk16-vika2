@@ -286,12 +286,24 @@ bool Service::isAddScientistValid(string name, string gender, string yearOfBirth
 
 ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overloader fyrir cout << Scientist.
 {
-        os << " | ";os.width(5); os << left << TempClass.getID();
-        os.width(30); os << left << TempClass.getName();
-        os << "  " ;os.width(13); os << left << TempClass.getGender();
-        os << "  " ;os.width(15); os << left << TempClass.getYearOfBirth();
-        os << "  " ;os.width(17); os << left << TempClass.getYearOfDeath() << "|";
-        os << endl;
+        if(TempClass.getYearOfDeath()==0)
+        {
+            os << " | ";os.width(5); os << left << TempClass.getID();
+            os.width(30); os << left << TempClass.getName();
+            os << "  " ;os.width(13); os << left << TempClass.getGender();
+            os << "  " ;os.width(15); os << left << TempClass.getYearOfBirth();
+            os << "  " ;os.width(17); os << left << "N/A" << "|";
+            os << endl;
+        }
+        else
+        {
+            os << " | ";os.width(5); os << left << TempClass.getID();
+            os.width(30); os << left << TempClass.getName();
+            os << "  " ;os.width(13); os << left << TempClass.getGender();
+            os << "  " ;os.width(15); os << left << TempClass.getYearOfBirth();
+            os << "  " ;os.width(17); os << left << TempClass.getYearOfDeath() << "|";
+            os << endl;
+        }
 
-    return os;
+        return os;
 }

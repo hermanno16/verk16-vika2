@@ -48,7 +48,7 @@ void ConsoleUI::mainMenuPrint()
     cout << " |                                     MAIN MENU                                         | " << endl;
     cout << "  =======================================================================================  " << endl;
     cout << " |     1. Computers.                                          2. Computer scientists.    | " << endl;
-    cout << " |                                                                                       | " << endl;
+    cout << " |     3. Other functions                                                                | " << endl;
     cout << " | Press 'q' to quit the program.                                                        | " << endl;
     cout << "  =======================================================================================  " << endl;
     cout << " > Please enter a number: ";
@@ -67,6 +67,10 @@ void ConsoleUI::mainMenu()
     else if(command == "2")
     {
         scientistMenu();
+    }
+    else if(command == "3")
+    {
+        otherMenu();
     }
     else if(command == "q" || command == "Q")
     {
@@ -983,4 +987,51 @@ void ConsoleUI::quitSystem()
 {
     cout << "Quitting program..." << endl;
     exit(1);
+}
+
+void ConsoleUI::otherMenu()
+{
+    cout << "  ======================================================================================= " << endl;
+    cout << " |     1. Edit relations of computer and scientist                                       | " << endl;
+    cout << " |     2. Add a relation of a scientist to a computer                                    | " << endl;
+    cout << " |     3. Add a relation of a computer to a scientist                                    | " << endl;
+    cout << " |     4. Remove a relation between a computer and a scientist                           | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << "  > Please enter a number: ";
+/*
+    if(list == '1')
+    {
+        //TODO - - -1. Edit relations of computer and scientist
+    }
+    else if(list == '1')
+    {
+        //TODO - - -1. Edit relations of computer and scientist
+    }
+    else if(list == '1')
+    {
+        //TODO - - -1. Edit relations of computer and scientist
+    }
+    else if(list == '1')
+    {
+        //TODO - - -1. Edit relations of computer and scientist
+    }
+
+
+    else if(list == 'b' || list == 'B')
+    {
+        mainMenuPrint();
+    }
+    else if(list == 'q' || list == 'Q')
+    {
+        quitSystem();
+    }
+    else
+    {
+        cout << "  Invalid input!" << endl;
+        cout << endl;
+        otherMenu();
+    }
+    */
 }

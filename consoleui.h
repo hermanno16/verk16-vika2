@@ -71,6 +71,8 @@ public:
 
     void quitSystem();
 
+    void otherMenu();
+
 private:
     Service _service;
 

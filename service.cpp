@@ -9,7 +9,7 @@ Service::Service()
 
 }
 
-//-- Computer scientists --// Vector föll sem skila af sér tilheyrandi vector
+//--Scientists--//
 vector<Scientist> Service::getAllScientistsAtoZ()
 {
     vector<Scientist> allScientists;
@@ -69,6 +69,15 @@ vector<Scientist> Service::getAllDeadOrAliveScientistsAtoZ(string input)
     return deadOrAliveScientists;
 
 }
+vector<Scientist> Service::getAllDeceasedScientistsAtoZ()
+{
+    vector<Scientist> allScientists;
+
+    allScientists = _dAccess.getAllDeceasedScientistsAtoZ();
+
+    return allScientists;
+}
+    //Scientist - search functions.
 vector<Scientist> Service::searchForScientistsByName(string searchString)
 {
     vector<Scientist> allScientists;
@@ -77,8 +86,25 @@ vector<Scientist> Service::searchForScientistsByName(string searchString)
 
     return allScientists;
 }
-vector<Scientist> Service::getScientistsByGenderAtoZ(string gender) // Fallið hér tekur input úr úr console, 1 eða 2 og
-{                                                                   // verða tilvik út frá því, þ.e. Male eða Female.
+vector<Scientist> Service::searchForScientistsByYearOfBirthAtoZ(string yearToFind)
+{
+    vector<Scientist> allScientists;
+
+    allScientists = _dAccess.searchForScientistsByYearOfBirthAtoZ(yearToFind);
+
+    return allScientists;
+}
+vector<Scientist> Service::searchForScientistsByYearOfDeathAtoZ(string yearToFind)
+{
+    vector<Scientist> allScientists;
+
+    allScientists = _dAccess.searchForScientistsByYearOfDeathAtoZ(yearToFind);
+
+    return allScientists;
+}
+    //Scientist - search functions.
+vector<Scientist> Service::getScientistsByGenderAtoZ(string gender)
+{
     vector<Scientist> genderScientists;
 
     cout << gender << endl;
@@ -103,40 +129,6 @@ vector<Scientist> Service::getScientistsByGenderAtoZ(string gender) // Fallið h
 
     return genderScientists;
 }
-vector<Scientist> Service::searchForScientistsByYearOfBirthAtoZ(string yearToFind)
-{
-    vector<Scientist> allScientists;
-
-    allScientists = _dAccess.searchForScientistsByYearOfBirthAtoZ(yearToFind);
-
-    return allScientists;
-}
-vector<Scientist> Service::searchForScientistsByYearOfDeathAtoZ(string yearToFind)
-{
-    vector<Scientist> allScientists;
-
-    allScientists = _dAccess.searchForScientistsByYearOfDeathAtoZ(yearToFind);
-
-    return allScientists;
-}
-ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overloader fyrir cout << Scientist.
-{
-        os << " |  " ;os.width(30); os << left << TempClass.getName();
-        os << "  " ;os.width(13); os << left << TempClass.getGender();
-        os << "  " ;os.width(15); os << left << TempClass.getYearOfBirth();
-        os << "  " ;os.width(21); os << left << TempClass.getYearOfDeath() << "|";
-        os << endl;
-
-    return os;
-}
-vector<Scientist> Service::getAllDeceasedScientistsAtoZ()
-{
-    vector<Scientist> allScientists;
-
-    allScientists = _dAccess.getAllDeceasedScientistsAtoZ();
-
-    return allScientists;
-}
 
 // Tengitöflu föllin
 
@@ -149,7 +141,7 @@ vector<Scientist> Service::connectComputerToScientist(int idNumber)
     return allScientists;
 }
 
-//Gamalt
+
 
 void Service::addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)
 {
@@ -198,4 +190,14 @@ bool Service::isAddScientistValid(string name, string gender, string yearOfBirth
 
 }
 
+ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overloader fyrir cout << Scientist.
+{
+        os << " | ";os.width(5); os << left << TempClass.getID();
+        os.width(30); os << left << TempClass.getName();
+        os << "  " ;os.width(13); os << left << TempClass.getGender();
+        os << "  " ;os.width(15); os << left << TempClass.getYearOfBirth();
+        os << "  " ;os.width(17); os << left << TempClass.getYearOfDeath() << "|";
+        os << endl;
 
+    return os;
+}

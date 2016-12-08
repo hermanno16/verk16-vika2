@@ -1,10 +1,23 @@
 #include "computer.h"
 
 using namespace std;
-
+//--Constructors--//
 Computer::Computer()
 {
 
+}
+Computer::Computer(int id, string name, string type, int builtYear, string development)
+{
+    _id = id;
+    _name = name;
+    _type = type;
+    _builtYear = builtYear;
+    _development = development;
+}
+//--Get funcitons--//
+int Computer::getId() const
+{
+    return _id;
 }
 string Computer::getName() const
 {
@@ -18,9 +31,14 @@ int Computer::getBuiltYear() const
 {
     return _builtYear;
 }
-string Computer::getOriginalOrDeveloped() const
+string Computer::getDevelopment() const
 {
-    return _originalOrDeveloped;
+    return _development;
+}
+//--Set functions--//
+void Computer::setId(int id)
+{
+    _id = id;
 }
 void Computer::setName(string name)
 {
@@ -30,13 +48,11 @@ void Computer::setType(string type)
 {
     _type = type;
 }
-
 void Computer::setBuiltYear(int builtYear)
 {
     _builtYear = builtYear;
 }
-void Computer::setOriginalOrDeveloped(string originalOrDeveloped)
+void Computer::setDevelopment(string development)
 {
-    _originalOrDeveloped = originalOrDeveloped;
+    _development = development;
 }
-

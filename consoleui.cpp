@@ -489,13 +489,15 @@ void ConsoleUI::addScientist()
 void ConsoleUI::scientistNameColumn()
 {
     cout << "  ======================================================================================= " << endl;
-    cout.width(36);
-    cout << left << " |  Name:";
+    cout.width(4);
+    cout << left << " | ID:";
+    cout.width(34);
+    cout << left << "  Name:";
     cout.width(15);
     cout << left << "Gender:";
     cout.width(17);
     cout << left << "Birth year:";
-    cout.width(21);
+    cout.width(17);
     cout << left << "Year of Death:";
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
@@ -652,56 +654,37 @@ void ConsoleUI::computerListAllMenu()
 {
     char input = ' ';
     computerListAllMenuPrint();
-    cout << "Eg er i computerListAllMenu" << endl;
     cin >> input;
 
 
-    if(input == '1')           //A-Z
+    if(input == '1') //A-Z
     {
-        // vector<Scientist> scientists = _service.getAllComputersAtoZ();
-        // computerNameColumn();
-        //  printScientist(scientists);
+        vector<Computer> computers = _service.getAllComputersAtoZ();
+        computerNameColumn();
+        printScientist(computers);
 
         cout << "  ======================================================================================= " << endl << endl;
-        cout << "Her kemur listi af tolvum - A-Z!!!!";
-        cout << endl;
 
         computerListAllMenu();
+
     }
     if(input == '2')    //Z-A
     {
-        // vector<Scientist> scientists = _service.getAllComputersZtoA();
-        //computerNameColumn();
-        // printScientist(scientists);
+        vector<Computer> computers = _service.getAllComputersZtoA();
+        computerNameColumn();
+        printScientist(computers);
 
         cout << "  ======================================================================================= " << endl << endl;
-        cout << "Her kemur listi af tolvum - Z-A !!!";
 
         computerListAllMenu();
+
     }
     else if(input == '3')    //Type
     {
         computerListAllTypeMenu();
-        // vector<Scientist> scientists = _service.getAllComputerByTypeAsc();
-        // computerNameColumn();
-        // printScientist(scientists);
-        //cout << "  ======================================================================================= " << endl << endl;
-
-        // computerListAllMenu();
     }
     else if(input == '4')    //Built year
     {
-
-        /*
-        vector<Scientist> scientists = _service.sortAllScientistsByYearOfBirthDesc();
-        scientistNameColumn();
-        //printScientists(scientists);
-
-        for(unsigned int i = 0; i < scientists.size(); i++)
-        {
-            cout << scientists[i];
-        }
-        */
         computerListAllBuildYearMenu();
     }
     else if(input == '5')    //Original Or Developed
@@ -730,15 +713,25 @@ void ConsoleUI::computerListAllTypeMenu()
     cin >> type;
 
 
-    if (type == '1')
+    if (type == '1') //All type A-Z
     {
-        cout << "  Her kemur TYPE listi.. A-Z!" << endl;
-        //TODO - A-Z
+        vector<Computer> computers = _service.getAllTypeComputersAtoZ();
+        computerNameColumn();
+        printComputer(computers);
+
+        cout << "  ======================================================================================= " << endl << endl;
+
+        computerListAllTypeMenu();
     }
-    else if (type == '2')
+    else if (type == '2') //All type Z-A
     {
-        cout << "  Her kemur TYPE listi.. Z-A!" << endl;
-        //TODO - Z-A
+        vector<Computer> computers = _service.getAllTypeComputersZtoA();
+        computerNameColumn();
+        printComputer(computers);
+
+        cout << "  ======================================================================================= " << endl << endl;
+
+        computerListAllTypeMenu();
     }
     else if(type == 'b' || type == 'B')
     {
@@ -748,14 +741,10 @@ void ConsoleUI::computerListAllTypeMenu()
     {
         quitSystem();
     }
-    else if (type != '1' && type != '2')
-    {
+
         cout << "  Wrong input!" << endl;
         cout << endl;
         computerListAllTypeMenu();
-    }
-
-    computerListAllTypeMenu();
 
 }
 void ConsoleUI::computerListAllBuildYearMenu()
@@ -766,13 +755,24 @@ void ConsoleUI::computerListAllBuildYearMenu()
 
     if (builtYear == '1')
     {
-        cout << "  Her kemur BUILT YEAR listi.. A-Z!" << endl;
-        //TODO - A-Z
+        vector<Computer> computers = _service.getAllBuildYearComputersAtoZ();
+        computerNameColumn();
+        printScientist(computers);
+
+        cout << "  ======================================================================================= " << endl << endl;
+
+        computerListAllBuiltYearMenu();
     }
     else if (builtYear == '2')
     {
-        cout << "  Her kemur BUILT YEAR listi.. Z-A!" << endl;
-        //TODO - Z-A
+        vector<Computer> computers = _service.getAllBuildYearComputersZtoA();
+        computerNameColumn();
+        printScientist(computers);
+
+        cout << "  ======================================================================================= " << endl << endl;
+
+        computerListAllBuiltYearMenu();
+
     }
     if(builtYear == 'b' || builtYear == 'B')
     {
@@ -782,13 +782,11 @@ void ConsoleUI::computerListAllBuildYearMenu()
     {
         quitSystem();
     }
-    else if (builtYear != '1' && builtYear != '2')
-    {
+
         cout << "  Wrong input!" << endl;
         cout << endl;
         computerListAllBuildYearMenu();
-    }
-    computerListAllBuildYearMenu();
+
 }
 void ConsoleUI::computerListAllOriginalOrDevelopedMenu()
 {
@@ -825,17 +823,7 @@ void ConsoleUI::computerListAllOriginalOrDevelopedMenu()
         cout << endl;
         computerListAllOriginalOrDevelopedMenu();
     }
-    /*vector<Scientist> scientists = _service.getAllDeadOrAliveScientistsAtoZ(aliveOrDeseaced);
-            scientistNameColumn();
-            //printScientists(scientists);
 
-            for(unsigned int i = 0; i < scientists.size(); i++)
-            {
-                cout << scientists[i];
-            }
-
-            cout << "  ======================================================================================= " << endl << endl;
-            */
     computerListAllOriginalOrDevelopedMenu();
 
 }
@@ -845,11 +833,10 @@ void ConsoleUI::computerMenuPrint()
 {
     cout << "  ======================================================================================= " << endl;
     cout << " |     1. List - List of computers.                            2. Add - Add computer.    | " << endl;
-    cout << " |                                                                                       | " << endl;
+    cout << " |     3. Developer - Enter the ID of a Computer for a list of developers                | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  =======================================================================================  " << endl;
     cout << "  > Please enter a number: ";
-
 }
 void ConsoleUI::computerListMenuPrint()
 {

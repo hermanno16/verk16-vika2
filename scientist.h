@@ -8,12 +8,15 @@ using namespace std;
 class Scientist
 {
 public:
+    //--Constructors--//
     Scientist(int ID, string name, string gender, int yearOfBirth, int yearOfDeath);
+    //--Set functions--//
     void setName(string name);
     void setGender(string gender);
     void setYearOfBirth(int yearOfBirth);
     void setYearOfDeath(int yearOfDeath);
     void setID(int ID);
+    //--Get funcitons--//
     int getID() const;
     string getName() const;
     string getGender() const;

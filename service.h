@@ -15,22 +15,23 @@ using namespace std;
 class Service
 {
 public:
+    //--Constructor--//
     Service();
-
+    //--Scientists--//
     vector<Scientist> getAllScientistsAtoZ();
     vector<Scientist> getAllScientistsZtoA();
     vector<Scientist> getAllScientistsByYearOfBirthAsc();
     vector<Scientist> getAllScientistsByYearOfBirthDes();
     vector<Scientist> getAllDeadOrAliveScientistsAtoZ(string input);
-    //Search-föll
+        //Scientist - search functions.
     vector<Scientist> searchForScientistsByName(string searchString);
     vector<Scientist> searchForScientistsByYearOfBirthAtoZ(string yearToFind);
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     vector<Scientist> getScientistsByGenderAtoZ(string gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
-    //Tengitöflu föllin
+    //--Scientists and computers--//
     vector<Scientist> connectComputerToScientist(int idNumber);
-    //Bool check
+    //--Check functions--//
     bool isAddScientistValid(string name, string gender, string yearOfBirth, string yearOfDeath);
     void addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
     bool inputNameValid(string input);

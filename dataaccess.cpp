@@ -34,8 +34,6 @@ vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryComma
         int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
         int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
 
-        cout << id << endl;
-
         Scientist newScientist(
                     id,
                     name.toStdString(),
@@ -51,11 +49,11 @@ vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryComma
 }
 vector<Scientist> DataAccess::getAllScientistsAtoZ()
 {
-    return getAllScientistInfoFromDataBase("SELECT ID,FirstName,YearOfBirth,YearOfDeath,Gender FROM Scientists ORDER BY FirstName Asc");
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists ORDER BY FirstName Asc");
 }
 vector<Scientist> DataAccess::getAllScientistsZtoA()
 {
-    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists ORDER BY Name Desc");
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists ORDER BY FirstName Desc");
 }
 vector<Scientist> DataAccess::getAllScientistsByYearOfBirthAsc()
 {
@@ -67,23 +65,21 @@ vector<Scientist> DataAccess::getAllScientistsByYearOfBirthDes()
 }
 vector<Scientist> DataAccess::getAllMaleScientistsAtoZ()
 {
-    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE Gender = 'Male' ORDER BY Name Asc");
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE Gender = 'Male' ORDER BY FirstName Asc");
 }
 vector<Scientist> DataAccess::getAllFemaleScientistsAtoZ()
 {
-    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE Gender = 'Female' ORDER BY Name Asc");
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE Gender = 'Female' ORDER BY FirstName Asc");
 }
 vector<Scientist> DataAccess::getAllAliveScientistsAtoZ()
 {
-    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE YearOfDeath is NULL ORDER BY Name Asc");
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE YearOfDeath is NULL ORDER BY FirstName Asc");
 }
 vector<Scientist> DataAccess::getAllDeceasedScientistsAtoZ()
 {
-    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE YearOfDeath is NOT NULL ORDER BY Name Asc");
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE YearOfDeath is NOT NULL ORDER BY FirstName Asc");
 }
     //Scientist - search functions.
-
-
 vector<Scientist> DataAccess::searchForScientistsByName(string searchString)
 {
     QString qSearchString = QString::fromStdString(searchString);
@@ -92,13 +88,13 @@ vector<Scientist> DataAccess::searchForScientistsByName(string searchString)
     vector<Scientist> allScientists;
 
     QSqlQuery query;
-    query.prepare("SELECT * FROM Scientists WHERE (Name) LIKE '%"+qSearchString+"%'");
+    query.prepare("SELECT * FROM Scientists WHERE (FirstName) LIKE '%"+qSearchString+"%'");
     query.exec();
 
     while(query.next())
     {
         int id = query.value(query.record().indexOf("ID")).toUInt();
-        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString name = query.value(query.record().indexOf("FirstName")).toString();
         QString gender = query.value(query.record().indexOf("Gender")).toString();
         int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
         int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
@@ -124,14 +120,14 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfBirthAtoZ(string yearTo
 
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM Scientists WHERE YearOfBirth = (:something) ORDER BY Name Asc");
+    query.prepare("SELECT * FROM Scientists WHERE YearOfBirth = (:something) ORDER BY FirstName Asc");
     query.bindValue(":something", yearOfBirth);
     query.exec();
 
     while(query.next())
     {
         int id = query.value(query.record().indexOf("ID")).toUInt();
-        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString name = query.value(query.record().indexOf("FirstName")).toString();
         QString gender = query.value(query.record().indexOf("Gender")).toString();
         int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
         int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
@@ -157,14 +153,14 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
 
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM Scientists WHERE YearOfDeath = (:something) ORDER BY Name Asc");
+    query.prepare("SELECT * FROM Scientists WHERE YearOfDeath = (:something) ORDER BY FirstName Asc");
     query.bindValue(":something", yearOfDeath);
     query.exec();
 
     while(query.next())
     {
         int id = query.value(query.record().indexOf("ID")).toUInt();
-        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString name = query.value(query.record().indexOf("FirstName")).toString();
         QString gender = query.value(query.record().indexOf("Gender")).toString();
         int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
         int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
@@ -184,14 +180,13 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
 
 
 }
-
-
+    //Scientist - other functions.
 void DataAccess::addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)
 {
 
 
     QSqlQuery query;
-    query.prepare("INSERT INTO Scientists (Name, Gender, YearOfBirth, YearOfDeath) VALUES (:name, :gender, :yearofbirth, :yearofdeath)");
+    query.prepare("INSERT INTO Scientists (FirstName, Gender, YearOfBirth, YearOfDeath) VALUES (:name, :gender, :yearofbirth, :yearofdeath)");
 
      query.bindValue(":name", QString::fromStdString(inputName));
      query.bindValue(":gender", QString::fromStdString(inputGender));
@@ -200,7 +195,7 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
      query.exec();
 
 }
-//Tengitöflu föllin
+//--Scientists and computers--//
 
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
@@ -236,7 +231,6 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
     return allScientists;
 }
 
-/*
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;
@@ -249,12 +243,167 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 
 
 }
-*/
 //-- Computers--//
+    //All Computers - functions.
+vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)
+{
+    vector<Computer> allComputers;
+
+    QSqlQuery query;
+    query.prepare(queryCommand);
+    query.exec();
 
 
+    while(query.next())
+    {
+        int id = query.value(query.record().indexOf("ID")).toUInt();
+        QString name = query.value(query.record().indexOf("ComputerName")).toString();
+        QString type = query.value(query.record().indexOf("Type")).toString();
+        int builtYear = query.value(query.record().indexOf("BuiltYear")).toUInt();
+        QString development = query.value(query.record().indexOf("Development")).toString();
 
 
+        Computer newComputer(
+                    id,
+                    name.toStdString(),
+                    type.toStdString(),
+                    builtYear,
+                    development.toStdString()
+                    );
+
+        allComputers.push_back(newComputer);
+    }
+
+    return allComputers;
+}
+vector<Computer> DataAccess::getAllComputersAtoZ()
+{
+    return getAllComputerInfoFromDataBase("SELECT ComputerName,BuiltYear,Type,Developed FROM Scientists ORDER BY Name Asc");
+}
+vector<Computer> DataAccess::getAllComputersZtoA()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY ComputerName Desc");
+}
+vector<Computer> DataAccess::getAllComputersBuiltYearAtoZ()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY BuiltYear Asc");
+}
+vector<Computer> DataAccess::getAllComputersBuiltYearZtoA()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY BuiltYear Desc");
+}
+vector<Computer> DataAccess::getAllComputersTypeAtoZ()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Type Asc");
+}
+vector<Computer> DataAccess::getAllComputersTypeZtoA()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Type Desc");
+}
+vector<Computer> DataAccess::getAllComputersDevelopment()
+{
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computer WHERE Development is NOT NULL ORDER BY ComputerName Asc");
+}
+    //Computers - search functions
+vector<Computer> DataAccess::searchForComputersByName(string inputName)
+{
+    QString qSearchString = QString::fromStdString(inputName);
+
+
+    vector<Computer> allComputers;
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Computers WHERE (ComputerName) LIKE '%"+qSearchString+"%'");
+    query.exec();
+
+    while(query.next())
+    {
+        int id = query.value(query.record().indexOf("ID")).toUInt();
+        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString type = query.value(query.record().indexOf("Type")).toString();
+        int builtYear = query.value(query.record().indexOf("builtYear")).toUInt();
+        QString development = query.value(query.record().indexOf("Development")).toString();
+
+        Computer newComputer(
+                    id,
+                    name.toStdString(),
+                    type.toStdString(),
+                    builtYear,
+                    development.toStdString()
+                    );
+
+        allComputers.push_back(newComputer);
+    }
+
+    return allComputers;
+
+}
+vector<Computer> DataAccess::searchForComputersByBuiltYear(string builtYearToFind)
+{
+    int builtYear = atoi(builtYearToFind.c_str());
+
+    vector<Computer> allComputers;
+
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM Computer WHERE BuiltYear = (:something) ORDER BY ComputerName Asc");
+    query.bindValue(":something", builtYear);
+    query.exec();
+
+    while(query.next())
+    {
+        int id = query.value(query.record().indexOf("ID")).toUInt();
+        QString name = query.value(query.record().indexOf("ComputerName")).toString();
+        QString type = query.value(query.record().indexOf("Type")).toString();
+        int builtYear = query.value(query.record().indexOf("builtYear")).toUInt();
+        QString development = query.value(query.record().indexOf("Development")).toString();
+
+        Computer newComputer(
+                    id,
+                    name.toStdString(),
+                    type.toStdString(),
+                    builtYear,
+                    development.toStdString()
+                    );
+
+        allComputers.push_back(newComputer);
+    }
+
+    return allComputers;
+
+}
+vector<Computer> DataAccess::searchForComputersByType(string typeToFind)
+{
+    QString qSearchString = QString::fromStdString(typeToFind);
+
+
+    vector<Computer> allComputers;
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Computers WHERE (Type) LIKE '%"+qSearchString+"%'");
+    query.exec();
+
+    while(query.next())
+    {
+        int id = query.value(query.record().indexOf("ID")).toUInt();
+        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString type = query.value(query.record().indexOf("Type")).toString();
+        int builtYear = query.value(query.record().indexOf("builtYear")).toUInt();
+        QString development = query.value(query.record().indexOf("Development")).toString();
+
+        Computer newComputer(
+                    id,
+                    name.toStdString(),
+                    type.toStdString(),
+                    builtYear,
+                    development.toStdString()
+                    );
+
+        allComputers.push_back(newComputer);
+    }
+
+    return allComputers;
+}
 
 //-- Connect to database --//
 void DataAccess::openDataBase()

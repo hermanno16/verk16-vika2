@@ -1,6 +1,7 @@
 #include "scientist.h"
 using namespace std;
 
+//--Constructors--//
 Scientist::Scientist(int ID, string name, string gender, int yearOfBirth, int yearOfDeath)
 {
     _id = ID;
@@ -9,6 +10,7 @@ Scientist::Scientist(int ID, string name, string gender, int yearOfBirth, int ye
     _yearOfBirth = yearOfBirth;
     _yearOfDeath = yearOfDeath;
 }
+//--Get funcitons--//
 int Scientist::getID() const
 {
     return _id;
@@ -29,6 +31,7 @@ int Scientist::getYearOfDeath() const
 {
     return _yearOfDeath;
 }
+//--Set functions--//
 void Scientist::setID(int ID)
 {
     _id = ID;

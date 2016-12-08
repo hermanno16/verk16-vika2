@@ -30,6 +30,9 @@ public:
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     vector<Scientist> getScientistsByGenderAtoZ(string gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
+        //Scientist - other functions.
+    void removeScientist(int idOfScientist);
+
     //--Scientists and computers--//
 
 
@@ -51,6 +54,12 @@ public:
     bool isAddScientistValid(string name, string gender, string yearOfBirth, string yearOfDeath);
     void addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
     bool inputNameValid(string input);
+
+
+
+
+
+
 
 private:
     DataAccess _dAccess;

@@ -1,12 +1,17 @@
 #include "scientist.h"
 using namespace std;
 
-Scientist::Scientist(string name, string gender, string yob, string yod)
+Scientist::Scientist(string ID, string name, string gender, string yearOfBirth, string yearOfDeath)
 {
+    _id = ID;
     _name = name;
     _gender = gender;
-    _yearOfBirth = yob;
-    _yearOfDeath = yod;
+    _yearOfBirth = yearOfBirth;
+    _yearOfDeath = yearOfDeath;
+}
+string Scientist::getID() const
+{
+    return _id;
 }
 string Scientist::getName() const
 {
@@ -23,6 +28,10 @@ string Scientist::getYearOfBirth() const
 string Scientist::getYearOfDeath() const
 {
     return _yearOfDeath;
+}
+void Scientist::setID(string ID)
+{
+    _id = ID;
 }
 void Scientist::setName(string name)
 {

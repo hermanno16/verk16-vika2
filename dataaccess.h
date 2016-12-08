@@ -24,6 +24,7 @@ public:
     ~DataAccess();
     QSqlDatabase readDataBase();
     void openDataBase();
+    vector<Scientist> getAllScientistInfoFromDataBase(QString queryCommand);
     vector<Scientist> getAllScientistsAtoZ();
     vector<Scientist> getAllScientistsZtoA();
     vector<Scientist> getAllScientistsByYearOfBirthAsc();

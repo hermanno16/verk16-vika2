@@ -16,26 +16,27 @@ DataAccess::~DataAccess()
 }
 
 //-- Computer scientists --//
-vector<Scientist> DataAccess::getAllScientistsAtoZ()
+    //All scientists - functions.
+vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryCommand)
 {
-
     vector<Scientist> allScientists;
 
     QSqlQuery query;
-    query.prepare("SELECT Name,Gender,YearOfBirth,YearOfDeath FROM Scientists ORDER BY Name Asc");
+    query.prepare(queryCommand);
     query.exec();
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
+
+
     while(query.next())
     {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
+        QString id = query.value(query.record().indexOf("Column ID")).toString();
+        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString gender = query.value(query.record().indexOf("Gender")).toString();
+        QString YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toString();
+        QString yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toString();
 
+        cout << query.record().indexOf("Column ID") << endl;
         Scientist newScientist(
+                    id.toStdString(),
                     name.toStdString(),
                     gender.toStdString(),
                     YearOfBirth.toStdString(),
@@ -45,241 +46,43 @@ vector<Scientist> DataAccess::getAllScientistsAtoZ()
         allScientists.push_back(newScientist);
     }
 
-
-
     return allScientists;
+}
+vector<Scientist> DataAccess::getAllScientistsAtoZ()
+{
+    return getAllScientistInfoFromDataBase("SELECT Name,Gender,YearOfBirth,YearOfDeath FROM Scientists ORDER BY Name Asc");
 }
 vector<Scientist> DataAccess::getAllScientistsZtoA()
 {
-    vector<Scientist> allScientists;
-
-    QSqlQuery query("SELECT * FROM Scientists ORDER BY Name Desc");
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
-    {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
-
-        Scientist newScientist(
-                    name.toStdString(),
-                    gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
-                    );
-
-        allScientists.push_back(newScientist);
-    }
-
-
-    return allScientists;
-
-
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists ORDER BY Name Desc");
 }
 vector<Scientist> DataAccess::getAllScientistsByYearOfBirthAsc()
 {
-    vector<Scientist> allScientists;
-
-    QSqlQuery query("SELECT * FROM Scientists ORDER BY YearOfBirth Asc");
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
-    {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
-
-        Scientist newScientist(
-                    name.toStdString(),
-                    gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
-                    );
-
-        allScientists.push_back(newScientist);
-    }
-
-
-    return allScientists;
-
-
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists ORDER BY YearOfBirth Asc");
 }
 vector<Scientist> DataAccess::getAllScientistsByYearOfBirthDes()
 {
-    vector<Scientist> allScientists;
-
-    QSqlQuery query("SELECT * FROM Scientists ORDER BY YearOfBirth Desc");
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
-    {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
-
-        Scientist newScientist(
-                    name.toStdString(),
-                    gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
-                    );
-
-        allScientists.push_back(newScientist);
-    }
-
-
-    return allScientists;
-
-
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists ORDER BY YearOfBirth Desc");
 }
 vector<Scientist> DataAccess::getAllMaleScientistsAtoZ()
 {
-    vector<Scientist> allScientists;
-
-    QSqlQuery query;
-    query.exec("SELECT * FROM Scientists WHERE Gender = 'Male' ORDER BY Name Asc");
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
-    {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
-
-        Scientist newScientist(
-                    name.toStdString(),
-                    gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
-                    );
-
-        allScientists.push_back(newScientist);
-    }
-
-
-    return allScientists;
-
-
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE Gender = 'Male' ORDER BY Name Asc");
 }
 vector<Scientist> DataAccess::getAllFemaleScientistsAtoZ()
 {
-    vector<Scientist> allScientists;
-    QSqlQuery query;
-
-    query.exec("SELECT * FROM Scientists WHERE Gender = 'Female' ORDER BY Name Asc");
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
-    {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
-
-        Scientist newScientist(
-                    name.toStdString(),
-                    gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
-                    );
-
-        allScientists.push_back(newScientist);
-    }
-
-
-
-
-    return allScientists;
-
-
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE Gender = 'Female' ORDER BY Name Asc");
 }
 vector<Scientist> DataAccess::getAllAliveScientistsAtoZ()
 {
-    vector<Scientist> allScientists;
-
-    QSqlQuery query;
-    query.exec("SELECT * FROM Scientists WHERE YearOfDeath is NULL ORDER BY Name Asc");
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-
-    while (query.next())
-    {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
-
-        Scientist newScientist(
-                    name.toStdString(),
-                    gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
-                    );
-
-        allScientists.push_back(newScientist);
-    }
-
-
-
-    return allScientists;
-
-
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE YearOfDeath is NULL ORDER BY Name Asc");
 }
 vector<Scientist> DataAccess::getAllDeceasedScientistsAtoZ()
 {
-    vector<Scientist> allScientists;
-
-    QSqlQuery query;
-    query.exec("SELECT * FROM Scientists WHERE YearOfDeath is NOT NULL ORDER BY Name Asc");
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
-    {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
-
-        Scientist newScientist(
-                    name.toStdString(),
-                    gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
-                    );
-
-        allScientists.push_back(newScientist);
-    }
-
-
-    return allScientists;
-
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE YearOfDeath is NOT NULL ORDER BY Name Asc");
 }
+    //Scientist - search functions.
+
+
 vector<Scientist> DataAccess::searchForScientistsByName(string searchString)
 {
     QString qSearchString = QString::fromStdString(searchString);
@@ -291,20 +94,16 @@ vector<Scientist> DataAccess::searchForScientistsByName(string searchString)
     query.prepare("SELECT * FROM Scientists WHERE (Name) LIKE '%"+qSearchString+"%'");
     query.exec();
 
-
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
+    while(query.next())
     {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
+        QString id = query.value(query.record().indexOf("ID")).toString();
+        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString gender = query.value(query.record().indexOf("Gender")).toString();
+        QString YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toString();
+        QString yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toString();
 
         Scientist newScientist(
+                    id.toStdString(),
                     name.toStdString(),
                     gender.toStdString(),
                     YearOfBirth.toStdString(),
@@ -313,7 +112,6 @@ vector<Scientist> DataAccess::searchForScientistsByName(string searchString)
 
         allScientists.push_back(newScientist);
     }
-
 
     return allScientists;
 }
@@ -329,19 +127,16 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfBirthAtoZ(string yearTo
     query.bindValue(":something", yearOfBirth);
     query.exec();
 
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
+    while(query.next())
     {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
+        QString id = query.value(query.record().indexOf("ID")).toString();
+        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString gender = query.value(query.record().indexOf("Gender")).toString();
+        QString YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toString();
+        QString yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toString();
 
         Scientist newScientist(
+                    id.toStdString(),
                     name.toStdString(),
                     gender.toStdString(),
                     YearOfBirth.toStdString(),
@@ -365,19 +160,16 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
     query.bindValue(":something", yearOfDeath);
     query.exec();
 
-    int idName = query.record().indexOf("Name");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
-
-    while (query.next())
+    while(query.next())
     {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
+        QString id = query.value(query.record().indexOf("ID")).toString();
+        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString gender = query.value(query.record().indexOf("Gender")).toString();
+        QString YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toString();
+        QString yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toString();
 
         Scientist newScientist(
+                    id.toStdString(),
                     name.toStdString(),
                     gender.toStdString(),
                     YearOfBirth.toStdString(),
@@ -391,6 +183,8 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
 
 
 }
+
+
 void DataAccess::addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)
 {
 

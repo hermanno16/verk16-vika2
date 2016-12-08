@@ -447,7 +447,6 @@ void ConsoleUI::scientistListAllYearOfBirthMenuPrint()
 }
 void ConsoleUI::printScientist(vector<Scientist> temp)
 {
-
     for(unsigned int i = 0; i < temp.size(); i++)
     {
         cout << temp[i];

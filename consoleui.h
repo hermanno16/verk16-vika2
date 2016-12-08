@@ -41,7 +41,7 @@ public:
     void addScientist();
 
     //-- Computers --//
-    //--Computer - Menu functions.
+    //Computer - Menu functions
     void computerMenu();
     void computerListMenu();
     void computerListAllMenu();

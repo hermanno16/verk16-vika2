@@ -151,12 +151,102 @@ vector<Scientist> Service::connectComputerToScientist(int idNumber)
 }
 */
 
-//Gamalt
 
+//-- Computer functions --//
+
+vector<Computer> Service::getAllComputersAtoZ()
+{
+    vector<Computer> allComputers;
+
+    allComputers = _dAccess.getAllComputersAtoZ();
+
+    return allComputers;
+}
+
+vector<Computer> Service::getAllComputersZtoA()
+{
+
+    vector<Computer> allComputers;
+
+    allComputers = _dAccess.getAllComputersZtoA();
+
+    return allComputers;
+
+}
+
+vector<Computer> Service::getAllTypeComputersAtoZ()
+{
+    vector<Computer> allComputers;
+    allComputers = _dAccess.getAllComputersTypeAtoZ();
+
+    return allComputers;
+}
+
+vector<Computer> Service::getAllTypeComputersZtoA()
+{
+    vector<Computer> allComputers;
+    allComputers = _dAccess.getAllComputersTypeZtoA();
+
+    return allComputers;
+}
+
+
+vector<Computer> Service::getAllBuildYearComputersAtoZ()
+{
+    vector<Computer> allComputers;
+    allComputers = _dAccess.getAllComputersBuiltYearAtoZ();
+
+    return allComputers;
+}
+
+vector<Computer> Service::getAllBuildYearComputersZtoA()
+{
+    vector<Computer> allComputers;
+    allComputers = _dAccess.getAllComputersBuiltYearZtoA();
+
+    return allComputers;
+}
+
+vector<Computer> Service::getAllDevelopmentComputers()
+{
+    vector<Computer> allComputers;
+    allComputers = _dAccess.getAllComputersDevelopment();
+
+    return allComputers;
+}
+//-- Computer Search Functions --//
+vector<Computer> Service::searchForComputersByName(string inputName)
+{
+    vector<Computer> allComputers;
+
+    allComputers = _dAccess.searchForComputersByName(inputName);
+
+    return allComputers;
+}
+
+vector<Computer> Service::searchForComputersByBuiltYear(string builtYearToFind)
+{
+    vector<Computer> allComputers;
+
+    allComputers = _dAccess.searchForComputersByBuiltYear(builtYearToFind);
+
+    return allComputers;
+}
+
+vector<Computer> Service::searchForComputersByType(string typeToFind)
+{
+    vector<Computer> allComputers;
+
+    allComputers = _dAccess.searchForComputersByType(typeToFind);
+
+    return allComputers;
+}
+//-- Valid functions --//
 void Service::addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)
 {
     _dAccess.addScientistToDataBase(inputName, inputGender, inputYearOfBirth, inputYearOfDeath);
 }
+
 bool Service::inputNameValid(string input)
 {
     if(atoi(input.c_str()))

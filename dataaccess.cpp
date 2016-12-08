@@ -296,6 +296,18 @@ vector<Computer> DataAccess::connectScientistToComputer(int idNumber)
 
 //-- Computers--//
     //All Computers - functions.
+void DataAccess::addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO Computers (ComputerName, YearBuilt, Type, Development) VALUES (:computername, :yearbuilt, :type, :development)");
+
+     query.bindValue(":computername", QString::fromStdString(inputName));
+     query.bindValue(":yearbuilt",   atoi(inputYearBuilt.c_str()));
+     query.bindValue(":type", QString::fromStdString(inputType));
+     query.bindValue(":development", QString::fromStdString(inputDevelopment));
+     query.exec();
+
+}
 vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)
 {
     vector<Computer> allComputers;

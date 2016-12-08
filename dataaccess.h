@@ -60,6 +60,7 @@ public:
     vector<Computer> getAllComputersDeveloped();
     vector<Computer> getAllComputersOriginal();
     vector<Computer> getAllComputersDevelopedAndOriginal();
+    void addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
 
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);

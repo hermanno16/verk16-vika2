@@ -979,7 +979,36 @@ void ConsoleUI::computerListAllDevelopmentMenuPrint()
 //Computer scientist - Other functions.
 void ConsoleUI::addComputer()
 {
+    string name, yearBuilt, type, development;
 
+    cin.ignore();                                                                                    //NAME
+    cout << endl;
+    cout << "  =======================================================================================" << endl;
+    cout << "  > Input name of computer: ";
+    getline(cin, name);
+
+    cout << "  > Input built year (if the computer was build): ";
+    getline(cin, yearBuilt);
+
+    cout << "  > Input type of computer(Electronic, mechanic, electronic/mechanic, transistor, microcomputer or ternary.): ";
+    getline(cin, type);
+
+    cout << "  > Input computer Development(Original or developed): ";
+    getline(cin, development);
+
+
+    if(_service.isAddSComputerValid(name, yearBuilt, type, development))
+    {
+        _service.addComputerToData(name, yearBuilt, type, development);
+
+        computerMenu();
+    }
+    else
+    {
+        cout << "  > Invalid input!" << endl;
+
+        computerMenu();
+    }
 }
 void ConsoleUI::workedOn()
 {

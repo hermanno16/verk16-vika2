@@ -52,13 +52,10 @@ public:
     vector<Scientist> connectComputerToScientist(int idNumber);
     //--Check functions--//
     bool isAddScientistValid(string name, string gender, string yearOfBirth, string yearOfDeath);
+    bool isAddSComputerValid(string name, string yearBuilt, string type, string development);
     void addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
+    void addComputerToData(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
     bool inputNameValid(string input);
-
-
-
-
-
 
 
 private:

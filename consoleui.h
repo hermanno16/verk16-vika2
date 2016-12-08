@@ -61,6 +61,7 @@ public:
     void addComputer();
 
     //Computers and computer scientists --//
+    void workedOn();
     void run();
     void openDataBase();
     void printScientist(vector<Scientist> temp);

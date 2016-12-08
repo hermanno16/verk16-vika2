@@ -199,7 +199,55 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
      query.exec();
 
 }
+//Tengitöflu föllin
+vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
+{
+    vector<Scientist> allScientists;
 
+    QSqlQuery query;
+
+    query.prepare("SELECT FirstName,Gender,YearOfBirth,YearOfDeath FROM Scientists, ConnectionTable WHERE Scientists.ID = ConnectionTable.ID AND ConnectionTable.Cid = (:something)");
+    query.bindValue(":something", idNumber);
+    query.exec();
+
+    int idName = query.record().indexOf("FirstName");
+    int idGender = query.record().indexOf("Gender");
+    int idYearOfBirth = query.record().indexOf("YearOfBirth");
+    int idYearOfDeath = query.record().indexOf("YearOfDeath");
+    while(query.next())
+    {
+        QString name = query.value(idName).toString();
+        QString gender = query.value(idGender).toString();
+        QString YearOfBirth = query.value(idYearOfBirth).toString();
+        QString yearOfDeath = query.value(idYearOfDeath).toString();
+
+        Scientist newScientist(
+                    name.toStdString(),
+                    gender.toStdString(),
+                    YearOfBirth.toStdString(),
+                    yearOfDeath.toStdString()
+                    );
+
+        allScientists.push_back(newScientist);
+    }
+
+
+
+    return allScientists;
+}
+/*  Commenta þetta inn þegar Computer.h/cpp er komið
+vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
+{
+    vector<Scientist> allScientists;
+
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM Computers, ConnectionTable WHERE Computers.Cid = ConnectionTable.Cid AND ConnectionTable.ID = (:something)");
+    query.bindValue(":something", idNumber);
+    query.exec();
+
+
+}*/
 
 //-- Computers--//
 

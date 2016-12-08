@@ -520,6 +520,10 @@ void ConsoleUI::computerMenu()
         {
             addComputer();
         }
+        else if (command =='3')
+        {
+            workedOn();
+        }
 
         else if(command == 'q' || command == 'Q')
         {
@@ -900,6 +904,15 @@ void ConsoleUI::computerListAllOriginalOrDevelopedMenuPrint()
 void ConsoleUI::addComputer()
 {
 
+}
+void ConsoleUI::workedOn()
+{
+    int idNumber;
+    cout << "  > Please enter the ID of the Computer: ";
+    cin >> idNumber;
+    vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
+    scientistNameColumn();
+    printScientist(scientists);
 }
 void ConsoleUI::computerNameColumn()
 {

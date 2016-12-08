@@ -121,10 +121,11 @@ vector<Scientist> Service::searchForScientistsByYearOfDeathAtoZ(string yearToFin
 }
 ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overloader fyrir cout << Scientist.
 {
-        os << " |  " ;os.width(30); os << left << TempClass.getName();
+        os << " | ";os.width(5); os << left << TempClass.getID();
+        os.width(30); os << left << TempClass.getName();
         os << "  " ;os.width(13); os << left << TempClass.getGender();
         os << "  " ;os.width(15); os << left << TempClass.getYearOfBirth();
-        os << "  " ;os.width(21); os << left << TempClass.getYearOfDeath() << "|";
+        os << "  " ;os.width(17); os << left << TempClass.getYearOfDeath() << "|";
         os << endl;
 
     return os;

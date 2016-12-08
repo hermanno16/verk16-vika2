@@ -489,13 +489,15 @@ void ConsoleUI::addScientist()
 void ConsoleUI::scientistNameColumn()
 {
     cout << "  ======================================================================================= " << endl;
-    cout.width(36);
-    cout << left << " |  Name:";
+    cout.width(4);
+    cout << left << " | ID:";
+    cout.width(34);
+    cout << left << "  Name:";
     cout.width(15);
     cout << left << "Gender:";
     cout.width(17);
     cout << left << "Birth year:";
-    cout.width(21);
+    cout.width(17);
     cout << left << "Year of Death:";
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
@@ -845,7 +847,7 @@ void ConsoleUI::computerMenuPrint()
 {
     cout << "  ======================================================================================= " << endl;
     cout << " |     1. List - List of computers.                            2. Add - Add computer.    | " << endl;
-    cout << " |                                                                                       | " << endl;
+    cout << " |     3. Developer - Enter the ID of a Computer for a list of developers                | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  =======================================================================================  " << endl;
     cout << "  > Please enter a number: ";

@@ -42,17 +42,17 @@ vector<Scientist> Service::getAllScientistsByYearOfBirthDes()
 
     return allScientists;
 }
-vector<Scientist> Service::getAllDeadOrAliveScientistsAtoZ(string input)
+vector<Scientist> Service::getAllDeadOrAliveScientistsAtoZ(char input)
 {
 
-    cout << input << endl;
-    vector<Scientist> deadOrAliveScientists;
 
-    if(input == "1")
+vector<Scientist> deadOrAliveScientists;
+
+    if(input == '1')
     {
         deadOrAliveScientists = _dAccess.getAllAliveScientistsAtoZ();
     }
-    else if(input == "2")
+    else if(input == '2')
     {
         deadOrAliveScientists = _dAccess.getAllDeceasedScientistsAtoZ();
     }
@@ -103,15 +103,15 @@ vector<Scientist> Service::searchForScientistsByYearOfDeathAtoZ(string yearToFin
     return allScientists;
 }
     //Scientist - search functions.
-vector<Scientist> Service::getScientistsByGenderAtoZ(string gender)
+vector<Scientist> Service::getScientistsByGenderAtoZ(char gender)
 {
     vector<Scientist> genderScientists;
 
-    if(gender == "1")
+    if(gender == '1')
     {
         genderScientists = _dAccess.getAllFemaleScientistsAtoZ();
     }
-    else if(gender == "2")
+    else if(gender == '2')
     {
        genderScientists = _dAccess.getAllMaleScientistsAtoZ();
     }

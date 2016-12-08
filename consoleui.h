@@ -22,11 +22,13 @@ public:
     void mainMenuPrint();
         //Booting - Other functions.
     void mainMenu();
+    bool goBackOrQuit(char command);
 
     //-- Computer scientists --//
         //Computer scientist - Menu functions.
     void scientistWhatToDo();
     void scientistMenu();
+    void scientistSearchMenu();
     void scientistListMenu();
     void scientistListAllMenu();
     void scientistListAllGenderMenu();
@@ -36,11 +38,13 @@ public:
     void scientistWhatToDoPrint();
     void printScientist(vector<Scientist> temp);
     void scientistMenuPrint();
+    void scientistSearchMenuPrint();
     void scientistListMenuPrint();
     void scientistListAllMenuPrint();
     void scientistListAllGenderMenuPrint();
     void scientistListAllDeadOrAliveMenuPrint();
     void scientistListAllYearOfBirthMenuPrint();
+    bool wantToModifyOrNot(char command);
         //Computer scientist - Other functions.
     void scientistNameColumn();
     void addScientist();

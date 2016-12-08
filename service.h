@@ -23,12 +23,12 @@ public:
     vector<Scientist> getAllScientistsZtoA();
     vector<Scientist> getAllScientistsByYearOfBirthAsc();
     vector<Scientist> getAllScientistsByYearOfBirthDes();
-    vector<Scientist> getAllDeadOrAliveScientistsAtoZ(string input);
+    vector<Scientist> getAllDeadOrAliveScientistsAtoZ(char input);
         //Scientist - search functions.
     vector<Scientist> searchForScientistsByName(string searchString);
     vector<Scientist> searchForScientistsByYearOfBirthAtoZ(string yearToFind);
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
-    vector<Scientist> getScientistsByGenderAtoZ(string gender);
+    vector<Scientist> getScientistsByGenderAtoZ(char gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
         //Scientist - other functions.
     void removeScientist(int idOfScientist);

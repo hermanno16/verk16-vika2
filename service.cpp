@@ -138,6 +138,16 @@ vector<Scientist> Service::getAllDeceasedScientistsAtoZ()
     return allScientists;
 }
 
+// Tengitöflu föllin
+vector<Scientist> Service::connectComputerToScientist(int idNumber)
+{
+    vector<Scientist> allScientists;
+
+    allScientists = _dAccess.connectComputerToScientist(idNumber);
+
+    return allScientists;
+}
+
 //Gamalt
 
 void Service::addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)

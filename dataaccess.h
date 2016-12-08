@@ -36,6 +36,8 @@ public:
     vector<Scientist> searchForScientistsByYearOfBirthAtoZ(string yearToFind);
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     void addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
+    //Tengitöflu föllin
+    vector<Scientist> connectComputerToScientist(int idNumber);
 
 private:
     QSqlDatabase _dataBaseMain;

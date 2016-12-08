@@ -5,6 +5,7 @@
 #include <vector>
 #include "scientist.h"
 #include "dataaccess.h"
+#include "computer.h"
 #include <algorithm>
 #include <QString>
 #include <QStringList>
@@ -29,10 +30,21 @@ public:
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     vector<Scientist> getScientistsByGenderAtoZ(string gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
-
     //--Scientists and computers--//
 
-    vector<Scientist> getAllComputersAtoZ();
+
+    //Computer Sort functions
+    vector<Computer> getAllComputersAtoZ();
+    vector<Computer> getAllComputersZtoA();
+    vector<Computer> getAllTypeComputersAtoZ();
+    vector<Computer> getAllTypeComputersZtoA();
+    vector<Computer> getAllBuildYearComputersAtoZ();
+    vector<Computer> getAllBuildYearComputersZtoA();
+    vector<Computer> getAllDevelopmentComputers();
+    //Computer Search functions
+    vector<Computer> searchForComputersByName(string inputName);
+    vector<Computer> searchForComputersByBuiltYear(string builtYearToFind);
+    vector<Computer> searchForComputersByType(string typeToFind);
     //Connection tables
 
     vector<Scientist> connectComputerToScientist(int idNumber);

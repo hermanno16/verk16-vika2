@@ -660,28 +660,28 @@ void ConsoleUI::computerListAllMenu()
 
     if(input == '1') //A-Z
     {
-        /*
+
         vector<Computer> computers = _service.getAllComputersAtoZ();
         computerNameColumn();
-        printScientist(computers);
+        //printComputer(computers);
 
         cout << "  ======================================================================================= " << endl << endl;
 
         computerListAllMenu();
-        */
+
 
     }
     if(input == '2')    //Z-A
     {
-        /*
+
         vector<Computer> computers = _service.getAllComputersZtoA();
         computerNameColumn();
-        printScientist(computers);
+        //printComputer(computers);
 
         cout << "  ======================================================================================= " << endl << endl;
 
         computerListAllMenu();
-        */
+
 
     }
     else if(input == '3')    //Type

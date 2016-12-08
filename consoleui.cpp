@@ -332,7 +332,7 @@ void ConsoleUI::scientistListAllDeadOrAliveMenu()
 
     vector<Scientist> scientists = _service.getAllDeadOrAliveScientistsAtoZ(aliveOrDeseaced);
     scientistNameColumn();
-    //printScientists(scientists);
+    printScientist(scientists);
 
     for(unsigned int i = 0; i < scientists.size(); i++)
     {

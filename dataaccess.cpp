@@ -28,16 +28,14 @@ vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryComma
 
     while(query.next())
     {
-        int id = query.value(query.record().indexOf("Column ID")).toUInt();
-        QString name = query.value(query.record().indexOf("Name")).toString();
+        int id = query.value(query.record().indexOf("ID")).toUInt();
+        QString name = query.value(query.record().indexOf("FirstName")).toString();
         QString gender = query.value(query.record().indexOf("Gender")).toString();
         int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
         int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
 
         cout << id << endl;
-        cout << name.toStdString() << endl;
-        cout << gender.toStdString() << endl;
-        cout << YearOfBirth << endl;
+
         Scientist newScientist(
                     id,
                     name.toStdString(),
@@ -53,7 +51,7 @@ vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryComma
 }
 vector<Scientist> DataAccess::getAllScientistsAtoZ()
 {
-    return getAllScientistInfoFromDataBase("SELECT Name,Gender,YearOfBirth,YearOfDeath FROM Scientists ORDER BY Name Asc");
+    return getAllScientistInfoFromDataBase("SELECT ID,FirstName,YearOfBirth,YearOfDeath,Gender FROM Scientists ORDER BY FirstName Asc");
 }
 vector<Scientist> DataAccess::getAllScientistsZtoA()
 {
@@ -203,44 +201,42 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
 
 }
 //Tengitöflu föllin
-/*
+
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;
 
     QSqlQuery query;
 
-    query.prepare("SELECT FirstName,Gender,YearOfBirth,YearOfDeath FROM Scientists, ConnectionTable WHERE Scientists.ID = ConnectionTable.ID AND ConnectionTable.Cid = (:something)");
+    query.prepare("SELECT ID,FirstName,Gender,YearOfBirth,YearOfDeath FROM Scientists, ConnectionTable WHERE Scientists.ID = ConnectionTable.ID AND ConnectionTable.Cid = (:something)");
     query.bindValue(":something", idNumber);
     query.exec();
 
-    int idName = query.record().indexOf("FirstName");
-    int idGender = query.record().indexOf("Gender");
-    int idYearOfBirth = query.record().indexOf("YearOfBirth");
-    int idYearOfDeath = query.record().indexOf("YearOfDeath");
     while(query.next())
     {
-        QString name = query.value(idName).toString();
-        QString gender = query.value(idGender).toString();
-        QString YearOfBirth = query.value(idYearOfBirth).toString();
-        QString yearOfDeath = query.value(idYearOfDeath).toString();
+        int id = query.value(query.record().indexOf("ID")).toUInt();
+        QString name = query.value(query.record().indexOf("FirstName")).toString();
+        QString gender = query.value(query.record().indexOf("Gender")).toString();
+        int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
+        int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
+
+        cout << id << endl;
 
         Scientist newScientist(
+                    id,
                     name.toStdString(),
                     gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
+                    YearOfBirth,
+                    yearOfDeath
                     );
 
         allScientists.push_back(newScientist);
     }
 
-
-
     return allScientists;
 }
 
-  Commenta þetta inn þegar Computer.h/cpp er komið
+/*
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;

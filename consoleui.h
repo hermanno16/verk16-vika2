@@ -1,6 +1,8 @@
 #ifndef CONSOLEUI_H
 #define CONSOLEUI_H
 #include "service.h"
+#include "computer.h"
+#include "scientist.h"
 #include <cstdlib>
 #include <QString>
 #include <QStringList>

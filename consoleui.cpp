@@ -722,153 +722,101 @@ void ConsoleUI::computerListAllMenu()
 }
 void ConsoleUI::computerListAllTypeMenu()
 {
-    char type = ' ';
+    string type = " ";
     computerListAllTypeMenuPrint();
     cin >> type;
 
 
-    if (type == '1') //All type A-Z
-    {
-        cout << "A-Z";
-        /*
-        vector<Computer> computers = _service.getAllTypeComputersAtoZ();
-        computerNameColumn();
-        printComputer(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-        computerListAllTypeMenu();
-        */
-    }
-    else if (type == '2') //2. Electronic
-    {
-        cout << "2. Electronic";
-    }
-    else if (type == '3')
-    {
-        cout << "3. Mechanical";
-    }
-    else if (type == '4')
-    {
-    cout << "4. Electronic/Mechanical";
-    }
-    else if (type == '5')
-    {
-    cout << "5. Transistor";
-    }
-    else if (type == '6')
-    {
-        cout << "6. Microcomputer";
-    }
-    else if (type == '7')
-    {
-    cout << "7. Ternary";
-    }
-    else if(type == 'b' || type == 'B')
+    if(type == "b" || type == "B")
     {
         computerListAllMenu();
     }
-    else if (type == 'q' || type == 'Q')
+    else if (type == "q" || type == "Q")
     {
         quitSystem();
     }
+    else if (type == "b" || type == "B" || type == "q" || type == "Q")
+    {
         cout << "  Wrong input!" << endl;
         cout << endl;
-        computerListAllTypeMenu();
+    }
+    else
+    {
+        vector<Computer> computerType = _service.getAllTypesComputersAtoZ(type);
+        computerNameColumn();
+        for(unsigned int i = 0; i < computerType.size(); i++)
+        {
+            cout << computerType[i];
+        }
+        cout << "  ======================================================================================= " << endl;
 
+        computerListAllTypeMenu();
+    }
+        computerListAllTypeMenu();
 }
 void ConsoleUI::computerListAllBuildYearMenu()
 {
-    char yearBuilt = ' ';
+    string yearBuilt = " ";
     computerListAllYearBuiltMenuPrint();
     cin >> yearBuilt;
 
-    if (yearBuilt == '1')
-    {
-        /*
-        vector<Computer> computers = _service.getAllBuildYearComputersAtoZ();
-        computerNameColumn();
-        printScientist(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-        computerListAllYearBuiltMenu();
-        */
-    }
-    else if (yearBuilt == '2')
-    {
-        /*
-        vector<Computer> computers = _service.getAllBuildYearComputersZtoA();
-        computerNameColumn();
-        printScientist(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-        computerListAllYearBuiltMenu();
-        */
-
-    }
-    if(yearBuilt == 'b' || yearBuilt == 'B')
+    if(yearBuilt == "b" || yearBuilt == "B")
     {
         computerListAllMenu();
     }
-    else if (yearBuilt == 'q' || yearBuilt == 'Q')
+    else if (yearBuilt == "q" || yearBuilt == "Q")
     {
         quitSystem();
     }
-
+    else if(yearBuilt == "q" || yearBuilt == "Q" || yearBuilt == "b" || yearBuilt == "B" )
+    {
         cout << "  Wrong input!" << endl;
         cout << endl;
         computerListAllBuildYearMenu();
-
+    }
+    else
+    {
+        vector<Computer> computerBuilt = _service.getAllBuildYearComputers(yearBuilt);
+        computerNameColumn();
+        for(unsigned int i = 0; i < computerBuilt.size(); i++)
+        {
+            cout << computerBuilt[i];
+        }
+    }
+     computerListAllBuildYearMenu();
 }
 void ConsoleUI::computerListAllDevelopmentMenu()
 {
-    char development = ' ';
+    string development = " ";
 
     computerListAllDevelopmentMenuPrint();
     cin >> development;
 
-    if (development == '1')
-    {
-        cout << "  Her kemur ORIGINAL listi!" << endl;
-        // TODO!
-    }
-    else if (development == '2')
-    {
-        /*
-        vector<Computer> computers = _service.getAllDevelopmentComputers();
-        computerNameColumn();
-        printScientist(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-        computerListAllDevelopmentMenu();
-        */
-    }
-    else if (development == '3')
-    {
-        cout << "  Her kemur listi af ORIGINAL og DEVELOPED." << endl;
-    }
-    else if(development == 'b' || development == 'B')
+    if(development == "b" || development == "B")
     {
         computerListAllMenu();
     }
-    else if (development == 'q' || development == 'Q')
+    else if (development == "q" || development == "Q")
     {
         quitSystem();
     }
-    else if (development != '1' && development != '2' && development!= '3')
+    else if (development == "b" || development == "B" || development == "q" || development == "Q")
     {
         cout << "  Wrong input!" << endl;
         cout << endl;
         computerListAllDevelopmentMenu();
     }
-
+    else
+    {
+        vector<Computer> computerDevelopment = _service.getAllDevelopmentAndOriginalComputers(development);
+        computerNameColumn();
+        for(unsigned int i = 0; i < computerDevelopment.size(); i++)
+        {
+            cout << computerDevelopment[i];
+        }
+    }
 
     computerListAllDevelopmentMenu();
-
-
 }
 
 //Computers - Print functions.
@@ -932,7 +880,7 @@ void ConsoleUI::computerListAllTypeMenuPrint()
 void ConsoleUI::computerListAllYearBuiltMenuPrint()
 {
     cout << "  ======================================================================================= " << endl;
-    cout << " |     1. Built year(A-Z).                                      2. Built year(Z-A).      |" << endl;
+    cout << " |     1. Built year(oldest to newest).             2. Built year(newest to oldest).     |" << endl;
     cout << " |                                                                                       |" << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      |" << endl;
     cout << "  ======================================================================================= " << endl;

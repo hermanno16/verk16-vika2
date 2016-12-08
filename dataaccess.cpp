@@ -287,15 +287,15 @@ vector<Computer> DataAccess::getAllComputersZtoA()
 }
 vector<Computer> DataAccess::getAllComputersYearBuiltAtoZ()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY YearBuilt Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY YearBuilt Asc");
 }
 vector<Computer> DataAccess::getAllComputersYearBuiltZtoA()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY YearBuilt Desc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY YearBuilt Desc");
 }
 vector<Computer> DataAccess::getAllComputersTypeAtoZ()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Type Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY Type Asc");
 }
 vector<Computer> DataAccess::getAllComputersTypeElectronic()
 {
@@ -323,7 +323,7 @@ vector<Computer> DataAccess::getAllComputersTypeTernary()
 }
 vector<Computer> DataAccess::getAllComputersDeveloped()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computes WHERE Development = 'Developed' ORDER BY ComputerName Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Development = 'Developed' ORDER BY ComputerName Asc");
 }
 vector<Computer> DataAccess::getAllComputersOriginal()
 {
@@ -331,7 +331,7 @@ vector<Computer> DataAccess::getAllComputersOriginal()
 }
 vector<Computer> DataAccess::getAllComputersDevelopedAndOriginal()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Developement Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY Development Asc");
 }
     //Computers - search functions
 vector<Computer> DataAccess::searchForComputersByName(string inputName)

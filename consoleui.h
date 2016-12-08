@@ -30,6 +30,7 @@ public:
     void scientistListAllDeadOrAliveMenu();
     void scientistListAllYearOfBirthMenu();
         //Computer scientist - Print functions.
+    void printScientist(vector<Scientist> temp);
     void scientistMenuPrint();
     void scientistListMenuPrint();
     void scientistListAllMenuPrint();
@@ -50,13 +51,14 @@ public:
     void computerListAllBuildYearMenu();
     void computerListAllDevelopmentMenu();
         //Computers - Print functions.
+    void printComputer(vector<Computer> temp);
     void computerMenuPrint();
     void computerListMenuPrint();
     void computerListAllMenuPrint();
     void computerListAllTypeMenuPrint();
     void computerListAllBuiltYearMenuPrint();
     void computerListAllDevelopmentMenuPrint();
-    void printComputers(vector<Computer> temp);
+
 
         //Computer scientist - Other functions.
     void computerNameColumn();
@@ -66,7 +68,7 @@ public:
     void workedOn();
     void run();
     void openDataBase();
-    void printScientist(vector<Scientist> temp);
+
     void quitSystem();
 
 private:

@@ -298,7 +298,7 @@ void ConsoleUI::scientistListAllGenderMenu()
     {
         vector<Scientist> scientists = _service.getScientistsByGenderAtoZ(gender);
         scientistNameColumn();
-        //printScientists(scientists);
+        printScientist(scientists);
 
         for(unsigned int i = 0; i < scientists.size(); i++)
         {
@@ -452,13 +452,13 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     {
         cout << temp[i];
     }
-    int prump = temp.size();
+    int print = temp.size();
     cout << "  =======================================================================================" << endl;
     cout << " | ";
     cout << setfill(' ') << setw(50);
     cout << right << "Number of results return: ";
     cout << setw(36);
-    cout << left << prump;
+    cout << left << print;
     cout << setw(1) << "|" << endl;
 }
 //Computer scientist - Other functions.
@@ -672,7 +672,7 @@ void ConsoleUI::computerListAllMenu()
 
         vector<Computer> computers = _service.getAllComputersAtoZ();
         computerNameColumn();
-        //printComputer(computers);
+        printComputer(computers);
 
         cout << "  ======================================================================================= " << endl << endl;
 
@@ -685,7 +685,7 @@ void ConsoleUI::computerListAllMenu()
 
         vector<Computer> computers = _service.getAllComputersZtoA();
         computerNameColumn();
-        //printComputer(computers);
+        printComputer(computers);
 
         cout << "  ======================================================================================= " << endl << endl;
 
@@ -860,6 +860,21 @@ void ConsoleUI::computerListAllDevelopmentMenu()
 }
 
 //Computers - Print functions.
+void ConsoleUI::printComputer(vector<Computer> temp)
+{
+    for(unsigned int i = 0; i < temp.size(); i++)
+    {
+        cout << temp[i];
+    }
+    int print = temp.size();
+    cout << "  =======================================================================================" << endl;
+    cout << " | ";
+    cout << setfill(' ') << setw(50);
+    cout << right << "Number of results return: ";
+    cout << setw(36);
+    cout << left << print;
+    cout << setw(1) << "|" << endl;
+}
 void ConsoleUI::computerMenuPrint()
 {
     cout << "  ======================================================================================= " << endl;
@@ -917,21 +932,6 @@ void ConsoleUI::computerListAllDevelopmentMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << " > Please enter a number: ";
 }
-void ConsoleUI::printComputers(vector<Computer> temp)
-{
-    for(unsigned int i = 0; i < temp.size(); i++)
-    {
-        cout << temp[i];
-    }
-    cout << "  =======================================================================================" << endl;
-    cout << " | ";
-    cout << setfill(' ') << setw(50);
-    cout << right << "Number of results returned: ";
-    cout << setw(36);
-    cout << left << temp.size();
-    cout << setw(1) << "|" << endl;
-}
-
 
 
 //Computer scientist - Other functions.

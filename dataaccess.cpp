@@ -30,10 +30,10 @@ vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryComma
     {
         int id = query.value(query.record().indexOf("ID")).toUInt();
         QString name = query.value(query.record().indexOf("FirstName")).toString();
+
         QString gender = query.value(query.record().indexOf("Gender")).toString();
         int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
         int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
-
 
         Scientist newScientist(
                     id,
@@ -50,7 +50,7 @@ vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryComma
 }
 vector<Scientist> DataAccess::getAllScientistsAtoZ()
 {
-    return getAllScientistInfoFromDataBase("SELECT ID,FirstName,Gender,YearOfBirth,YearOfDeath FROM Scientists ORDER BY FirstName Asc");
+    return getAllScientistInfoFromDataBase("SELECT * FROM Scientists ORDER BY FirstName Asc");
 }
 vector<Scientist> DataAccess::getAllScientistsZtoA()
 {
@@ -80,9 +80,7 @@ vector<Scientist> DataAccess::getAllDeceasedScientistsAtoZ()
 {
     return getAllScientistInfoFromDataBase("SELECT * FROM Scientists WHERE YearOfDeath is NOT NULL ORDER BY FirstName Asc");
 }
-    //Scientist - search functions.
-
-
+//Scientist - search functions.
 vector<Scientist> DataAccess::searchForScientistsByName(string searchString)
 {
     QString qSearchString = QString::fromStdString(searchString);

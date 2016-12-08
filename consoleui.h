@@ -56,7 +56,7 @@ public:
     void computerListMenuPrint();
     void computerListAllMenuPrint();
     void computerListAllTypeMenuPrint();
-    void computerListAllBuiltYearMenuPrint();
+    void computerListAllYearBuiltMenuPrint();
     void computerListAllDevelopmentMenuPrint();
 
 

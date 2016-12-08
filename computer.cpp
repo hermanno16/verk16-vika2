@@ -6,12 +6,12 @@ Computer::Computer()
 {
 
 }
-Computer::Computer(int id, string name, string type, int builtYear, string development)
+Computer::Computer(int ID, string name, string type, int yearBuilt, string development)
 {
-    _id = id;
+    _id = ID;
     _name = name;
     _type = type;
-    _builtYear = builtYear;
+    _yearBuilt = yearBuilt;
     _development = development;
 }
 //--Get funcitons--//
@@ -27,18 +27,18 @@ string Computer::getType() const
 {
     return _type;
 }
-int Computer::getBuiltYear() const
+int Computer::getYearBuilt() const
 {
-    return _builtYear;
+    return _yearBuilt;
 }
 string Computer::getDevelopment() const
 {
     return _development;
 }
 //--Set functions--//
-void Computer::setId(int id)
+void Computer::setId(int ID)
 {
-    _id = id;
+    _id = ID;
 }
 void Computer::setName(string name)
 {
@@ -48,9 +48,9 @@ void Computer::setType(string type)
 {
     _type = type;
 }
-void Computer::setBuiltYear(int builtYear)
+void Computer::setYearBuilt(int yearBuilt)
 {
-    _builtYear = builtYear;
+    _yearBuilt = yearBuilt;
 }
 void Computer::setDevelopment(string development)
 {

@@ -257,10 +257,10 @@ vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand
 
     while(query.next())
     {
-        int id = query.value(query.record().indexOf("ID")).toUInt();
+        int id = query.value(query.record().indexOf("Cid")).toUInt();
         QString name = query.value(query.record().indexOf("ComputerName")).toString();
         QString type = query.value(query.record().indexOf("Type")).toString();
-        int builtYear = query.value(query.record().indexOf("BuiltYear")).toUInt();
+        int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
         QString development = query.value(query.record().indexOf("Development")).toString();
 
 
@@ -268,7 +268,7 @@ vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand
                     id,
                     name.toStdString(),
                     type.toStdString(),
-                    builtYear,
+                    yearBuilt,
                     development.toStdString()
                     );
 
@@ -279,19 +279,19 @@ vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand
 }
 vector<Computer> DataAccess::getAllComputersAtoZ()
 {
-    return getAllComputerInfoFromDataBase("SELECT ComputerName,BuiltYear,Type,Developed FROM Scientists ORDER BY Name Asc");
+    return getAllComputerInfoFromDataBase("SELECT Cid,ComputerName,Type,YearBuilt,Development FROM Computers ORDER BY ComputerName Asc");
 }
 vector<Computer> DataAccess::getAllComputersZtoA()
 {
     return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY ComputerName Desc");
 }
-vector<Computer> DataAccess::getAllComputersBuiltYearAtoZ()
+vector<Computer> DataAccess::getAllComputersYearBuiltAtoZ()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY BuiltYear Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY YearBuilt Asc");
 }
-vector<Computer> DataAccess::getAllComputersBuiltYearZtoA()
+vector<Computer> DataAccess::getAllComputersYearBuiltZtoA()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY BuiltYear Desc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY YearBuilt Desc");
 }
 vector<Computer> DataAccess::getAllComputersTypeAtoZ()
 {
@@ -319,17 +319,17 @@ vector<Computer> DataAccess::searchForComputersByName(string inputName)
 
     while(query.next())
     {
-        int id = query.value(query.record().indexOf("ID")).toUInt();
+        int id = query.value(query.record().indexOf("Cid")).toUInt();
         QString name = query.value(query.record().indexOf("Name")).toString();
         QString type = query.value(query.record().indexOf("Type")).toString();
-        int builtYear = query.value(query.record().indexOf("builtYear")).toUInt();
+        int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
         QString development = query.value(query.record().indexOf("Development")).toString();
 
         Computer newComputer(
                     id,
                     name.toStdString(),
                     type.toStdString(),
-                    builtYear,
+                    yearBuilt,
                     development.toStdString()
                     );
 
@@ -339,16 +339,16 @@ vector<Computer> DataAccess::searchForComputersByName(string inputName)
     return allComputers;
 
 }
-vector<Computer> DataAccess::searchForComputersByBuiltYear(string builtYearToFind)
+vector<Computer> DataAccess::searchForComputersByYearBuilt(string yearBuiltToFind)
 {
-    int builtYear = atoi(builtYearToFind.c_str());
+    int yearBuilt = atoi(yearBuiltToFind.c_str());
 
     vector<Computer> allComputers;
 
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM Computer WHERE BuiltYear = (:something) ORDER BY ComputerName Asc");
-    query.bindValue(":something", builtYear);
+    query.prepare("SELECT * FROM Computer WHERE YearBuilt = (:something) ORDER BY ComputerName Asc");
+    query.bindValue(":something", yearBuilt);
     query.exec();
 
     while(query.next())
@@ -356,14 +356,14 @@ vector<Computer> DataAccess::searchForComputersByBuiltYear(string builtYearToFin
         int id = query.value(query.record().indexOf("ID")).toUInt();
         QString name = query.value(query.record().indexOf("ComputerName")).toString();
         QString type = query.value(query.record().indexOf("Type")).toString();
-        int builtYear = query.value(query.record().indexOf("builtYear")).toUInt();
+        int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
         QString development = query.value(query.record().indexOf("Development")).toString();
 
         Computer newComputer(
                     id,
                     name.toStdString(),
                     type.toStdString(),
-                    builtYear,
+                    yearBuilt,
                     development.toStdString()
                     );
 
@@ -386,17 +386,17 @@ vector<Computer> DataAccess::searchForComputersByType(string typeToFind)
 
     while(query.next())
     {
-        int id = query.value(query.record().indexOf("ID")).toUInt();
+        int id = query.value(query.record().indexOf("cId")).toUInt();
         QString name = query.value(query.record().indexOf("Name")).toString();
         QString type = query.value(query.record().indexOf("Type")).toString();
-        int builtYear = query.value(query.record().indexOf("builtYear")).toUInt();
+        int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
         QString development = query.value(query.record().indexOf("Development")).toString();
 
         Computer newComputer(
                     id,
                     name.toStdString(),
                     type.toStdString(),
-                    builtYear,
+                    yearBuilt,
                     development.toStdString()
                     );
 

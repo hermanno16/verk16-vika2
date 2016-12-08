@@ -9,25 +9,25 @@ class Computer
 public:
     //--Constructors--//
     Computer();
-    Computer(int id, string name, string type, int builtYear, string development);
+    Computer(int ID, string name, string type, int yearBuilt, string development);
     //--Set functions--//
-    void setId(int id);
+    void setId(int ID);
     void setName(string name);
     void setType(string type);
-    void setBuiltYear(int builtYear);
+    void setYearBuilt(int yearBuilt);
     void setDevelopment(string developement);
     //--Get funcitons--//
     int getId() const;
     string getName() const;
     string getType() const;
-    int getBuiltYear() const;
+    int getYearBuilt() const;
     string getDevelopment() const;
 
 private:
     int    _id;
     string _name;
     string _type;
-    int    _builtYear;
+    int    _yearBuilt;
     string _development;
 
 };

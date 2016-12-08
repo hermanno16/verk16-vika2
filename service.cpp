@@ -167,7 +167,7 @@ ostream& operator <<(ostream& os, Computer& TempClass)    // Operator Overloader
         os << " | ";os.width(5); os << left << TempClass.getId();
         os.width(30); os << left << TempClass.getName();
         os << "  " ;os.width(13); os << left << TempClass.getType();
-        os << "  " ;os.width(15); os << left << TempClass.getBuiltYear();
+        os << "  " ;os.width(15); os << left << TempClass.getYearBuilt();
         os << "  " ;os.width(17); os << left << TempClass.getDevelopment() << "|";
         os << endl;
 
@@ -191,14 +191,14 @@ vector<Computer> Service::getAllTypeComputersZtoA()
 vector<Computer> Service::getAllBuildYearComputersAtoZ()
 {
     vector<Computer> allComputers;
-    allComputers = _dAccess.getAllComputersBuiltYearAtoZ();
+    allComputers = _dAccess.getAllComputersYearBuiltAtoZ();
 
     return allComputers;
 }
 vector<Computer> Service::getAllBuildYearComputersZtoA()
 {
     vector<Computer> allComputers;
-    allComputers = _dAccess.getAllComputersBuiltYearZtoA();
+    allComputers = _dAccess.getAllComputersYearBuiltZtoA();
 
     return allComputers;
 }
@@ -218,11 +218,11 @@ vector<Computer> Service::searchForComputersByName(string inputName)
 
     return allComputers;
 }
-vector<Computer> Service::searchForComputersByBuiltYear(string builtYearToFind)
+vector<Computer> Service::searchForComputersByYearBuilt(string yearBuiltToFind)
 {
     vector<Computer> allComputers;
 
-    allComputers = _dAccess.searchForComputersByBuiltYear(builtYearToFind);
+    allComputers = _dAccess.searchForComputersByYearBuilt(yearBuiltToFind);
 
     return allComputers;
 }

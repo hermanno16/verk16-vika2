@@ -729,6 +729,7 @@ void ConsoleUI::computerListAllTypeMenu()
 
     if (type == '1') //All type A-Z
     {
+        cout << "A-Z";
         /*
         vector<Computer> computers = _service.getAllTypeComputersAtoZ();
         computerNameColumn();
@@ -741,6 +742,7 @@ void ConsoleUI::computerListAllTypeMenu()
     }
     else if (type == '2') //All type Z-A
     {
+        cout << "Z-A";
         /*
         vector<Computer> computers = _service.getAllTypeComputersZtoA();
         computerNameColumn();
@@ -767,11 +769,11 @@ void ConsoleUI::computerListAllTypeMenu()
 }
 void ConsoleUI::computerListAllBuildYearMenu()
 {
-    char builtYear = ' ';
-    computerListAllBuiltYearMenuPrint();
-    cin >> builtYear;
+    char yearBuilt = ' ';
+    computerListAllYearBuiltMenuPrint();
+    cin >> yearBuilt;
 
-    if (builtYear == '1')
+    if (yearBuilt == '1')
     {
         /*
         vector<Computer> computers = _service.getAllBuildYearComputersAtoZ();
@@ -780,10 +782,10 @@ void ConsoleUI::computerListAllBuildYearMenu()
 
         cout << "  ======================================================================================= " << endl << endl;
 
-        computerListAllBuiltYearMenu();
+        computerListAllYearBuiltMenu();
         */
     }
-    else if (builtYear == '2')
+    else if (yearBuilt == '2')
     {
         /*
         vector<Computer> computers = _service.getAllBuildYearComputersZtoA();
@@ -792,15 +794,15 @@ void ConsoleUI::computerListAllBuildYearMenu()
 
         cout << "  ======================================================================================= " << endl << endl;
 
-        computerListAllBuiltYearMenu();
+        computerListAllYearBuiltMenu();
         */
 
     }
-    if(builtYear == 'b' || builtYear == 'B')
+    if(yearBuilt == 'b' || yearBuilt == 'B')
     {
         computerListAllMenu();
     }
-    else if (builtYear == 'q' || builtYear == 'Q')
+    else if (yearBuilt == 'q' || yearBuilt == 'Q')
     {
         quitSystem();
     }
@@ -914,7 +916,7 @@ void ConsoleUI::computerListAllTypeMenuPrint()
     cout << "  ========================================================================================  " << endl;
     cout << " > Please enter a number: ";
 }
-void ConsoleUI::computerListAllBuiltYearMenuPrint()
+void ConsoleUI::computerListAllYearBuiltMenuPrint()
 {
     cout << "  ======================================================================================== " << endl;
     cout << " |     1. Built year(A-Z).                                      2. Built year(Z-A).       |" << endl;

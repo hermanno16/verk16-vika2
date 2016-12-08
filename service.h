@@ -43,7 +43,7 @@ public:
     vector<Computer> getAllDevelopmentComputers();
     //Computer Search functions
     vector<Computer> searchForComputersByName(string inputName);
-    vector<Computer> searchForComputersByBuiltYear(string builtYearToFind);
+    vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
     //Connection tables
 

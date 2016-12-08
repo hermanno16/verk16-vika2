@@ -47,11 +47,11 @@ public:
     vector<Computer> getAllComputersZtoA();
     vector<Computer> getAllComputersTypeAtoZ();
     vector<Computer> getAllComputersTypeZtoA();
-    vector<Computer> getAllComputersBuiltYearAtoZ();
-    vector<Computer> getAllComputersBuiltYearZtoA();
+    vector<Computer> getAllComputersYearBuiltAtoZ();
+    vector<Computer> getAllComputersYearBuiltZtoA();
     vector<Computer> getAllComputersDevelopment();
     vector<Computer> searchForComputersByName(string inputName);
-    vector<Computer> searchForComputersByBuiltYear(string builtYearToFind);
+    vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
     //--Scientists and computers--//
     vector<Scientist> connectComputerToScientist(int idNumber);

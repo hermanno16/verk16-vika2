@@ -41,7 +41,11 @@ public:
     vector<Scientist> searchForScientistsByYearOfBirthAtoZ(string yearToFind);
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     void addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
+
     void removeScientistFromDatabase(int idOfScientist);
+
+    void addScientistToComputer(int inputID, int inputCid);
+
 
     //--Computers--//
     vector<Computer> getAllComputerInfoFromDataBase(QString queryCommand);
@@ -59,12 +63,14 @@ public:
     vector<Computer> getAllComputersDeveloped();
     vector<Computer> getAllComputersOriginal();
     vector<Computer> getAllComputersDevelopedAndOriginal();
+    void addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
 
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
     //--Scientists and computers--//
     vector<Scientist> connectComputerToScientist(int idNumber);
+    vector<Computer> connectScientistToComputer(int idNumber);
 
 private:
     QSqlDatabase _dataBaseMain;

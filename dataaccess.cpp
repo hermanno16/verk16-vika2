@@ -215,6 +215,19 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
      query.exec();
 
 }
+void DataAccess::addScientistToComputer(int inputID, int inputCid)
+{
+
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO ConnectionTable (Cid, ID) VALUES (:name, :gender)");
+
+     query.bindValue(":id", (inputID));
+     query.bindValue(":cid", (inputCid));
+     query.exec();
+
+}
+
 //--Scientists and computers--//
 
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
@@ -250,10 +263,10 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 
     return allScientists;
 }
-/*
-vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
+
+vector<Computer> DataAccess::connectScientistToComputer(int idNumber)
 {
-    vector<Scientist> allScientists;
+    vector<Computer> allComputers;
 
     QSqlQuery query;
 
@@ -261,11 +274,42 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
     query.bindValue(":something", idNumber);
     query.exec();
 
+    while(query.next())
+    {
+        int id = query.value(query.record().indexOf("Cid")).toUInt();
+        QString name = query.value(query.record().indexOf("ComputerName")).toString();
+        QString type = query.value(query.record().indexOf("Type")).toString();
+        int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
+        QString development = query.value(query.record().indexOf("Development")).toString();
 
+        Computer newComputer(
+                    id,
+                    name.toStdString(),
+                    type.toStdString(),
+                    yearBuilt,
+                    development.toStdString()
+                    );
+
+        allComputers.push_back(newComputer);
+    }
+
+    return allComputers;
 }
-*/
+
 //-- Computers--//
     //All Computers - functions.
+void DataAccess::addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO Computers (ComputerName, YearBuilt, Type, Development) VALUES (:computername, :yearbuilt, :type, :development)");
+
+     query.bindValue(":computername", QString::fromStdString(inputName));
+     query.bindValue(":yearbuilt",   atoi(inputYearBuilt.c_str()));
+     query.bindValue(":type", QString::fromStdString(inputType));
+     query.bindValue(":development", QString::fromStdString(inputDevelopment));
+     query.exec();
+
+}
 vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)
 {
     vector<Computer> allComputers;
@@ -307,15 +351,15 @@ vector<Computer> DataAccess::getAllComputersZtoA()
 }
 vector<Computer> DataAccess::getAllComputersYearBuiltAtoZ()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY YearBuilt Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY YearBuilt Asc");
 }
 vector<Computer> DataAccess::getAllComputersYearBuiltZtoA()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY YearBuilt Desc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY YearBuilt Desc");
 }
 vector<Computer> DataAccess::getAllComputersTypeAtoZ()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Type Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY Type Asc");
 }
 vector<Computer> DataAccess::getAllComputersTypeElectronic()
 {
@@ -343,7 +387,7 @@ vector<Computer> DataAccess::getAllComputersTypeTernary()
 }
 vector<Computer> DataAccess::getAllComputersDeveloped()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computes WHERE Development = 'Developed' ORDER BY ComputerName Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Development = 'Developed' ORDER BY ComputerName Asc");
 }
 vector<Computer> DataAccess::getAllComputersOriginal()
 {
@@ -351,7 +395,7 @@ vector<Computer> DataAccess::getAllComputersOriginal()
 }
 vector<Computer> DataAccess::getAllComputersDevelopedAndOriginal()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDERBY Developement Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers ORDER BY Development Asc");
 }
     //Computers - search functions
 vector<Computer> DataAccess::searchForComputersByName(string inputName)

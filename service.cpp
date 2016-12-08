@@ -1,6 +1,6 @@
 #include "service.h"
 #include <cctype>
-#include "scientist.h"
+
 
 const int YEARTODAY = 2016;
 
@@ -166,9 +166,9 @@ vector<Computer> Service::getAllComputersZtoA()
 ostream& operator <<(ostream& os, Computer& TempClass)    // Operator Overloader fyrir cout << Computer.
 {
         os << " | ";os.width(5); os << left << TempClass.getId();
-        os.width(30); os << left << TempClass.getName();
-        os << "  " ;os.width(13); os << left << TempClass.getType();
-        os << "  " ;os.width(15); os << left << TempClass.getYearBuilt();
+        os.width(24); os << left << TempClass.getName();
+        os << "  " ;os.width(21); os << left << TempClass.getType();
+        os << "  " ;os.width(13); os << left << TempClass.getYearBuilt();
         os << "  " ;os.width(17); os << left << TempClass.getDevelopment() << "|";
         os << endl;
 
@@ -274,7 +274,10 @@ void Service::addScientistToData(string inputName, string inputGender, string in
 {
     _dAccess.addScientistToDataBase(inputName, inputGender, inputYearOfBirth, inputYearOfDeath);
 }
-
+void Service::addComputerToData(string inputName, string inputYearBuilt, string inputType, string inputDevelopment)
+{
+    _dAccess.addComputerToDataBase(inputName, inputYearBuilt, inputType, inputDevelopment);
+}
 bool Service::inputNameValid(string input)
 {
     if(atoi(input.c_str()))
@@ -317,15 +320,64 @@ bool Service::isAddScientistValid(string name, string gender, string yearOfBirth
     return (checkName && checkGender && checkYearOfBirth && checkYearOfDeath);
 
 }
+bool Service::isAddSComputerValid(string name, string yearBuilt, string type, string development)
+{
+    bool checkName = false;             // Beisik bool-föll til að athuga hvort input
+    bool checkYearBuilt = false;           // uppfylli okkar skilyrði
+    bool checkType = false;
+    bool checkDevelopment = false;
 
+    transform(type.begin(), type.end(), type.begin(), ::tolower);
+    transform(development.begin(), development.end(), development.begin(), ::tolower);
+
+
+    if(name.length() > 0)
+    {
+
+        checkName = true;
+    }
+    if(atoi(yearBuilt.c_str()) <= YEARTODAY && atoi(yearBuilt.c_str()) > 0)
+    {
+        checkYearBuilt = true;
+    }
+
+    if(type == "electronic" || type == "mechanical" || type == "electronic/mechanical" || type == "transistor" || type == "microcomputer" || type == "ternary");
+    {
+
+        checkType = true;
+    }
+
+
+    if(development == "developed" || development == "original")
+    {
+
+        checkDevelopment = true;
+    }
+
+
+    return (checkName && checkYearBuilt && checkType && checkDevelopment);
+
+}
 ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overloader fyrir cout << Scientist.
 {
+    if(TempClass.getYearOfDeath()==0)
+    {
+        os << " | ";os.width(5); os << left << TempClass.getID();
+        os.width(30); os << left << TempClass.getName();
+        os << "  " ;os.width(13); os << left << TempClass.getGender();
+        os << "  " ;os.width(15); os << left << TempClass.getYearOfBirth();
+        os << "  " ;os.width(17); os << left << "N/A" << "|";
+        os << endl;
+    }
+    else
+    {
         os << " | ";os.width(5); os << left << TempClass.getID();
         os.width(30); os << left << TempClass.getName();
         os << "  " ;os.width(13); os << left << TempClass.getGender();
         os << "  " ;os.width(15); os << left << TempClass.getYearOfBirth();
         os << "  " ;os.width(17); os << left << TempClass.getYearOfDeath() << "|";
         os << endl;
+    }
 
     return os;
 }

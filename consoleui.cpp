@@ -910,9 +910,9 @@ void ConsoleUI::workedOn()
     int idNumber;
     cout << "  > Please enter the ID of the Computer: ";
     cin >> idNumber;
-    vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
+    //vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
     scientistNameColumn();
-    printScientist(scientists);
+    //printScientist(scientists);
 }
 void ConsoleUI::computerNameColumn()
 {

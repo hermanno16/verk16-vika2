@@ -28,19 +28,22 @@ vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryComma
 
     while(query.next())
     {
-        QString id = query.value(query.record().indexOf("Column ID")).toString();
+        int id = query.value(query.record().indexOf("Column ID")).toUInt();
         QString name = query.value(query.record().indexOf("Name")).toString();
         QString gender = query.value(query.record().indexOf("Gender")).toString();
-        QString YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toString();
-        QString yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toString();
+        int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
+        int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
 
-        cout << query.record().indexOf("Column ID") << endl;
+        cout << id << endl;
+        cout << name.toStdString() << endl;
+        cout << gender.toStdString() << endl;
+        cout << YearOfBirth << endl;
         Scientist newScientist(
-                    id.toStdString(),
+                    id,
                     name.toStdString(),
                     gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
+                    YearOfBirth,
+                    yearOfDeath
                     );
 
         allScientists.push_back(newScientist);
@@ -96,18 +99,18 @@ vector<Scientist> DataAccess::searchForScientistsByName(string searchString)
 
     while(query.next())
     {
-        QString id = query.value(query.record().indexOf("ID")).toString();
+        int id = query.value(query.record().indexOf("ID")).toUInt();
         QString name = query.value(query.record().indexOf("Name")).toString();
         QString gender = query.value(query.record().indexOf("Gender")).toString();
-        QString YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toString();
-        QString yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toString();
+        int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
+        int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
 
         Scientist newScientist(
-                    id.toStdString(),
+                    id,
                     name.toStdString(),
                     gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
+                    YearOfBirth,
+                    yearOfDeath
                     );
 
         allScientists.push_back(newScientist);
@@ -129,18 +132,18 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfBirthAtoZ(string yearTo
 
     while(query.next())
     {
-        QString id = query.value(query.record().indexOf("ID")).toString();
+        int id = query.value(query.record().indexOf("ID")).toUInt();
         QString name = query.value(query.record().indexOf("Name")).toString();
         QString gender = query.value(query.record().indexOf("Gender")).toString();
-        QString YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toString();
-        QString yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toString();
+        int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
+        int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
 
         Scientist newScientist(
-                    id.toStdString(),
+                    id,
                     name.toStdString(),
                     gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
+                    YearOfBirth,
+                    yearOfDeath
                     );
 
         allScientists.push_back(newScientist);
@@ -162,18 +165,18 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
 
     while(query.next())
     {
-        QString id = query.value(query.record().indexOf("ID")).toString();
+        int id = query.value(query.record().indexOf("ID")).toUInt();
         QString name = query.value(query.record().indexOf("Name")).toString();
         QString gender = query.value(query.record().indexOf("Gender")).toString();
-        QString YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toString();
-        QString yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toString();
+        int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
+        int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
 
         Scientist newScientist(
-                    id.toStdString(),
+                    id,
                     name.toStdString(),
                     gender.toStdString(),
-                    YearOfBirth.toStdString(),
-                    yearOfDeath.toStdString()
+                    YearOfBirth,
+                    yearOfDeath
                     );
 
         allScientists.push_back(newScientist);
@@ -200,6 +203,7 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
 
 }
 //Tengitöflu föllin
+/*
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;
@@ -235,7 +239,8 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 
     return allScientists;
 }
-/*  Commenta þetta inn þegar Computer.h/cpp er komið
+
+  Commenta þetta inn þegar Computer.h/cpp er komið
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;
@@ -247,8 +252,8 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
     query.exec();
 
 
-}*/
-
+}
+*/
 //-- Computers--//
 
 

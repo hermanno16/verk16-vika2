@@ -139,6 +139,7 @@ vector<Scientist> Service::getAllDeceasedScientistsAtoZ()
 }
 
 // Tengitöflu föllin
+/*
 vector<Scientist> Service::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;
@@ -147,6 +148,7 @@ vector<Scientist> Service::connectComputerToScientist(int idNumber)
 
     return allScientists;
 }
+*/
 
 //Gamalt
 

@@ -181,6 +181,24 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
 
 }
     //Scientist - other functions.
+void DataAccess::removeScientist(int idOfScientist)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM Scientists where ID = (:id)");
+    query.bindValue(":id",idOfScientist);
+
+    if(query.exec())
+    {
+        cout << "Reynir i stjornina!" << endl;
+    }
+    else
+    {
+        cout << "Thorir er bestur" << endl;
+    }
+
+
+
+}
 void DataAccess::addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)
 {
 
@@ -195,6 +213,19 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
      query.exec();
 
 }
+void DataAccess::addScientistToComputer(int inputID, int inputCid)
+{
+
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO ConnectionTable (Cid, ID) VALUES (:name, :gender)");
+
+     query.bindValue(":id", (inputID));
+     query.bindValue(":cid", (inputCid));
+     query.exec();
+
+}
+
 //--Scientists and computers--//
 
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
@@ -230,10 +261,10 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 
     return allScientists;
 }
-/*
-vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
+
+vector<Computer> DataAccess::connectScientistToComputer(int idNumber)
 {
-    vector<Scientist> allScientists;
+    vector<Computer> allComputers;
 
     QSqlQuery query;
 
@@ -241,9 +272,28 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
     query.bindValue(":something", idNumber);
     query.exec();
 
+    while(query.next())
+    {
+        int id = query.value(query.record().indexOf("Cid")).toUInt();
+        QString name = query.value(query.record().indexOf("ComputerName")).toString();
+        QString type = query.value(query.record().indexOf("Type")).toString();
+        int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
+        QString development = query.value(query.record().indexOf("Development")).toString();
 
+        Computer newComputer(
+                    id,
+                    name.toStdString(),
+                    type.toStdString(),
+                    yearBuilt,
+                    development.toStdString()
+                    );
+
+        allComputers.push_back(newComputer);
+    }
+
+    return allComputers;
 }
-*/
+
 //-- Computers--//
     //All Computers - functions.
 vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)

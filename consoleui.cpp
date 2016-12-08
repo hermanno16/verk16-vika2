@@ -13,6 +13,35 @@ ConsoleUI::ConsoleUI()
 
 //-- Booting functions --//
 //Booting - Print functions.
+void ConsoleUI::removeScientist()
+{
+    int idOfScientist;
+    char areYouSure;
+    scientistWhatToDoPrint();
+
+    cout << "  > Enter id of scientist to remove from the list: ";
+    cin >> idOfScientist;
+
+    cout << "  > Are you sure you want to remove scientist with id " << idOfScientist << "(Y/N)? " ;
+    cin >> areYouSure;
+
+    if(areYouSure == 'y' || areYouSure == 'Y')
+    {
+        _service.removeScientist(idOfScientist);
+        mainMenu();
+    }
+    else if(areYouSure == 'b' || areYouSure == 'B')
+    {
+        mainMenu();
+        //utfaera location breytu til ad vita hvert a ad fara.
+    }
+    else if(areYouSure == 'q' || areYouSure == 'Q')
+    {
+        quitSystem();
+    }
+
+}
+
 void ConsoleUI::beginingOfProgramPrint()
 {
     cout << endl << endl;
@@ -48,7 +77,7 @@ void ConsoleUI::mainMenuPrint()
     cout << " |                                     MAIN MENU                                         | " << endl;
     cout << "  =======================================================================================  " << endl;
     cout << " |     1. Computers.                                          2. Computer scientists.    | " << endl;
-    cout << " |                                                                                       | " << endl;
+    cout << " |     3. Other functions                                                                | " << endl;
     cout << " | Press 'q' to quit the program.                                                        | " << endl;
     cout << "  =======================================================================================  " << endl;
     cout << " > Please enter a number: ";
@@ -67,6 +96,10 @@ void ConsoleUI::mainMenu()
     else if(command == "2")
     {
         scientistMenu();
+    }
+    else if(command == "3")
+    {
+        otherMenu();
     }
     else if(command == "q" || command == "Q")
     {
@@ -92,6 +125,34 @@ void ConsoleUI::run()                           //----MAINFALL----
 
 //-- Computer scientists --//
 //Computer scientist - Menu functions.
+void ConsoleUI::scientistWhatToDo()
+{
+    scientistWhatToDoPrint();
+
+    char whatToDo;
+    cin >> whatToDo;
+
+    if(whatToDo == '1')
+    {
+        removeScientist();
+    }
+    else if(whatToDo == '2')
+    {
+        cout << "Eftir ad gera " << endl;
+    }
+    else if(whatToDo == 'b' || whatToDo == 'B')
+    {
+        mainMenu();
+        //utfaera location breytu til ad vita hvert a ad fara.
+    }
+    else if(whatToDo == 'q' || whatToDo == 'Q')
+    {
+        quitSystem();
+    }
+
+    cout << "Invalid input! " << endl;
+    scientistWhatToDo();
+}
 void ConsoleUI::scientistMenu()
 {
     char command = ' ';
@@ -242,7 +303,8 @@ void ConsoleUI::scientistListAllMenu()
 
         cout << "  ======================================================================================= " << endl << endl;
 
-        scientistListAllMenu();
+        //scientistListAllMenu();
+        scientistWhatToDo();
     }
     else if(input == "2")    //Z-A
     {
@@ -269,6 +331,10 @@ void ConsoleUI::scientistListAllMenu()
     else if(input == "b" || input == "B")    //Go back
     {
         scientistListMenu();
+    }
+    else if(input == "q" || input == "Q")
+    {
+        quitSystem();
     }
     else
     {
@@ -322,8 +388,11 @@ void ConsoleUI::scientistListAllDeadOrAliveMenu()
     {
         scientistListAllMenu();
     }
-
-    if (aliveOrDeseaced != "1" && aliveOrDeseaced != "2" && aliveOrDeseaced != "3")
+    else if(aliveOrDeseaced == "q" || aliveOrDeseaced == "Q")
+    {
+        quitSystem();
+    }
+    else if (aliveOrDeseaced != "1" && aliveOrDeseaced != "2" && aliveOrDeseaced != "3")
     {
         cout << "  Wrong input!" << endl;
         cout << endl;
@@ -390,6 +459,16 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
 }
 
 //Computer scientist - Print functions.
+void ConsoleUI::scientistWhatToDoPrint()
+{
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1. Delete - Delete scientist.             2. Edit - Edit scientist.                   | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
+
 void ConsoleUI::scientistMenuPrint()
 {
     cout << "  ======================================================================================= " << endl;
@@ -931,4 +1010,51 @@ void ConsoleUI::quitSystem()
 {
     cout << "Quitting program..." << endl;
     exit(1);
+}
+
+void ConsoleUI::otherMenu()
+{
+    cout << "  ======================================================================================= " << endl;
+    cout << " |     1. Edit relations of computer and scientist                                       | " << endl;
+    cout << " |     2. Add a relation of a scientist to a computer                                    | " << endl;
+    cout << " |     3. Add a relation of a computer to a scientist                                    | " << endl;
+    cout << " |     4. Remove a relation between a computer and a scientist                           | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << "  > Please enter a number: ";
+/*
+    if(list == '1')
+    {
+        //TODO - - -1. Edit relations of computer and scientist
+    }
+    else if(list == '1')
+    {
+        //TODO - - -1. Edit relations of computer and scientist
+    }
+    else if(list == '1')
+    {
+        //TODO - - -1. Edit relations of computer and scientist
+    }
+    else if(list == '1')
+    {
+        //TODO - - -1. Edit relations of computer and scientist
+    }
+
+
+    else if(list == 'b' || list == 'B')
+    {
+        mainMenuPrint();
+    }
+    else if(list == 'q' || list == 'Q')
+    {
+        quitSystem();
+    }
+    else
+    {
+        cout << "  Invalid input!" << endl;
+        cout << endl;
+        otherMenu();
+    }
+    */
 }

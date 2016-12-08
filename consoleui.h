@@ -25,6 +25,7 @@ public:
 
     //-- Computer scientists --//
         //Computer scientist - Menu functions.
+    void scientistWhatToDo();
     void scientistMenu();
     void scientistListMenu();
     void scientistListAllMenu();
@@ -32,6 +33,7 @@ public:
     void scientistListAllDeadOrAliveMenu();
     void scientistListAllYearOfBirthMenu();
         //Computer scientist - Print functions.
+    void scientistWhatToDoPrint();
     void printScientist(vector<Scientist> temp);
     void scientistMenuPrint();
     void scientistListMenuPrint();
@@ -42,6 +44,7 @@ public:
         //Computer scientist - Other functions.
     void scientistNameColumn();
     void addScientist();
+    void removeScientist();
 
     //-- Computers --//
 
@@ -72,6 +75,8 @@ public:
     void openDataBase();
 
     void quitSystem();
+
+    void otherMenu();
 
 private:
     Service _service;

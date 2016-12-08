@@ -554,12 +554,13 @@ void ConsoleUI::computerListMenu()
     }
     else if(list == '2')        //Specific computer name.
     {
+        /*
         //senda int list og streng með nafninu. Fá allt stakið úr vektornum ef match finnst.
         //string searchString;
 
         cout << "  (Electornic, mechanical, micro-computer, tenary or transistor). ";
         cout << "  Her geturu leitad af T0LVU!" << endl;
-       /* do
+        do
         {
             cout << "  Please enter a name of a scientist: ";
             cin >> searchString;
@@ -659,6 +660,7 @@ void ConsoleUI::computerListAllMenu()
 
     if(input == '1') //A-Z
     {
+        /*
         vector<Computer> computers = _service.getAllComputersAtoZ();
         computerNameColumn();
         printScientist(computers);
@@ -666,10 +668,12 @@ void ConsoleUI::computerListAllMenu()
         cout << "  ======================================================================================= " << endl << endl;
 
         computerListAllMenu();
+        */
 
     }
     if(input == '2')    //Z-A
     {
+        /*
         vector<Computer> computers = _service.getAllComputersZtoA();
         computerNameColumn();
         printScientist(computers);
@@ -677,6 +681,7 @@ void ConsoleUI::computerListAllMenu()
         cout << "  ======================================================================================= " << endl << endl;
 
         computerListAllMenu();
+        */
 
     }
     else if(input == '3')    //Type
@@ -689,7 +694,7 @@ void ConsoleUI::computerListAllMenu()
     }
     else if(input == '5')    //Original Or Developed
     {
-        computerListAllOriginalOrDevelopedMenu();
+        computerListAllDevelopmentMenu();
     }
     else if(input == 'b' || input == 'B')    //Go back
     {
@@ -715,6 +720,7 @@ void ConsoleUI::computerListAllTypeMenu()
 
     if (type == '1') //All type A-Z
     {
+        /*
         vector<Computer> computers = _service.getAllTypeComputersAtoZ();
         computerNameColumn();
         printComputer(computers);
@@ -722,9 +728,11 @@ void ConsoleUI::computerListAllTypeMenu()
         cout << "  ======================================================================================= " << endl << endl;
 
         computerListAllTypeMenu();
+        */
     }
     else if (type == '2') //All type Z-A
     {
+        /*
         vector<Computer> computers = _service.getAllTypeComputersZtoA();
         computerNameColumn();
         printComputer(computers);
@@ -732,6 +740,7 @@ void ConsoleUI::computerListAllTypeMenu()
         cout << "  ======================================================================================= " << endl << endl;
 
         computerListAllTypeMenu();
+        */
     }
     else if(type == 'b' || type == 'B')
     {
@@ -755,6 +764,7 @@ void ConsoleUI::computerListAllBuildYearMenu()
 
     if (builtYear == '1')
     {
+        /*
         vector<Computer> computers = _service.getAllBuildYearComputersAtoZ();
         computerNameColumn();
         printScientist(computers);
@@ -762,9 +772,11 @@ void ConsoleUI::computerListAllBuildYearMenu()
         cout << "  ======================================================================================= " << endl << endl;
 
         computerListAllBuiltYearMenu();
+        */
     }
     else if (builtYear == '2')
     {
+        /*
         vector<Computer> computers = _service.getAllBuildYearComputersZtoA();
         computerNameColumn();
         printScientist(computers);
@@ -772,6 +784,7 @@ void ConsoleUI::computerListAllBuildYearMenu()
         cout << "  ======================================================================================= " << endl << endl;
 
         computerListAllBuiltYearMenu();
+        */
 
     }
     if(builtYear == 'b' || builtYear == 'B')
@@ -788,43 +801,52 @@ void ConsoleUI::computerListAllBuildYearMenu()
         computerListAllBuildYearMenu();
 
 }
-void ConsoleUI::computerListAllOriginalOrDevelopedMenu()
+void ConsoleUI::computerListAllDevelopmentMenu()
 {
-    char originalOrDeveloped;
+    char development = ' ';
 
-    computerListAllOriginalOrDevelopedMenuPrint();
-    cin >> originalOrDeveloped;
+    computerListAllDevelopmentMenuPrint();
+    cin >> development;
 
-    if (originalOrDeveloped == '1')
+    if (development == '1')
     {
         cout << "  Her kemur ORIGINAL listi!" << endl;
         // TODO!
     }
-    else if (originalOrDeveloped == '2')
+    else if (development == '2')
     {
-        cout << "  Her kemur DEVELOPED listi!" << endl;
-        //TODO!
+        /*
+        vector<Computer> computers = _service.getAllDevelopmentComputers();
+        computerNameColumn();
+        printScientist(computers);
+
+        cout << "  ======================================================================================= " << endl << endl;
+
+        computerListAllDevelopmentMenu();
+        */
     }
-    else if (originalOrDeveloped == '3')
+    else if (development == '3')
     {
         cout << "  Her kemur listi af ORIGINAL og DEVELOPED." << endl;
     }
-    else if(originalOrDeveloped == 'b' || originalOrDeveloped == 'B')
+    else if(development == 'b' || development == 'B')
     {
         computerListAllMenu();
     }
-    else if (originalOrDeveloped == 'q' || originalOrDeveloped == 'Q')
+    else if (development == 'q' || development == 'Q')
     {
         quitSystem();
     }
-    else if (originalOrDeveloped != '1' && originalOrDeveloped != '2' && originalOrDeveloped!= '3')
+    else if (development != '1' && development != '2' && development!= '3')
     {
         cout << "  Wrong input!" << endl;
         cout << endl;
-        computerListAllOriginalOrDevelopedMenu();
+        computerListAllDevelopmentMenu();
     }
 
-    computerListAllOriginalOrDevelopedMenu();
+
+    computerListAllDevelopmentMenu();
+
 
 }
 
@@ -877,7 +899,7 @@ void ConsoleUI::computerListAllBuiltYearMenuPrint()
     cout << "  ======================================================================================== " << endl;
     cout << " > Please enter a number: ";
 }
-void ConsoleUI::computerListAllOriginalOrDevelopedMenuPrint()
+void ConsoleUI::computerListAllDevelopmentMenuPrint()
 {
     cout << "  ===================================================================================== " << endl;
     cout << " |     1. Only Original.          2. Only Developed.            3. All.                  | " << endl;

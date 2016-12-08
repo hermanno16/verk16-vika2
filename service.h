@@ -29,7 +29,12 @@ public:
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     vector<Scientist> getScientistsByGenderAtoZ(string gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
+
     //--Scientists and computers--//
+
+    vector<Scientist> getAllComputersAtoZ();
+    //Connection tables
+
     vector<Scientist> connectComputerToScientist(int idNumber);
     //--Check functions--//
     bool isAddScientistValid(string name, string gender, string yearOfBirth, string yearOfDeath);

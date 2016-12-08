@@ -230,7 +230,7 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 
     return allScientists;
 }
-
+/*
 vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 {
     vector<Scientist> allScientists;
@@ -243,6 +243,7 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 
 
 }
+*/
 //-- Computers--//
     //All Computers - functions.
 vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)

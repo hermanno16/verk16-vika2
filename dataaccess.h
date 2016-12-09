@@ -46,6 +46,9 @@ public:
     void removeScientistFromDatabase(int idOfScientist);
     bool addScientistToComputer(int ID, int Cid);
     void removeRelationFromDatabase(int id, int cID);
+  //  void addScientistToComputer(int inputID, int inputCid);
+    bool isScientistAlreadyInDatabase(string& inputName);
+
     //--Computers--//
     vector<Computer> getAllComputerInfoFromDataBase(QString queryCommand);
     vector<Computer> getAllComputersAtoZ();
@@ -71,6 +74,7 @@ public:
     //--Computer other functions--//
     void addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
     void removeComputerFromDatabase(int idOfComputer);
+    bool isComputerNameAlreadyInDatabase(string& inputName);
     //--Scientists and computers--//
     vector<Scientist> connectComputerToScientist(int idNumber);
     vector<Computer> connectScientistToComputer(int idNumber);

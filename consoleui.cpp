@@ -712,11 +712,9 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
             scientistListAllYearOfBirthMenu();
         }
 
-
     }
     else if(yearOfBirth == '2')    //Year of birth descending
     {
-
         vector<Scientist> scientists = _service.getAllScientistsByYearOfBirthDes();
         scientistNameColumn();
         printScientist(scientists);
@@ -901,9 +899,9 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
         {
             cout << temp[i];
         }
-
         cout << " |                                       - - -                                           | " << endl;
-        int print = temp.size();
+        size_t print = temp.size();
+
 
         cout << " | ";
         cout << setfill(' ') << setw(50);
@@ -922,7 +920,6 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
  * */
 void ConsoleUI::removeScientistFromDataBase()
 {
-
     int idOfScientist;
     char areYouSure;
 
@@ -930,12 +927,13 @@ void ConsoleUI::removeScientistFromDataBase()
     cout << "  > Enter id of scientist to remove from the list: ";
     cin >> idOfScientist;
 
-    cout << "  > Are you sure you want to remove scientist with id " << idOfScientist << "(Y/N)? " ;
+    cout << "  > Are you sure you want to remove scientist with id " << "\"" << getScientistName(idOfScientist) << "\""<< " (Y/N)? " ;
     cin >> areYouSure;
 
     if(areYouSure == 'y' || areYouSure == 'Y')
     {
         _service.removeScientistFromDataBase(idOfScientist);
+        cout << endl;
         cout << "  > Scientist has been deleted!" << endl;
         mainMenu();
     }
@@ -957,6 +955,24 @@ void ConsoleUI::removeScientistFromDataBase()
  * */
 
 
+bool ConsoleUI::notAddScientistError(string input)
+{
+    if(input.length() == 0)
+    {
+        cout << "  > Illegal input!" << endl;
+        addScientist();
+    }
+    else if(input == "b" || input == "B")
+    {
+        mainMenu();
+    }
+    else if(input == "Q" || input == "q")
+    {
+        quitSystem();
+    }
+    return true;
+}
+
 
 
 
@@ -969,59 +985,47 @@ void ConsoleUI::addScientist()
     cout << "  > Input name of scientist: ";
     getline(cin, name);
 
-    cout << "  > Input gender (male/female): ";
-    getline(cin, gender);
-
-    //Make sure input has upper case as first letter and lower case after that.
-    _service.fixInputNameScientist(name);
-    _service.fixInputGenderScientist(gender);
-
-    cout << "  > Input year of birth: ";
-    getline(cin, yearOfBirth);
-
-    cout << "  > Input year of death if applicable, if not please enter N/A): ";
-    getline(cin, yearOfDeath);
-    cout << endl;
-
-    //char yesOrNo = ' ';
-
-
-    if(_service.isAddScientistValid(name, gender, yearOfBirth, yearOfDeath))
+    if(notAddScientistError(name))
     {
-        _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
+        //Make sure input has upper case as first letter and lower case after that.
+        _service.fixInputNameScientist(name);
 
-        /*
-        cout << "Is this scientist connected to any famous computers ?" << endl;
+        cout << "  > Input gender (male/female): ";
+        getline(cin, gender);
 
-        cin >> yesOrNo;
-        if(yesOrNo == 'Y' || yesOrNo == 'y')
+        if(notAddScientistError(gender))
         {
-            int howMany = 0;
-            int idNumber = 0;
-            cout << "How many computers is he/she connected with?" << endl;
-            cin >> howMany;
-            for(int i = 0; i < howMany; i++)
-            {
-                //_service.addComputerToData();
-                _service.connectComputerToScientist(idNumber);
+            //Make sure input has upper case as first letter and lower case after that.
+            _service.fixInputGenderScientist(gender);
 
+            cout << "  > Input year of birth: ";
+            getline(cin, yearOfBirth);
+
+            if(notAddScientistError(yearOfBirth))
+            {
+                cout << "  > Input year of death if applicable, if not please enter N/A): ";
+                getline(cin, yearOfDeath);
+
+                if(notAddScientistError(yearOfBirth))
+                {
+                    if(_service.isAddScientistValid(name, gender, yearOfBirth, yearOfDeath))
+                    {
+                        _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
+                        cout << endl;
+                        cout << "  > Scientest has been added to database! " << endl;
+                        mainMenu();
+                    }
+                    else
+                    {
+                        cout << "  > Input was not valid..." << endl;
+                        cout << "  > Scientist was not added to database." << endl;
+                        cout << "  > .. Going back to main menu!! " << endl;
+                        mainMenu();
+                    }
+                }
             }
         }
-        else if(yesOrNo == 'n' || yesOrNo == 'N')
-        {
-            scientistMenu();
-        }
-        else
-        {
-            cout << "Invalid input! " << endl;
-        }
-        */
-        cout << "  > Scientest has been added to databes! " << endl;
-
     }
-
-    scientistMenu();
-
 }
 /*
  * This function is used to make the console look nice, the output is in consistant table.
@@ -1091,7 +1095,6 @@ void ConsoleUI::computerMenu()
         cout << endl;
         computerMenu();
     }
-
 }
 /*
  * This function is used to search for a specific computer name, specific computer built year
@@ -1126,6 +1129,7 @@ void ConsoleUI::computerSearchMenu()
         }
         else
         {
+            computerNameColumn();
             printComputer(computers);
             computerWhatToDoPrint();
             cin >> wantToModify;
@@ -1133,24 +1137,27 @@ void ConsoleUI::computerSearchMenu()
             if(wantToModify == '1')
             {
                 addComputer();
+                mainMenu();
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!hundur" << endl;
-                //computerSearchMenu();
-                removeComputerFromDataBase();
+                computerSearchMenu();
+                mainMenu();
             }
             else if(wantToModify == '3')
             {
                 computerWorkedOn();
+                mainMenu();
             }
             else if(wantToModify == '4')
             {
                 addRelation();
+                mainMenu();
             }
             else if(wantToModify == '5')
             {
                 computerSearchMenu();
+                mainMenu();
             }
             else if(goBackOrQuit(wantToModify))
             {
@@ -1186,26 +1193,32 @@ void ConsoleUI::computerSearchMenu()
             if(wantToModify == '1')
             {
                 addComputer();
+                mainMenu();
             }
             else if(wantToModify == '2')
             {
                 removeComputerFromDataBase();
+                mainMenu();
             }
             else if(wantToModify == '3')
             {
                 computerWorkedOn();
+                mainMenu();
             }
             else if(wantToModify == '4')
             {
                 addRelation();
+                mainMenu();
             }
             else if(wantToModify == '5')
             {
                 computerSearchMenu();
+                mainMenu();
             }
             else if(goBackOrQuit(wantToModify))
             {
                 computerSearchMenu();
+                mainMenu();
             }
             else
             {
@@ -1237,22 +1250,27 @@ void ConsoleUI::computerSearchMenu()
             if(wantToModify == '1')
             {
                 addComputer();
+                mainMenu();
             }
             else if(wantToModify == '2')
             {
                 removeComputerFromDataBase();
+                mainMenu();
             }
             else if(wantToModify == '3')
             {
                 computerWorkedOn();
+                mainMenu();
             }
             else if(wantToModify == '4')
             {
                 addRelation();
+                mainMenu();
             }
             else if(wantToModify == '5')
             {
                 computerSearchMenu();
+                mainMenu();
             }
             else if(goBackOrQuit(wantToModify))
             {
@@ -1350,7 +1368,7 @@ void ConsoleUI::computerListAllMenu()
         }
         else
         {
-            cout << "  > Invalid input!" << endl;
+            cout << "  > Invalid inputhun!" << endl;
             computerListAllMenu();
         }
 
@@ -1393,6 +1411,7 @@ void ConsoleUI::computerListAllMenu()
             cout << "  > Invalid input!" << endl;
             computerListAllMenu();
         }
+
     }
     else if(input == '3')    //Type
     {
@@ -1425,61 +1444,50 @@ void ConsoleUI::computerListAllMenu()
 }
 void ConsoleUI::computerListAllTypeMenu()
 {
-    string type = " ";
+    char type = ' ';
     char wantToModify = ' ';
     computerListAllTypeMenuPrint();
     cin >> type;
 
-
-    if(type == "b" || type == "B")
+    if(goBackOrQuit(type))
     {
         computerListAllMenu();
     }
 
-    else if (type == "q" || type == "Q")
-    {
-        quitSystem();
-    }
-
-    else if (type == "b" || type == "B" || type == "q" || type == "Q")
-    {
-        cout << "  Wrong input!" << endl;
-        cout << endl;
-    }
-
-
     else
     {
-        vector<Computer> computerType = _service.getAllTypesComputersAtoZ(type);
-        computerNameColumn();
-        printComputer(computerType);
-
-        computerWhatToDoPrint();
+       computerWhatToDoPrint();
         cin >> wantToModify;
 
         if(wantToModify == '1')
         {
             addComputer();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeComputerFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             computerWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
             addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             computerListAllTypeMenu();
+            mainMenu();
         }
         else if(goBackOrQuit(wantToModify))
         {
             computerListAllTypeMenu();
+            mainMenu();
         }
         else
         {
@@ -1487,7 +1495,6 @@ void ConsoleUI::computerListAllTypeMenu()
             computerListAllTypeMenu();
         }
     }
-
 }
 void ConsoleUI::computerListAllBuildYearMenu()
 {
@@ -1524,22 +1531,27 @@ void ConsoleUI::computerListAllBuildYearMenu()
         if(wantToModify == '1')
         {
             addComputer();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeComputerFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             computerWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
             addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             computerListAllBuildYearMenu();
+            mainMenu();
         }
 
         else if(goBackOrQuit(wantToModify))
@@ -1653,7 +1665,7 @@ void ConsoleUI::printComputer(vector<Computer> temp)
     }
 
     cout << " |                                       - - -                                           | " << endl;
-    int print = temp.size();
+    size_t print = temp.size();
 
     cout << " | ";
     cout << setfill(' ') << setw(50);
@@ -1779,46 +1791,75 @@ void ConsoleUI::computerListAllDevelopmentMenuPrint()
  * This function is used to add computer to the database, we take in a command and call add function from
  * service layer and add the computer from to the database.
  * */
+
+bool ConsoleUI::notAddComputerError(string input)
+{
+    if(input.length() == 0)
+    {
+        cout << "  > Illegal input!" << endl;
+        addComputer();
+    }
+    else if(input == "b" || input == "B")
+    {
+        mainMenu();
+    }
+    else if(input == "Q" || input == "q")
+    {
+        quitSystem();
+    }
+
+    return true;
+
+}
+
 void ConsoleUI::addComputer()
 {
     string name, yearBuilt, type, development;
 
-    cin.ignore();                                                                                    //NAME
+    cin.ignore();
+    //NAME
 
     cout << "  > Input name of computer: ";
     getline(cin, name);
 
-
+    if(notAddComputerError(name))
+    {
     cout << "  > Input built year (if the computer was build): ";
     getline(cin, yearBuilt);
-
+    }
+    if(notAddComputerError(yearBuilt))
+    {
     cout << "  > Input type of computer(Electronic, mechanic, electronic/mechanic, transistor, microcomputer or ternary.): ";
     getline(cin, type);
+    }
+    if(notAddComputerError(type))
+    {
+    //Make sure input will be fixed so that string has uppercase first letter and the rest lower case.
+    _service.fixInputTypeComputer(type);
 
     cout << "  > Input computer Development(Original or developed): ";
     getline(cin, development);
-
+    }
+    if(notAddComputerError(development))
+    {
     //Make sure input will be fixed so that string has uppercase first letter and the rest lower case.
-    _service.fixInputNameComputer(name);
-    _service.fixInputTypeComputer(type);
     _service.fixInputDevelopmentComputer(development);
-
-
-
+    }
     if(_service.isAddComputerValid(name, yearBuilt, type, development))
     {
         _service.addComputerToData(name, yearBuilt, type, development);
 
-        computerMenu();
+        cout << "  > Computer has been added to database! " << endl;
+        mainMenu();
     }
     else
     {
-        cout << "  > Invalid input!" << endl;
+        cout << "  > Input was not valid..." << endl;
+        cout << "  > Computer was not added to database." << endl;
 
-        computerMenu();
+        mainMenu();
     }
 }
-
 /*
  * This function is used to add Sceintist to the database, we take in a command and call add function from
  * service layer and add the scientist from to the database.
@@ -1832,7 +1873,7 @@ void ConsoleUI::removeComputerFromDataBase()
     cout << "  > Enter id of computer to remove from the list: ";
     cin >> idOfComputer;
 
-    cout << "  > Are you sure you want to remove computer with id " << idOfComputer << "(Y/N)? " ;
+    cout << "  > Are you sure you want to remove computer " << "\"" << getComputerName(idOfComputer) << "\"" << " (Y/N)? " ;
     cin >> areYouSure;
 
     if(areYouSure == 'y' || areYouSure == 'Y')
@@ -1842,6 +1883,7 @@ void ConsoleUI::removeComputerFromDataBase()
         cout << "  > Computer has been deleted!" << endl;
         mainMenu();
     }
+
     else if(areYouSure == 'b' || areYouSure == 'B')
     {
         mainMenu();
@@ -1852,7 +1894,6 @@ void ConsoleUI::removeComputerFromDataBase()
     {
         computerListMenu();
     }
-
 }
 void ConsoleUI::addRelation()
 {
@@ -1865,13 +1906,15 @@ void ConsoleUI::addRelation()
 
     if(relationAddition == true)
     {
-        cout << " > Relation added!";
+        cout << " > Relation added!" << endl;
     }
     else if(relationAddition == false)
     {
         cout << " > Relation already exists, sorry bro.";
     }
 }
+
+
 
 void ConsoleUI::computerWorkedOn()
 {
@@ -1912,25 +1955,25 @@ void ConsoleUI::quitSystem()
 }
 void ConsoleUI::connectComputerColumn(int idNumber)
 {
-    string prump = getComputerName(idNumber);
+    string computerName = getComputerName(idNumber);
     cout << "  ======================================================================================= " << endl;
     cout << " |";
     cout.width(15);
     cout << right << "Developers of ";
     cout.width(72);
-    cout << left << prump;
+    cout << left << computerName;
     cout << "|" << endl;
 
 }
 void ConsoleUI::connectScientistColumn(int idNumber)
 {
-    string prump = getScientistName(idNumber);
+    string scientistName = getScientistName(idNumber);
     cout << "  ======================================================================================= " << endl;
     cout << " |";
     cout.width(26);
     cout << right << "Computers develeped by ";
     cout.width(60);
-    cout << left << prump;
+    cout << left << scientistName;
     cout << "|" << endl;
 }
 string ConsoleUI::getComputerName(int idNumber)

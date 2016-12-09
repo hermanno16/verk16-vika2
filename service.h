@@ -37,7 +37,7 @@ public:
     //--Computer--//
     vector<Computer> getAllComputersAtoZ();
     vector<Computer> getAllComputersZtoA();
-    vector<Computer> getAllTypesComputersAtoZ(string type);
+    vector<Computer> getAllTypesComputersAtoZ(char type);
     vector<Computer> getAllComputersDevelopment();
     vector<Computer> getAllBuildYearComputers(string yearBuilt);
     vector<Computer> getAllDevelopmentAndOriginalComputers(string development);
@@ -61,7 +61,6 @@ public:
     bool inputNameValid(string input);
     void fixInputNameScientist(string& inputName);
     void fixInputGenderScientist(string& inputGender);
-    void fixInputNameComputer(string& inputName);
     void fixInputTypeComputer(string& inputType);
     void fixInputDevelopmentComputer(string& inputDevelopment);
 private:

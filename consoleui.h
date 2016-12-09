@@ -48,7 +48,7 @@ public:
     void scientistNameColumn();
     void addScientist();
     void removeScientistFromDataBase();
-
+    bool notAddScientistError(string input);
     void scientistWorkedOn();
 
     //-- Computers --//
@@ -81,16 +81,18 @@ public:
     void computerNameColumn();
     void addComputer();
     void removeComputerFromDataBase();
+    bool notAddComputerError(string input);
     //--Computers and computer scientists --//
+
     void connectComputerColumn(int idNumber);
     void connectScientistColumn(int idNumber);
     string getComputerName(int idNumber);
     string getScientistName(int idNumber);
-
-    // Connection/Relation table
+    //Connection/Relation table
     void addRelation();
     void removeRelationFromDatabase();
 
+    //Other
     void run();
     void openDataBase();
     void quitSystem();

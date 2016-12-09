@@ -25,7 +25,6 @@ bool ConsoleUI::goBackOrQuit(char command)
     return false;
 
 }
-
 //-- Booting functions --//
     //Booting - Print functions.
 void ConsoleUI::beginingOfProgramPrint()
@@ -66,7 +65,7 @@ void ConsoleUI::mainMenuPrint()
     cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program.                                                        | " << endl;
     cout << "  =======================================================================================  " << endl;
-    cout << " > Please enter a number: ";
+    cout << "  > Please enter a number: ";
 }
     //Booting - Other functions.
 void ConsoleUI::mainMenu()
@@ -152,7 +151,6 @@ void ConsoleUI::scientistSearchMenu()
 
         scientistNameColumn();
         printScientist(scientists);
-        cout << "  ======================================================================================= " << endl;
 
         cout << " > Want to modify the list(Y/N)? ";
         cin >> wantToModify;
@@ -193,7 +191,6 @@ void ConsoleUI::scientistSearchMenu()
         {
             scientistNameColumn();
             printScientist(scientists);
-            cout << "  ======================================================================================= " << endl << endl;
             scientistSearchMenu();
         }
 
@@ -236,7 +233,6 @@ void ConsoleUI::scientistSearchMenu()
         {
             scientistNameColumn();
             printScientist(scientists);
-            cout << "  ======================================================================================= " << endl << endl;
             scientistSearchMenu();
         }
 
@@ -280,6 +276,7 @@ void ConsoleUI::scientistListMenu()
 
     scientistListMenuPrint();
     cin >> listCommand;
+    cout << endl;
 
     if(listCommand == '1')           //A-Z
     {
@@ -287,7 +284,6 @@ void ConsoleUI::scientistListMenu()
         scientistNameColumn();
         printScientist(scientists);
 
-        cout << "  ======================================================================================= " << endl;
         cout << " > Want to modify the list(Y/N)? ";
         cin >> wantToModify;
 
@@ -317,9 +313,9 @@ void ConsoleUI::scientistListMenu()
     {
         vector<Scientist> scientists = _service.getAllScientistsZtoA();
         scientistNameColumn();
+
         printScientist(scientists);
 
-        cout << "  ======================================================================================= " << endl;
         cout << " > Want to modify the list(Y/N)? ";
         cin >> wantToModify;
 
@@ -392,8 +388,6 @@ void ConsoleUI::scientistListAllGenderMenu()
     scientistNameColumn();
     printScientist(scientists);
 
-    cout << "  ======================================================================================= " << endl;
-
     cout << " > Want to modify the list(Y/N)? ";
     cin >> wantToModify;
 
@@ -442,12 +436,6 @@ void ConsoleUI::scientistListAllDeadOrAliveMenu()
     scientistNameColumn();
     printScientist(scientists);
 
-    for(unsigned int i = 0; i < scientists.size(); i++)
-    {
-        cout << scientists[i];
-    }
-
-    cout << "  ======================================================================================= " << endl << endl;
     cout << " > Want to modify the list(Y/N)? ";
     cin >> wantToModify;
 
@@ -485,7 +473,6 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
         scientistNameColumn();
         printScientist(scientists);
 
-        cout << "  ======================================================================================= " << endl;
         cout << " > Want to modify the list(Y/N)? ";
         cin >> wantToModify;
 
@@ -518,8 +505,6 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
         scientistNameColumn();
         printScientist(scientists);
 
-
-        cout << "  ======================================================================================= " << endl;
         cout << " > Want to modify the list(Y/N)? ";
         cin >> wantToModify;
 
@@ -646,6 +631,7 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     cout << setw(36);
     cout << left << print;
     cout << setw(1) << "|" << endl;
+    cout << "  ======================================================================================= " << endl;
 }
     //Computer scientists - Other functions.
 void ConsoleUI::removeScientistFromDataBase()
@@ -757,7 +743,6 @@ void ConsoleUI::scientistNameColumn()
 
 //-- Computers--//
     //Computers - Menu function
-
 void ConsoleUI::computerMenu()
 {
     char command = ' ';
@@ -795,6 +780,7 @@ void ConsoleUI::computerMenu()
 void ConsoleUI::computerSearchMenu()
 {
     char list = ' ';
+    char wantToModify = ' ';
     string searchString = " ";
     computerSearchMenuPrint();
     cin >> list;
@@ -821,6 +807,29 @@ void ConsoleUI::computerSearchMenu()
         else
         {
             printComputer(computers);
+
+            cout << " > Want to modify the list(Y/N)? ";
+            cin >> wantToModify;
+
+            if(wantToModify == 'Y' || wantToModify == 'y')
+            {
+                char command = ' ';
+                computerWhatToDoPrint();
+                if(command == '1')
+                {
+                    addComputer();
+                }
+                else if(command == '2')
+                {
+                    cout << "Eftir ad klara!!!!" << endl;
+                    computerSearchMenu();
+                    //removeComputerFromDataBase();
+                }
+                else if(goBackOrQuit(command))
+                {
+                    computerSearchMenu();
+                }
+            }
         }
 
 
@@ -845,9 +854,31 @@ void ConsoleUI::computerSearchMenu()
         else
         {
             printComputer(computers);
-        }
 
-        computerSearchMenu();
+            cout << " > Want to modify the list(Y/N)? ";
+            cin >> wantToModify;
+
+            if(wantToModify == 'Y' || wantToModify == 'y')
+            {
+                char command = ' ';
+                computerWhatToDoPrint();
+                if(command == '1')
+                {
+                    addComputer();
+                }
+                else if(command == '2')
+                {
+                    cout << "Eftir ad klara!!!!" << endl;
+                    computerSearchMenu();
+                    //removeComputerFromDataBase();
+                }
+                else if(goBackOrQuit(command))
+                {
+                    computerSearchMenu();
+                }
+                computerSearchMenu();
+            }
+         }
     }
 
     else if(list == '3')      //specific computer type
@@ -866,10 +897,32 @@ void ConsoleUI::computerSearchMenu()
         else
         {
             printComputer(computers);
-        }
-        computerSearchMenu();
-    }
 
+            cout << " > Want to modify the list(Y/N)? ";
+            cin >> wantToModify;
+
+            if(wantToModify == 'Y' || wantToModify == 'y')
+            {
+                char command = ' ';
+                computerWhatToDoPrint();
+                if(command == '1')
+                {
+                    addComputer();
+                }
+                else if(command == '2')
+                {
+                    cout << "Eftir ad klara!!!!" << endl;
+                    computerSearchMenu();
+                    //removeComputerFromDataBase();
+                }
+                else if(goBackOrQuit(command))
+                {
+                    computerSearchMenu();
+                }
+            }
+        computerSearchMenu();
+        }
+    }
     else if(list == 'b' || list == 'B')   //Go back to main menu.
     {
         computerMenu();
@@ -919,6 +972,7 @@ void ConsoleUI::computerListMenu()
 void ConsoleUI::computerListAllMenu()
 {
     char input = ' ';
+    char wantToModify = ' ';
     computerListAllMenuPrint();
     cin >> input;
 
@@ -932,8 +986,31 @@ void ConsoleUI::computerListAllMenu()
 
         cout << "  ======================================================================================= " << endl << endl;
 
-        computerListAllMenu();
 
+        cout << " > Want to modify the list(Y/N)? ";
+        cin >> wantToModify;
+
+        if(wantToModify == 'Y' || wantToModify == 'y')
+        {
+            char command = ' ';
+            computerWhatToDoPrint();
+            if(command == '1')
+            {
+                addComputer();
+            }
+            else if(command == '2')
+            {
+                cout << "Eftir ad klara!!!!" << endl;
+                computerListAllMenu();
+                //removeComputerFromDataBase();
+            }
+            else if(goBackOrQuit(command))
+            {
+                computerListAllMenu();
+            }
+        }
+
+        computerListAllMenu();
 
     }
     if(input == '2')    //Z-A
@@ -945,9 +1022,30 @@ void ConsoleUI::computerListAllMenu()
 
         cout << "  ======================================================================================= " << endl << endl;
 
+        cout << " > Want to modify the list(Y/N)? ";
+        cin >> wantToModify;
+
+        if(wantToModify == 'Y' || wantToModify == 'y')
+        {
+            char command = ' ';
+            computerWhatToDoPrint();
+            if(command == '1')
+            {
+                addComputer();
+            }
+            else if(command == '2')
+            {
+                cout << "Eftir ad klara!!!!" << endl;
+                computerListAllMenu();
+                //removeComputerFromDataBase();
+            }
+            else if(goBackOrQuit(command))
+            {
+                computerListAllMenu();
+            }
+        }
+
         computerListAllMenu();
-
-
     }
     else if(input == '3')    //Type
     {
@@ -981,6 +1079,7 @@ void ConsoleUI::computerListAllMenu()
 void ConsoleUI::computerListAllTypeMenu()
 {
     string type = " ";
+    char wantToModify = ' ';
     computerListAllTypeMenuPrint();
     cin >> type;
 
@@ -1010,13 +1109,37 @@ void ConsoleUI::computerListAllTypeMenu()
         }
         cout << "  ======================================================================================= " << endl;
 
+        cout << " > Want to modify the list(Y/N)? ";
+        cin >> wantToModify;
+
+        if(wantToModify == 'Y' || wantToModify == 'y')
+        {
+            char command = ' ';
+            computerWhatToDoPrint();
+            if(command == '1')
+            {
+                addComputer();
+            }
+            else if(command == '2')
+            {
+                cout << "Eftir ad klara!!!!" << endl;
+                computerListAllTypeMenu();
+                //removeComputerFromDataBase();
+            }
+            else if(goBackOrQuit(command))
+            {
+                computerListAllTypeMenu();
+            }
+        }
+
         computerListAllTypeMenu();
     }
-        computerListAllTypeMenu();
+   computerListAllTypeMenu();
 }
 void ConsoleUI::computerListAllBuildYearMenu()
 {
     string yearBuilt = " ";
+    char wantToModify = ' ';
     computerListAllYearBuiltMenuPrint();
     cin >> yearBuilt;
 
@@ -1038,19 +1161,42 @@ void ConsoleUI::computerListAllBuildYearMenu()
     }
     else
     {
-        vector<Computer> computerBuilt = _service.getAllBuildYearComputers(yearBuilt);
+        vector<Computer> computers = _service.getAllBuildYearComputers(yearBuilt);
         computerNameColumn();
-        for(unsigned int i = 0; i < computerBuilt.size(); i++)
+        printComputer(computers);
+
+        cout << " > Want to modify the list(Y/N)? ";
+        cin >> wantToModify;
+
+        if(wantToModify == 'Y' || wantToModify == 'y')
         {
-            cout << computerBuilt[i];
+            char command = ' ';
+            computerWhatToDoPrint();
+            if(command == '1')
+            {
+                addComputer();
+            }
+            else if(command == '2')
+            {
+                cout << "Eftir ad klara!!!!" << endl;
+                computerListAllBuildYearMenu();
+                //removeComputerFromDataBase();
+            }
+            else if(goBackOrQuit(command))
+            {
+                computerListAllBuildYearMenu();
+            }
         }
+
+        computerListAllBuildYearMenu();
+
     }
      computerListAllBuildYearMenu();
 }
 void ConsoleUI::computerListAllDevelopmentMenu()
 {
     string development = " ";
-
+    char wantToModify = ' ';
     computerListAllDevelopmentMenuPrint();
     cin >> development;
 
@@ -1072,12 +1218,33 @@ void ConsoleUI::computerListAllDevelopmentMenu()
     }
     else
     {
-        vector<Computer> computerDevelopment = _service.getAllDevelopmentAndOriginalComputers(development);
+        vector<Computer> computers = _service.getAllDevelopmentAndOriginalComputers(development);
         computerNameColumn();
-        for(unsigned int i = 0; i < computerDevelopment.size(); i++)
+        printComputer(computers);
+        cout << " > Want to modify the list(Y/N)? ";
+        cin >> wantToModify;
+
+        if(wantToModify == 'Y' || wantToModify == 'y')
         {
-            cout << computerDevelopment[i];
+            char command = ' ';
+            computerWhatToDoPrint();
+            if(command == '1')
+            {
+                addComputer();
+            }
+            else if(command == '2')
+            {
+                cout << "Eftir ad klara!!!!" << endl;
+                computerListAllDevelopmentMenu();
+                //removeComputerFromDataBase();
+            }
+            else if(goBackOrQuit(command))
+            {
+                computerListAllDevelopmentMenu();
+            }
         }
+        computerListAllDevelopmentMenu();
+
     }
 
     computerListAllDevelopmentMenu();
@@ -1264,7 +1431,7 @@ void ConsoleUI::computerNameColumn()
 }
 void ConsoleUI::quitSystem()
 {
-    cout << "Quitting program..." << endl;
+    cout << "  > Quitting program..." << endl;
     exit(1);
 }
 

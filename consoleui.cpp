@@ -4,6 +4,8 @@
 #include <iomanip>
 
 using namespace std;
+const int MAXSIZEOFNAME = 80;
+
 
 //--Constructor--//
 ConsoleUI::ConsoleUI()
@@ -827,18 +829,26 @@ void ConsoleUI::removeScientistFromDataBase()
  * This function is used to add Sceintist to the database, we take in a command and call add function from
  * service layer and add the scientist from to the database.
  * */
+
+
+
+
+
 void ConsoleUI::addScientist()
 {
     string name, gender, yearOfBirth, yearOfDeath;
 
     cin.ignore();                                                                                    //NAME
-    cout << endl;
-    cout << "  =======================================================================================" << endl;
+
     cout << "  > Input name of scientist: ";
     getline(cin, name);
 
     cout << "  > Input gender (male/female): ";
     getline(cin, gender);
+
+    //Make sure input has upper case as first letter and lower case after that.
+    _service.fixInputNameScientist(name);
+    _service.fixInputGenderScientist(gender);
 
     cout << "  > Input year of birth: ";
     getline(cin, yearOfBirth);
@@ -1011,8 +1021,6 @@ void ConsoleUI::computerSearchMenu()
             {
                 computerSearchMenu();
             }
-
-
         }
 
         computerSearchMenu();
@@ -1167,7 +1175,6 @@ void ConsoleUI::computerListMenu()
     }
 
 }
-
 void ConsoleUI::computerListAllMenu()
 {
     char input = ' ';
@@ -1635,10 +1642,10 @@ void ConsoleUI::addComputer()
     string name, yearBuilt, type, development;
 
     cin.ignore();                                                                                    //NAME
-    cout << endl;
-    cout << "  =======================================================================================" << endl;
+
     cout << "  > Input name of computer: ";
     getline(cin, name);
+
 
     cout << "  > Input built year (if the computer was build): ";
     getline(cin, yearBuilt);
@@ -1648,6 +1655,12 @@ void ConsoleUI::addComputer()
 
     cout << "  > Input computer Development(Original or developed): ";
     getline(cin, development);
+
+    //Make sure input will be fixed so that string has uppercase first letter and the rest lower case.
+    _service.fixInputNameComputer(name);
+    _service.fixInputTypeComputer(type);
+    _service.fixInputDevelopmentComputer(development);
+
 
 
     if(_service.isAddSComputerValid(name, yearBuilt, type, development))
@@ -1693,4 +1706,3 @@ void ConsoleUI::quitSystem()
     cout << "  > Quitting program..." << endl;
     exit(1);
 }
-

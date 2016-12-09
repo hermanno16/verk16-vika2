@@ -11,6 +11,7 @@
 #include <QStringList>
 #include <QRegularExpression>
 using namespace std;
+const int YEARTODAY = 2016;
 
 
 class Service
@@ -51,8 +52,11 @@ public:
     void addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
     void addComputerToData(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
     bool inputNameValid(string input);
-
-
+    void fixInputNameScientist(string& inputName);
+    void fixInputGenderScientist(string& inputGender);
+    void fixInputNameComputer(string& inputName);
+    void fixInputTypeComputer(string& inputType);
+    void fixInputDevelopmentComputer(string& inputDevelopment);
 private:
     DataAccess _dAccess;
 };

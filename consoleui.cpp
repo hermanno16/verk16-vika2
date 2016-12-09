@@ -643,6 +643,8 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
 void ConsoleUI::scientistWhatToDoPrint()
 {
     cout << "  ======================================================================================= " << endl;
+    cout << " |                                      OPTIONS                                          | " << endl;
+    cout << "  ======================================================================================= " << endl;
     cout << " | 1 - Add scientist.                                         2 - Delete scientist.      | " << endl;
     cout << " | 3 - More info about the scientist.                         4 - Add relation.          | " << endl;
     cout << " | 5 - Continue.                                                                         | " << endl;
@@ -729,7 +731,7 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     {
         cout << temp[i];
     }
-    cout << "  =======================================================================================" << endl;
+    cout << " |                                       - - -                                           | " << endl;
     int print = temp.size();
     cout << " | ";
     cout << setfill(' ') << setw(50);
@@ -737,7 +739,7 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     cout << setw(36);
     cout << left << print;
     cout << setw(1) << "|" << endl;
-    cout << "  ======================================================================================= " << endl;
+    cout << " |                                                                                       | " << endl;
 }
 //Computer scientists - Other functions.
 void ConsoleUI::removeScientistFromDataBase()
@@ -775,7 +777,6 @@ void ConsoleUI::addScientist()
 
     cin.ignore();                                                                                    //NAME
     cout << endl;
-    cout << "  =======================================================================================" << endl;
     cout << "  > Input name of scientist: ";
     getline(cin, name);
 
@@ -1090,10 +1091,6 @@ void ConsoleUI::computerListAllMenu()
         vector<Computer> computers = _service.getAllComputersAtoZ();
         computerNameColumn();
         printComputer(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-
         computerWhatToDoPrint();
         cin >> wantToModify;
 
@@ -1136,9 +1133,6 @@ void ConsoleUI::computerListAllMenu()
         vector<Computer> computers = _service.getAllComputersZtoA();
         computerNameColumn();
         printComputer(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
         computerWhatToDoPrint();
         cin >> wantToModify;
 
@@ -1406,42 +1400,31 @@ void ConsoleUI::computerListAllDevelopmentMenu()
 void ConsoleUI::computerWhatToDoPrint()
 {
     cout << "  ======================================================================================= " << endl;
+    cout << " |                                      OPTIONS                                          | " << endl;
+    cout << "  ======================================================================================= " << endl;
     cout << " | 1 - Add computer.                                         2 - Delete computer.        | " << endl;
     cout << " | 3 - More info about computer                              4 - Add relation.           | " << endl;
     cout << " | 5 - Continue.                                                                         | " << endl;
+    cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
 }
 void ConsoleUI::printComputer(vector<Computer> temp)
 {
-    cout << endl;
-    cout << "  =======================================================================================" << endl;
     for(unsigned int i = 0; i < temp.size(); i++)
     {
         cout << temp[i];
     }
-    cout << "  =======================================================================================" << endl;
+    cout << " |                                       - - -                                           | " << endl;
     int print = temp.size();
-
     cout << " | ";
     cout << setfill(' ') << setw(50);
-    cout << right << "Number of results return: ";
+    cout << right << "Number of results returned: ";
     cout << setw(36);
     cout << left << print;
     cout << setw(1) << "|" << endl;
-}
-void ConsoleUI::computerMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                                   COMPUTER MENU                                       | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |     1 - List of computers.                                                            | " << endl;
     cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << "  > Please enter a number: ";
 }
 void ConsoleUI::computerListMenuPrint()
 {
@@ -1527,7 +1510,7 @@ void ConsoleUI::addComputer()
 
     cin.ignore();                                                                                    //NAME
     cout << endl;
-    cout << "  =======================================================================================" << endl;
+
     cout << "  > Input name of computer: ";
     getline(cin, name);
 
@@ -1565,6 +1548,7 @@ void ConsoleUI::computerWorkedOn()
 }
 void ConsoleUI::computerNameColumn()
 {
+    cout << endl;
     cout << "  ======================================================================================= " << endl;
     cout.width(8);
     cout << left << " | ID:";

@@ -189,22 +189,32 @@ void ConsoleUI::scientistSearchMenu()
         if(wantToModify == '1')
         {
             addScientist();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeScientistFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             scientistWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+            addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             scientistSearchMenu();
+            mainMenu();
+        }
+        else if(wantToModify == '6')
+        {
+            removeRelationFromDatabase();
+            mainMenu();
         }
         //Returns true if user wants to go back!
         else if(goBackOrQuit(wantToModify))
@@ -244,32 +254,44 @@ void ConsoleUI::scientistSearchMenu()
         if(wantToModify == '1')
         {
             addScientist();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeScientistFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             scientistWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+            addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             scientistSearchMenu();
+            mainMenu();
+        }
+        else if(wantToModify == '6')
+        {
+            removeRelationFromDatabase();
+            mainMenu();
         }
         //Returns true if user wants to go back!
         else if(goBackOrQuit(wantToModify))
         {
             scientistSearchMenu();
+            mainMenu();
         }
         else
         {
             cout << "  > Invalid input!" << endl;
             scientistSearchMenu();
+            mainMenu();
         }
 
     }
@@ -299,32 +321,44 @@ void ConsoleUI::scientistSearchMenu()
         if(wantToModify == '1')
         {
             addScientist();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeScientistFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             scientistWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+            addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             scientistSearchMenu();
+            mainMenu();
+        }
+        else if(wantToModify == '6')
+        {
+            removeRelationFromDatabase();
+            mainMenu();
         }
         //Returns true if user wants to go back!
         else if(goBackOrQuit(wantToModify))
         {
             scientistSearchMenu();
+            mainMenu();
         }
         else
         {
             cout << "  > Invalid input!" << endl;
             scientistSearchMenu();
+            mainMenu();
         }
     }
     else if(goBackOrQuit(commandSearch))
@@ -359,22 +393,32 @@ void ConsoleUI::scientistListMenu()
         if(wantToModify == '1')
         {
             addScientist();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeScientistFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             scientistWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+            addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             scientistListMenu();
+            mainMenu();
+        }
+        else if(wantToModify == '6')
+        {
+            removeRelationFromDatabase();
+            mainMenu();
         }
         //Returns true if user wants to go back!
         else if(goBackOrQuit(wantToModify))
@@ -401,22 +445,32 @@ void ConsoleUI::scientistListMenu()
         if(wantToModify == '1')
         {
             addScientist();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeScientistFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             scientistWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+            addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             scientistListMenu();
+            mainMenu();
+        }
+        else if(wantToModify == '6')
+        {
+            removeRelationFromDatabase();
+            mainMenu();
         }
         //Returns true if user wants to go back!
         else if(goBackOrQuit(wantToModify))
@@ -433,18 +487,25 @@ void ConsoleUI::scientistListMenu()
     else if(listCommand == '3')    //Gender
     {
         scientistListAllGenderMenu();
+        mainMenu();
     }
 
     else if(listCommand == '4') //Year Of birth.
     {
         scientistListAllYearOfBirthMenu();
+        mainMenu();
     }
 
     else if(listCommand == '5')    //Dead or Alive.
     {
         scientistListAllDeadOrAliveMenu();
+        mainMenu();
     }
-
+    else if(wantToModify == '6')
+    {
+        removeRelationFromDatabase();
+        mainMenu();
+    }
     else if(goBackOrQuit(listCommand))
     {
         scientistMenu();
@@ -485,22 +546,32 @@ void ConsoleUI::scientistListAllGenderMenu()
     if(wantToModify == '1')
     {
         addScientist();
+        mainMenu();
     }
     else if(wantToModify == '2')
     {
         removeScientistFromDataBase();
+        mainMenu();
     }
     else if(wantToModify == '3')
     {
         scientistWorkedOn();
+        mainMenu();
     }
     else if(wantToModify == '4')
     {
-        cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+        addRelation();
+        mainMenu();
     }
     else if(wantToModify == '5')
     {
         scientistListAllGenderMenu();
+        mainMenu();
+    }
+    else if(wantToModify == '6')
+    {
+        removeRelationFromDatabase();
+        mainMenu();
     }
     //Returns true if user wants to go back!
     else if(goBackOrQuit(wantToModify))
@@ -541,22 +612,32 @@ void ConsoleUI::scientistListAllDeadOrAliveMenu()
     if(wantToModify == '1')
     {
         addScientist();
+        mainMenu();
     }
     else if(wantToModify == '2')
     {
         removeScientistFromDataBase();
+        mainMenu();
     }
     else if(wantToModify == '3')
     {
         scientistWorkedOn();
+        mainMenu();
     }
     else if(wantToModify == '4')
     {
-        cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+        addRelation();
+        mainMenu();
     }
     else if(wantToModify == '5')
     {
         scientistListAllDeadOrAliveMenu();
+        mainMenu();
+    }
+    else if(wantToModify == '6')
+    {
+        removeRelationFromDatabase();
+        mainMenu();
     }
     //Returns true if user wants to go back!
     else if(goBackOrQuit(wantToModify))
@@ -592,27 +673,38 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
         if(wantToModify == '1')
         {
             addScientist();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeScientistFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             scientistWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+            addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             scientistListAllYearOfBirthMenu();
+            mainMenu();
+        }
+        else if(wantToModify == '6')
+        {
+            removeRelationFromDatabase();
+            mainMenu();
         }
         //Returns true if user wants to go back!
         else if(goBackOrQuit(wantToModify))
         {
             scientistListAllYearOfBirthMenu();
+            mainMenu();
         }
         else
         {
@@ -635,22 +727,32 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
         if(wantToModify == '1')
         {
             addScientist();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeScientistFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             scientistWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGITENGI EFTIR AD UTFAERA!!" << endl;
+            addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             scientistListAllYearOfBirthMenu();
+            mainMenu();
+        }
+        else if(wantToModify == '6')
+        {
+            removeRelationFromDatabase();
+            mainMenu();
         }
         //Returns true if user wants to go back!
         else if(goBackOrQuit(wantToModify))
@@ -686,7 +788,8 @@ void ConsoleUI::scientistWhatToDoPrint()
     cout << "  ======================================================================================= " << endl;
     cout << " | 1 - Add scientist.                                         2 - Delete scientist.      | " << endl;
     cout << " | 3 - More info about the scientist.                         4 - Add relation.          | " << endl;
-    cout << " | 5 - Continue.                                                                         | " << endl;
+    cout << " | 5 - Continue.                                              6 - Remove relation        | " << endl;
+    cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
@@ -788,21 +891,29 @@ void ConsoleUI::scientistListAllYearOfBirthMenuPrint()
  * */
 void ConsoleUI::printScientist(vector<Scientist> temp)
 {
-    for(unsigned int i = 0; i < temp.size(); i++)
+    if(temp.size() == 0)
     {
-        cout << temp[i];
+        cout << "No results returned.";
     }
+    else
+    {
+        for(unsigned int i = 0; i < temp.size(); i++)
+        {
+            cout << temp[i];
+        }
 
-    cout << " |                                       - - -                                           | " << endl;
-    int print = temp.size();
+        cout << " |                                       - - -                                           | " << endl;
+        int print = temp.size();
 
-    cout << " | ";
-    cout << setfill(' ') << setw(50);
-    cout << right << "Number of results returned: ";
-    cout << setw(36);
-    cout << left << print;
-    cout << setw(1) << "|" << endl;
-    cout << " |                                                                                       | " << endl;
+        cout << " | ";
+        cout << setfill(' ') << setw(50);
+        cout << right << "Number of results returned: ";
+        cout << setw(36);
+        cout << left << print;
+        cout << setw(1) << "|" << endl;
+        cout << " |                                                                                       | " << endl;
+        cout << "  ======================================================================================== " << endl;
+    }
 }
 //Computer scientists - Other functions.
 /*
@@ -939,7 +1050,7 @@ void ConsoleUI::scientistWorkedOn()
     vector<Computer> computers = _service.connectScientistToComputer(idNumber);
 
     connectScientistColumn(idNumber);
-    scientistNameColumn();
+    computerNameColumn();
     printComputer(computers);
 }
 
@@ -1035,7 +1146,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '4')
             {
-                cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+                addRelation();
             }
             else if(wantToModify == '5')
             {
@@ -1086,7 +1197,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '4')
             {
-                cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+                addRelation();
             }
             else if(wantToModify == '5')
             {
@@ -1137,7 +1248,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '4')
             {
-                cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+                addRelation();
             }
             else if(wantToModify == '5')
             {
@@ -1227,7 +1338,7 @@ void ConsoleUI::computerListAllMenu()
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+            addRelation();
         }
         else if(wantToModify == '5')
         {
@@ -1267,7 +1378,7 @@ void ConsoleUI::computerListAllMenu()
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+            addRelation();
         }
         else if(wantToModify == '5')
         {
@@ -1360,7 +1471,7 @@ void ConsoleUI::computerListAllTypeMenu()
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+            addRelation();
         }
         else if(wantToModify == '5')
         {
@@ -1424,12 +1535,13 @@ void ConsoleUI::computerListAllBuildYearMenu()
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+            addRelation();
         }
         else if(wantToModify == '5')
         {
             computerListAllBuildYearMenu();
         }
+
         else if(goBackOrQuit(wantToModify))
         {
             computerListAllBuildYearMenu();
@@ -1478,22 +1590,27 @@ void ConsoleUI::computerListAllDevelopmentMenu()
         if(wantToModify == '1')
         {
             addComputer();
+            mainMenu();
         }
         else if(wantToModify == '2')
         {
             removeComputerFromDataBase();
+            mainMenu();
         }
         else if(wantToModify == '3')
         {
             computerWorkedOn();
+            mainMenu();
         }
         else if(wantToModify == '4')
         {
-            cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+            addRelation();
+            mainMenu();
         }
         else if(wantToModify == '5')
         {
             computerListAllDevelopmentMenu();
+            mainMenu();
         }
         else if(goBackOrQuit(wantToModify))
         {
@@ -1502,7 +1619,7 @@ void ConsoleUI::computerListAllDevelopmentMenu()
         else
         {
             cout << "  > Invalid input!" << endl;
-            computerListAllDevelopmentMenu();
+            mainMenu();
         }
     }
 }
@@ -1518,7 +1635,7 @@ void ConsoleUI::computerWhatToDoPrint()
     cout << "  ======================================================================================= " << endl;
     cout << " | 1 - Add computer.                                         2 - Delete computer.        | " << endl;
     cout << " | 3 - More info about computer                              4 - Add relation.           | " << endl;
-    cout << " | 5 - Continue.                                                                         | " << endl;
+    cout << " | 5 - Continue.                                             6 - Remove relation         | " << endl;
     cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  ======================================================================================= " << endl;
@@ -1737,6 +1854,24 @@ void ConsoleUI::removeComputerFromDataBase()
     }
 
 }
+void ConsoleUI::addRelation()
+{
+    int inputID, inputCid;
+    cout << " > Please enter the ID of the computer you wish to add a relation to: ";
+    cin >> inputCid;
+    cout << " > Please enter the ID of the scientist you wish to add to the relation: ";
+    cin >> inputID;
+    bool relationAddition = _service.addRelation(inputID,inputCid);
+
+    if(relationAddition == true)
+    {
+        cout << " > Relation added!";
+    }
+    else if(relationAddition == false)
+    {
+        cout << " > Relation already exists, sorry bro.";
+    }
+}
 
 void ConsoleUI::computerWorkedOn()
 {
@@ -1745,7 +1880,7 @@ void ConsoleUI::computerWorkedOn()
     cin >> idNumber;
     vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
     connectComputerColumn(idNumber);
-    computerNameColumn();
+    scientistNameColumn();
     printScientist(scientists);
 }
 /*
@@ -1805,4 +1940,13 @@ string ConsoleUI::getComputerName(int idNumber)
 string ConsoleUI::getScientistName(int idNumber)
 {
     return _service.getScientistName(idNumber);
+}
+void ConsoleUI::removeRelationFromDatabase()
+{
+    int inputID, inputCid;
+    cout << " > Please enter the ID of Scientiest in the relation: ";
+    cin >> inputID;
+    cout << " > Please enter the ID of the Computer in the relation: ";
+    cin >> inputCid;
+    _service.removeRelationFromDatabase(inputID,inputCid);
 }

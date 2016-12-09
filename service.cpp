@@ -149,6 +149,16 @@ vector<Computer> Service::connectScientistToComputer(int idNumber)
 
     return allComputers;
 }
+bool Service::addRelation(int inputID,int inputCid)
+{
+    bool relation = _dAccess.addScientistToComputer(inputID,inputCid);
+
+    return relation;
+}
+void Service::removeRelationFromDatabase(int inputID, int inputCid)
+{
+    _dAccess.removeRelationFromDatabase(inputID,inputCid);
+}
 //--Computer functions--//
 vector<Computer> Service::getAllComputersAtoZ()
 {

@@ -87,6 +87,10 @@ public:
     string getComputerName(int idNumber);
     string getScientistName(int idNumber);
 
+    // Connection/Relation table
+    void addRelation();
+    void removeRelationFromDatabase();
+
     void run();
     void openDataBase();
     void quitSystem();

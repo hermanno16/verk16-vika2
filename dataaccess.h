@@ -44,7 +44,8 @@ public:
     //--Scientist other functions
     void addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
     void removeScientistFromDatabase(int idOfScientist);
-    void addScientistToComputer(int inputID, int inputCid);
+    bool addScientistToComputer(int ID, int Cid);
+    void removeRelationFromDatabase(int id, int cID);
     //--Computers--//
     vector<Computer> getAllComputerInfoFromDataBase(QString queryCommand);
     vector<Computer> getAllComputersAtoZ();

@@ -440,6 +440,45 @@ vector<Computer> DataAccess::searchForComputersByType(string typeToFind)
     }
     return allComputers;
 }
+string DataAccess::getComputerName(int idNumber)
+{
+    int id = idNumber;
+
+    string aComputer;
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Computers WHERE Cid = (:something)");
+    query.bindValue(":something", id);
+    query.exec();
+
+    while(query.next())
+    {
+
+        QString name = query.value(query.record().indexOf("ComputerName")).toString();
+        aComputer = name.toStdString();
+    }
+    return aComputer;
+}
+string DataAccess::getScientistName(int idNumber)
+{
+    int id = idNumber;
+
+    string aScientist;
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Scientists WHERE ID = (:something)");
+    query.bindValue(":something", id);
+    query.exec();
+
+    while(query.next())
+    {
+        QString name = query.value(query.record().indexOf("FirstName")).toString();
+        aScientist = name.toStdString();
+    }
+
+    return aScientist;
+}
+
 //-- Connect to database --//
 void DataAccess::openDataBase()
 {
@@ -465,7 +504,7 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 
     QSqlQuery query;
 
-    query.prepare("SELECT ID,FirstName,Gender,YearOfBirth,YearOfDeath FROM Scientists, ConnectionTable WHERE Scientists.ID = ConnectionTable.ID AND ConnectionTable.Cid = (:something)");
+    query.prepare("SELECT * FROM Scientists, ConnectionTable WHERE Scientists.ID = ConnectionTable.ID AND ConnectionTable.Cid =  (:something)");
     query.bindValue(":something", idNumber);
     query.exec();
 
@@ -476,9 +515,6 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
         QString gender = query.value(query.record().indexOf("Gender")).toString();
         int YearOfBirth = query.value(query.record().indexOf("YearOfBirth")).toUInt();
         int yearOfDeath = query.value(query.record().indexOf("YearOfDeath")).toUInt();
-
-        cout << id << endl;
-
         Scientist newScientist(
                     id,
                     name.toStdString(),

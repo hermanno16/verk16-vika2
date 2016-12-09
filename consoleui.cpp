@@ -794,11 +794,11 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     }
 
     cout << " |                                       - - -                                           | " << endl;
-    int print = temp.size();
+    size_t print = temp.size();
 
     cout << " | ";
     cout << setfill(' ') << setw(50);
-    cout << right << "Number of results return: ";
+    cout << right << "Number of results returned: ";
     cout << setw(36);
     cout << left << print;
     cout << setw(1) << "|" << endl;
@@ -819,7 +819,7 @@ void ConsoleUI::removeScientistFromDataBase()
     cout << "  > Enter id of scientist to remove from the list: ";
     cin >> idOfScientist;
 
-    cout << "  > Are you sure you want to remove scientist with id " << idOfScientist << "(Y/N)? " ;
+    cout << "  > Are you sure you want to remove scientist with id " << "\"" << getScientistName(idOfScientist) << "\""<< " (Y/N)? " ;
     cin >> areYouSure;
 
     if(areYouSure == 'y' || areYouSure == 'Y')
@@ -846,6 +846,27 @@ void ConsoleUI::removeScientistFromDataBase()
  * */
 
 
+bool ConsoleUI::notAddScientistError(string input)
+{
+    if(input.length() == 0)
+    {
+        cout << "  > Illegal input!" << endl;
+        addScientist();
+    }
+    else if(input == "b" || input == "B")
+    {
+        mainMenu();
+    }
+    else if(input == "Q" || input == "q")
+    {
+        quitSystem();
+    }
+
+
+    return true;
+
+}
+
 
 
 
@@ -858,39 +879,47 @@ void ConsoleUI::addScientist()
     cout << "  > Input name of scientist: ";
     getline(cin, name);
 
-    cout << "  > Input gender (male/female): ";
-    getline(cin, gender);
-
-    //Make sure input has upper case as first letter and lower case after that.
-    _service.fixInputNameScientist(name);
-    _service.fixInputGenderScientist(gender);
-
-    cout << "  > Input year of birth: ";
-    getline(cin, yearOfBirth);
-
-    cout << "  > Input year of death if applicable, if not please enter N/A): ";
-    getline(cin, yearOfDeath);
-    cout << endl;
-
-    //char yesOrNo = ' ';
-
-
-    if(_service.isAddScientistValid(name, gender, yearOfBirth, yearOfDeath))
+    if(notAddScientistError(name))
     {
-        _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
+        //Make sure input has upper case as first letter and lower case after that.
+        _service.fixInputNameScientist(name);
 
-        cout << "  > Scientest has been added to database! " << endl;
+        cout << "  > Input gender (male/female): ";
+        getline(cin, gender);
 
+        if(notAddScientistError(gender))
+        {
+            //Make sure input has upper case as first letter and lower case after that.
+            _service.fixInputGenderScientist(gender);
+
+            cout << "  > Input year of birth: ";
+            getline(cin, yearOfBirth);
+
+            if(notAddScientistError(yearOfBirth))
+            {
+                cout << "  > Input year of death if applicable, if not please enter N/A): ";
+                getline(cin, yearOfDeath);
+
+                if(notAddScientistError(yearOfBirth))
+                {
+                    if(_service.isAddScientistValid(name, gender, yearOfBirth, yearOfDeath))
+                    {
+                        _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
+                        cout << endl;
+                        cout << "  > Scientest has been added to database! " << endl;
+                        mainMenu();
+                    }
+                    else
+                    {
+                        cout << "  > Input was not valid..." << endl;
+                        cout << "  > Scientist was not added to database." << endl;
+                        cout << "  > .. Going back to main menu!! " << endl;
+                        mainMenu();
+                    }
+                }
+            }
+        }
     }
-    else
-    {
-        cout << "  > Input was not valid..." << endl;
-        cout << "  > Scientist was not added to database." << endl;
-    }
-
-
-    scientistMenu();
-
 }
 /*
  * This function is used to make the console look nice, the output is in consistant table.
@@ -916,9 +945,11 @@ void ConsoleUI::scientistWorkedOn()
     int idNumber;
     cout << "  > Please enter the ID of the scientist: ";
     cin >> idNumber;
-    //vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
+    vector<Computer> computers = _service.connectScientistToComputer(idNumber);
+
+    connectScientistColumn(idNumber);
     scientistNameColumn();
-    //printScientist(scientists);
+    printComputer(computers);
 }
 
 //-- Computers--//
@@ -1003,9 +1034,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!hundur" << endl;
-                //computerSearchMenu();
-                removeComputerFromDataBase();
+                computerSearchMenu();
             }
             else if(wantToModify == '3')
             {
@@ -1514,7 +1543,7 @@ void ConsoleUI::printComputer(vector<Computer> temp)
     }
 
     cout << " |                                       - - -                                           | " << endl;
-    int print = temp.size();
+    size_t print = temp.size();
 
     cout << " | ";
     cout << setfill(' ') << setw(50);
@@ -1640,6 +1669,27 @@ void ConsoleUI::computerListAllDevelopmentMenuPrint()
  * This function is used to add computer to the database, we take in a command and call add function from
  * service layer and add the computer from to the database.
  * */
+
+bool ConsoleUI::notAddComputerError(string input)
+{
+    if(input.length() == 0)
+    {
+        cout << "  > Illegal input!" << endl;
+        addComputer();
+    }
+    else if(input == "b" || input == "B")
+    {
+        mainMenu();
+    }
+    else if(input == "Q" || input == "q")
+    {
+        quitSystem();
+    }
+
+    return true;
+
+}
+
 void ConsoleUI::addComputer()
 {
     string name, yearBuilt, type, development;
@@ -1649,37 +1699,53 @@ void ConsoleUI::addComputer()
     cout << "  > Input name of computer: ";
     getline(cin, name);
 
-    cout << "  > Input built year (if the computer was build): ";
-    getline(cin, yearBuilt);
+        if(notAddComputerError(name))
+        {
+            cout << "  > Input built year (if the computer was build): ";
+            getline(cin, yearBuilt);
 
-    cout << "  > Input type of computer(Electronic, mechanic, electronic/mechanic, transistor, microcomputer or ternary.): ";
-    getline(cin, type);
+            if(notAddComputerError(yearBuilt))
+            {
+                cout << "  > Input type of computer(Electronic, mechanic, electronic/mechanic, transistor, microcomputer or ternary.): ";
+                getline(cin, type);
 
-    cout << "  > Input computer Development(Original or developed): ";
-    getline(cin, development);
+                if(notAddComputerError(type))
+                {
+                    //Make sure input will be fixed so that string has uppercase first letter and the rest lower case.
+                    _service.fixInputTypeComputer(type);
 
-    //Make sure input will be fixed so that string has uppercase first letter and the rest lower case.
+                    cout << "  > Input computer Development(Original or developed): ";
+                    getline(cin, development);
 
-    _service.fixInputTypeComputer(type);
-    _service.fixInputDevelopmentComputer(development);
+                    if(notAddComputerError(development))
+                    {
+                        //Make sure input will be fixed so that string has uppercase first letter and the rest lower case.
+                        _service.fixInputDevelopmentComputer(development);
 
+                        if(_service.isAddComputerValid(name, yearBuilt, type, development))
+                        {
+                            _service.addComputerToData(name, yearBuilt, type, development);
 
+                            cout << "  > Computer has been added to database! " << endl;
+                            mainMenu();
+                        }
+                        else
+                        {
+                            cout << "  > Input was not valid..." << endl;
+                            cout << "  > Computer was not added to database." << endl;
 
-    if(_service.isAddComputerValid(name, yearBuilt, type, development))
-    {
-        _service.addComputerToData(name, yearBuilt, type, development);
+                            mainMenu();
+                        }
 
-        cout << "  > Computer has been added to database! " << endl;
-        computerMenu();
-    }
-    else
-    {
-        cout << "  > Input was not valid..." << endl;
-        cout << "  > Computer was not added to database." << endl;
+                    }
 
-        computerMenu();
-    }    
+                }
+
+            }
+
+        }
 }
+
 /*
  * This function is used to add Sceintist to the database, we take in a command and call add function from
  * service layer and add the scientist from to the database.
@@ -1693,7 +1759,7 @@ void ConsoleUI::removeComputerFromDataBase()
     cout << "  > Enter id of computer to remove from the list: ";
     cin >> idOfComputer;
 
-    cout << "  > Are you sure you want to remove computer with id " << idOfComputer << "(Y/N)? " ;
+    cout << "  > Are you sure you want to remove computer " << "\"" << getComputerName(idOfComputer) << "\"" << " (Y/N)? " ;
     cin >> areYouSure;
 
     if(areYouSure == 'y' || areYouSure == 'Y')
@@ -1719,18 +1785,18 @@ void ConsoleUI::removeComputerFromDataBase()
 void ConsoleUI::computerWorkedOn()
 {
     int idNumber;
-    cout << "  > Please enter the ID of the Computer: ";
+    cout << "  > Please enter the ID of the computer: ";
     cin >> idNumber;
-    //vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
-    scientistNameColumn();
-    //printScientist(scientists);
+    vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
+    connectComputerColumn(idNumber);
+    computerNameColumn();
+    printScientist(scientists);
 }
 /*
  * This function is used to make the console look nice, the output is in consistant table.
  * */
 void ConsoleUI::computerNameColumn()
 {
-    cout << endl;
     cout << "  ======================================================================================= " << endl;
     cout.width(8);
     cout << left << " | ID:";
@@ -1752,4 +1818,35 @@ void ConsoleUI::quitSystem()
 {
     cout << "  > Quitting program..." << endl;
     exit(1);
+}
+void ConsoleUI::connectComputerColumn(int idNumber)
+{
+    string prump = getComputerName(idNumber);
+    cout << "  ======================================================================================= " << endl;
+    cout << " |";
+    cout.width(15);
+    cout << right << "Developers of ";
+    cout.width(72);
+    cout << left << prump;
+    cout << "|" << endl;
+
+}
+void ConsoleUI::connectScientistColumn(int idNumber)
+{
+    string prump = getScientistName(idNumber);
+    cout << "  ======================================================================================= " << endl;
+    cout << " |";
+    cout.width(26);
+    cout << right << "Computers develeped by ";
+    cout.width(60);
+    cout << left << prump;
+    cout << "|" << endl;
+}
+string ConsoleUI::getComputerName(int idNumber)
+{
+    return _service.getComputerName(idNumber);
+}
+string ConsoleUI::getScientistName(int idNumber)
+{
+    return _service.getScientistName(idNumber);
 }

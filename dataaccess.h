@@ -67,6 +67,8 @@ public:
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
+    string getComputerName(int idNumber);
+    string getScientistName(int idNumber);
     //--Computer other functions--//
     void addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
     void removeComputerFromDatabase(int idOfComputer);

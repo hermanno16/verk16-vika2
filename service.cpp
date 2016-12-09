@@ -124,6 +124,14 @@ void Service::removeScientistFromDataBase(int idOfScientist)
 {
     _dAccess.removeScientistFromDatabase(idOfScientist);
 }
+string Service::getScientistName(int idNumber)
+{
+    string aScientist;
+
+    aScientist = _dAccess.getScientistName(idNumber);
+
+    return aScientist;
+}
 //--Computer and Scientist functions--//
 vector<Scientist> Service::connectComputerToScientist(int idNumber)
 {
@@ -132,6 +140,14 @@ vector<Scientist> Service::connectComputerToScientist(int idNumber)
     allScientists = _dAccess.connectComputerToScientist(idNumber);
 
     return allScientists;
+}
+vector<Computer> Service::connectScientistToComputer(int idNumber)
+{
+    vector<Computer> allComputers;
+
+    allComputers = _dAccess.connectScientistToComputer(idNumber);
+
+    return allComputers;
 }
 //--Computer functions--//
 vector<Computer> Service::getAllComputersAtoZ()
@@ -244,6 +260,14 @@ vector<Computer> Service::searchForComputersByType(string typeToFind)
     allComputers = _dAccess.searchForComputersByType(typeToFind);
 
     return allComputers;
+}
+string Service::getComputerName(int idNumber)
+{
+    string aComputer;
+
+    aComputer = _dAccess.getComputerName(idNumber);
+
+    return aComputer;
 }
 //-- Valid functions --//
 void Service::addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)

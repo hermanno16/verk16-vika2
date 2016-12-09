@@ -825,6 +825,7 @@ void ConsoleUI::removeScientistFromDataBase()
     if(areYouSure == 'y' || areYouSure == 'Y')
     {
         _service.removeScientistFromDataBase(idOfScientist);
+        cout << endl;
         cout << "  > Scientist has been deleted!" << endl;
         mainMenu();
     }
@@ -1015,6 +1016,7 @@ void ConsoleUI::computerSearchMenu()
         }
         else
         {
+            computerNameColumn();
             printComputer(computers);
             computerWhatToDoPrint();
             cin >> wantToModify;
@@ -1237,7 +1239,7 @@ void ConsoleUI::computerListAllMenu()
         }
         else
         {
-            cout << "  > Invalid input!" << endl;
+            cout << "  > Invalid inputhun!" << endl;
             computerListAllMenu();
         }
 
@@ -1280,6 +1282,7 @@ void ConsoleUI::computerListAllMenu()
             cout << "  > Invalid input!" << endl;
             computerListAllMenu();
         }
+
     }
     else if(input == '3')    //Type
     {
@@ -1312,34 +1315,60 @@ void ConsoleUI::computerListAllMenu()
 }
 void ConsoleUI::computerListAllTypeMenu()
 {
-    string type = " ";
+    char type = ' ';
     char wantToModify = ' ';
     computerListAllTypeMenuPrint();
     cin >> type;
 
-
-    if(type == "b" || type == "B")
+    if(goBackOrQuit(type))
     {
         computerListAllMenu();
     }
 
-    else if (type == "q" || type == "Q")
+    else if(type > '0' && type < 8)
     {
-        quitSystem();
+        {
+            vector<Computer> computerType = _service.getAllTypesComputersAtoZ(type);
+            computerNameColumn();
+            printComputer(computerType);
+
+            computerWhatToDoPrint();
+            cin >> wantToModify;
+
+            if(wantToModify == '1')
+            {
+                addComputer();
+            }
+            else if(wantToModify == '2')
+            {
+                removeComputerFromDataBase();
+            }
+            else if(wantToModify == '3')
+            {
+                computerWorkedOn();
+            }
+            else if(wantToModify == '4')
+            {
+                cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
+            }
+            else if(wantToModify == '5')
+            {
+                computerListAllTypeMenu();
+            }
+            else if(goBackOrQuit(wantToModify))
+            {
+                computerListAllTypeMenu();
+            }
+            else
+            {
+                cout << "  > Invalid input!" << endl;
+                computerListAllTypeMenu();
+            }
+        }
     }
-
-    else if (type == "b" || type == "B" || type == "q" || type == "Q")
-    {
-        cout << "  Wrong input!" << endl;
-        cout << endl;
-    }
-
-
     else
     {
-        vector<Computer> computerType = _service.getAllTypesComputersAtoZ(type);
-        computerNameColumn();
-        printComputer(computerType);
+        cout << "  > Invalid Input!" << endl;
 
         computerWhatToDoPrint();
         cin >> wantToModify;
@@ -1366,11 +1395,6 @@ void ConsoleUI::computerListAllTypeMenu()
         }
         else if(goBackOrQuit(wantToModify))
         {
-            computerListAllTypeMenu();
-        }
-        else
-        {
-            cout << "  > Invalid input!" << endl;
             computerListAllTypeMenu();
         }
     }
@@ -1723,6 +1747,7 @@ void ConsoleUI::removeComputerFromDataBase()
         cout << "  > Computer has been deleted!" << endl;
         mainMenu();
     }
+
     else if(areYouSure == 'b' || areYouSure == 'B')
     {
         mainMenu();
@@ -1733,8 +1758,9 @@ void ConsoleUI::removeComputerFromDataBase()
     {
         computerListMenu();
     }
-
 }
+
+
 
 void ConsoleUI::computerWorkedOn()
 {
@@ -1775,25 +1801,25 @@ void ConsoleUI::quitSystem()
 }
 void ConsoleUI::connectComputerColumn(int idNumber)
 {
-    string prump = getComputerName(idNumber);
+    string computerName = getComputerName(idNumber);
     cout << "  ======================================================================================= " << endl;
     cout << " |";
     cout.width(15);
     cout << right << "Developers of ";
     cout.width(72);
-    cout << left << prump;
+    cout << left << computerName;
     cout << "|" << endl;
 
 }
 void ConsoleUI::connectScientistColumn(int idNumber)
 {
-    string prump = getScientistName(idNumber);
+    string scientistName = getScientistName(idNumber);
     cout << "  ======================================================================================= " << endl;
     cout << " |";
     cout.width(26);
     cout << right << "Computers develeped by ";
     cout.width(60);
-    cout << left << prump;
+    cout << left << scientistName;
     cout << "|" << endl;
 }
 string ConsoleUI::getComputerName(int idNumber)

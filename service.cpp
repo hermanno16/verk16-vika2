@@ -166,41 +166,48 @@ vector<Computer> Service::getAllComputersZtoA()
 
     return allComputers;
 }
-vector<Computer> Service::getAllTypesComputersAtoZ(string type)
+vector<Computer> Service::getAllTypesComputersAtoZ(char type)
 {
     vector<Computer> typeComputer;
-
-    if(type == "1")
+    vector<Computer> tempVectorComputer;
+    if(type > '0' && type < '8')
     {
-        typeComputer = _dAccess.getAllComputersTypeAtoZ();
+        if(type == '1')
+        {
+            typeComputer = _dAccess.getAllComputersTypeAtoZ();
+        }
+        else if(type == '2')
+        {
+            typeComputer = _dAccess.getAllComputersTypeElectronic();
+        }
+        else if(type == '3')
+        {
+            typeComputer = _dAccess.getAllComputersTypeMechanical();
+        }
+        else if(type == '4')
+        {
+            typeComputer = _dAccess.getAllComputersTypeElectronicMechanical();
+        }
+        else if(type == '5')
+        {
+            typeComputer = _dAccess.getAllComputersTransistor();
+        }
+        else if(type == '6')
+        {
+            typeComputer = _dAccess.getAllComputersTypeMicrocomputer();
+        }
+        else if (type == '7')
+        {
+            typeComputer = _dAccess.getAllComputersTypeTernary();
+        }
+        return typeComputer;
     }
-    else if(type == "2")
-    {
-        typeComputer = _dAccess.getAllComputersTypeElectronic();
+        else
+        {
+            cout << "  > invalid input!" << endl;
+            return tempVectorComputer;
+        }
     }
-    else if(type == "3")
-    {
-        typeComputer = _dAccess.getAllComputersTypeMechanical();
-    }
-    else if(type == "4")
-    {
-        typeComputer = _dAccess.getAllComputersTypeElectronicMechanical();
-    }
-    else if(type == "5")
-    {
-        typeComputer = _dAccess.getAllComputersTransistor();
-    }
-    else if(type == "6")
-    {
-        typeComputer = _dAccess.getAllComputersTypeMicrocomputer();
-    }
-    else if (type == "7")
-    {
-        typeComputer = _dAccess.getAllComputersTypeTernary();
-    }
-
-    return typeComputer;
-}
 vector<Computer> Service::getAllBuildYearComputers(string yearBuilt)
 {
     vector<Computer> yearBuiltComputer;

@@ -37,7 +37,7 @@ public:
     //--Computer--//
     vector<Computer> getAllComputersAtoZ();
     vector<Computer> getAllComputersZtoA();
-    vector<Computer> getAllTypesComputersAtoZ(string type);
+    vector<Computer> getAllTypesComputersAtoZ(char type);
     vector<Computer> getAllComputersDevelopment();
     vector<Computer> getAllBuildYearComputers(string yearBuilt);
     vector<Computer> getAllDevelopmentAndOriginalComputers(string development);

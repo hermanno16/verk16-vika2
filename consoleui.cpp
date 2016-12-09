@@ -783,7 +783,7 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     }
 
     cout << " |                                       - - -                                           | " << endl;
-    int print = temp.size();
+    size_t print = temp.size();
 
     cout << " | ";
     cout << setfill(' ') << setw(50);
@@ -885,7 +885,7 @@ void ConsoleUI::addScientist()
             cout << "Invalid input! " << endl;
         }
         */
-        cout << "  > Scientest has been added to databes! " << endl;
+        cout << "  > Scientest has been added to database! " << endl;
 
     }
 
@@ -1000,9 +1000,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!hundur" << endl;
-                //computerSearchMenu();
-                removeComputerFromDataBase();
+                computerSearchMenu();
             }
             else if(wantToModify == '3')
             {
@@ -1509,7 +1507,7 @@ void ConsoleUI::printComputer(vector<Computer> temp)
     }
 
     cout << " |                                       - - -                                           | " << endl;
-    int print = temp.size();
+    size_t print = temp.size();
 
     cout << " | ";
     cout << setfill(' ') << setw(50);

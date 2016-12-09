@@ -82,7 +82,6 @@ public:
     void addComputer();
     void removeComputerFromDataBase();
     //--Computers and computer scientists --//
-
     void run();
     void openDataBase();
     void quitSystem();

@@ -11,6 +11,7 @@
 #include <QStringList>
 #include <QRegularExpression>
 using namespace std;
+const int YEARTODAY = 2016;
 
 
 class Service
@@ -30,6 +31,7 @@ public:
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     vector<Scientist> getScientistsByGenderAtoZ(char gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
+    string getScientistName(int idNumber);
     //Scientist - other functions.
     void removeScientistFromDataBase(int idOfScientist);
     //--Computer--//
@@ -43,18 +45,23 @@ public:
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
+    string getComputerName(int idNumber);
     //Computer - other functions
     void removeComputerFromDataBase(int idOfComputer);
     //Connection tables
     vector<Scientist> connectComputerToScientist(int idNumber);
+    vector<Computer> connectScientistToComputer(int idNumber);
     //--Check functions--//
     bool isAddScientistValid(string name, string gender, string yearOfBirth, string yearOfDeath);
     bool isAddComputerValid(string name, string yearBuilt, string type, string development);
     void addScientistToData(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
     void addComputerToData(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
     bool inputNameValid(string input);
-
-
+    void fixInputNameScientist(string& inputName);
+    void fixInputGenderScientist(string& inputGender);
+    void fixInputNameComputer(string& inputName);
+    void fixInputTypeComputer(string& inputType);
+    void fixInputDevelopmentComputer(string& inputDevelopment);
 private:
     DataAccess _dAccess;
 };

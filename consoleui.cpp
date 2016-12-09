@@ -10,14 +10,12 @@ ConsoleUI::ConsoleUI()
 {
 
 }
-//---------------------------------------------------------------------------------
 bool ConsoleUI::goBackOrQuit(char command)
 {
     if(command == 'b' || command == 'B')
     {
         return true;
     }
-
     else if(command == 'q' || command == 'Q')
     {
         cout << "Quitting program..." << endl;
@@ -25,8 +23,9 @@ bool ConsoleUI::goBackOrQuit(char command)
     }
 
     return false;
+
 }
-//---------------------------------------------------------------------------------
+
 //-- Booting functions --//
     //Booting - Print functions.
 void ConsoleUI::beginingOfProgramPrint()
@@ -78,7 +77,7 @@ void ConsoleUI::mainMenu()
 
     if(mainCommand == '1')
     {
-        //computerMenu();
+        computerMenu();
     }
     else if(mainCommand == '2')
     {
@@ -97,8 +96,6 @@ void ConsoleUI::run()
     beginingOfProgramPrint();
     mainMenu();
 }
-
-
 //-- Computer scientists --//
     //Computer scientists - Menu functions.
 void ConsoleUI::scientistMenu()
@@ -111,6 +108,7 @@ void ConsoleUI::scientistMenu()
     if(command == '1')
     {
         scientistListMenu();
+
     }
     else if(command == '2')
     {
@@ -169,7 +167,7 @@ void ConsoleUI::scientistSearchMenu()
             }
             else if(command == '2')
             {
-                removeScientist();
+                removeScientistFromDataBase();
             }
             else if(goBackOrQuit(command))
             {
@@ -213,7 +211,7 @@ void ConsoleUI::scientistSearchMenu()
             }
             else if(command == '2')
             {
-                removeScientist();
+                removeScientistFromDataBase();
             }
             else if(goBackOrQuit(command))
             {
@@ -256,7 +254,7 @@ void ConsoleUI::scientistSearchMenu()
             }
             else if(command == '2')
             {
-                removeScientist();
+                removeScientistFromDataBase();
             }
             else if(goBackOrQuit(command))
             {
@@ -304,7 +302,7 @@ void ConsoleUI::scientistListMenu()
             }
             else if(command == '2')
             {
-                removeScientist();
+                removeScientistFromDataBase();
             }
             else if(goBackOrQuit(command))
             {
@@ -336,7 +334,7 @@ void ConsoleUI::scientistListMenu()
             }
             else if(command == '2')
             {
-                removeScientist();
+                removeScientistFromDataBase();
             }
             else if(goBackOrQuit(command))
             {
@@ -410,7 +408,7 @@ void ConsoleUI::scientistListAllGenderMenu()
         }
         else if(command == '2')
         {
-            removeScientist();
+            removeScientistFromDataBase();
         }
         else if(goBackOrQuit(command))
         {
@@ -464,7 +462,7 @@ void ConsoleUI::scientistListAllDeadOrAliveMenu()
         }
         else if(command == '2')
         {
-            removeScientist();
+            removeScientistFromDataBase();
         }
         else if(goBackOrQuit(command))
         {
@@ -502,7 +500,7 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
             }
             else if(command == '2')
             {
-                removeScientist();
+                removeScientistFromDataBase();
             }
             else if(goBackOrQuit(command))
             {
@@ -536,7 +534,7 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
             }
             else if(command == '2')
             {
-                removeScientist();
+                removeScientistFromDataBase();
             }
             else if(goBackOrQuit(command))
             {
@@ -640,8 +638,8 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     {
         cout << temp[i];
     }
-    int print = temp.size();
     cout << "  =======================================================================================" << endl;
+    int print = temp.size();
     cout << " | ";
     cout << setfill(' ') << setw(50);
     cout << right << "Number of results return: ";
@@ -650,7 +648,7 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     cout << setw(1) << "|" << endl;
 }
     //Computer scientists - Other functions.
-void ConsoleUI::removeScientist()
+void ConsoleUI::removeScientistFromDataBase()
 {
     int idOfScientist;
     char areYouSure;
@@ -664,7 +662,7 @@ void ConsoleUI::removeScientist()
 
     if(areYouSure == 'y' || areYouSure == 'Y')
     {
-        _service.removeScientist(idOfScientist);
+        _service.removeScientistFromDataBase(idOfScientist);
         mainMenu();
     }
     else if(areYouSure == 'b' || areYouSure == 'B')
@@ -698,19 +696,47 @@ void ConsoleUI::addScientist()
     cout << "  > Input year of death if applicable, if not please enter N/A): ";
     getline(cin, yearOfDeath);
 
+    char yesOrNo = ' ';
+
 
     if(_service.isAddScientistValid(name, gender, yearOfBirth, yearOfDeath))
     {
         _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
 
-        scientistMenu();
+        cout << "Is this scientist connected to any famous computers ?" << endl;
+
+        cin >> yesOrNo;
+        if(yesOrNo == 'Y' || yesOrNo == 'y')
+        {
+            int howMany = 0;
+            int idNumber = 0;
+            cout << "How many computers is he/she connected with?" << endl;
+            cin >> howMany;
+            for(int i = 0; i < howMany; i++)
+            {
+                //_service.addComputerToData();
+                _service.connectComputerToScientist(idNumber);
+
+            }
+        }
+        else if(yesOrNo == 'n' || yesOrNo == 'N')
+        {
+            scientistMenu();
+        }
+        else
+        {
+            cout << "Invalid input! " << endl;
+            addScientist();
+        }
+
     }
 
-    {
-        cout << "  > Invalid input!" << endl;
 
-        scientistMenu();
-    }
+
+    cout << "  > Invalid input!" << endl;
+
+    scientistMenu();
+
 }
 void ConsoleUI::scientistNameColumn()
 {
@@ -728,11 +754,10 @@ void ConsoleUI::scientistNameColumn()
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
 }
-//---------------------------------------------------------------------------------
 
 //-- Computers--//
     //Computers - Menu function
-/*
+
 void ConsoleUI::computerMenu()
 {
     char command = ' ';
@@ -749,13 +774,8 @@ void ConsoleUI::computerMenu()
         }
         else if (command =='2')
         {
-            addComputer();
-        }
-        else if (command =='3')
-        {
             workedOn();
         }
-
         else if(command == 'q' || command == 'Q')
         {
             quitSystem();
@@ -772,9 +792,102 @@ void ConsoleUI::computerMenu()
     }
 
 }
+void ConsoleUI::computerSearchMenu()
+{
+    char list = ' ';
+    string searchString = " ";
+    computerSearchMenuPrint();
+    cin >> list;
+
+    if(list == '1')        //Specific computer name.
+    {
+        do
+        {
+            cout << "  Please enter a name of a computer: ";
+            cin >> searchString;
+            if(searchString == "q" || searchString == "Q")
+            {
+                quitSystem();
+            }
+        }
+        while(!_service.inputNameValid(searchString));
+
+        vector<Computer> computers = _service.searchForComputersByName(searchString);
+
+        if(computers.size() == 0)
+        {
+            cout << "  > Computer not found!" << endl;
+        }
+        else
+        {
+            printComputer(computers);
+        }
+
+
+
+        computerSearchMenu();
+    }
+
+    else if(list == '2')      //specific specific built year.
+    {
+        string year;
+
+        cout << "  > Please enter the year in question: ";
+
+        cin >> year;
+
+        vector<Computer> computers = _service.searchForComputersByYearBuilt(year);
+
+        if(computers.size() == 0)
+        {
+            cout << "  > Year not found!" << endl;
+        }
+        else
+        {
+            printComputer(computers);
+        }
+
+        computerSearchMenu();
+    }
+
+    else if(list == '3')      //specific computer type
+    {
+
+
+        string year;
+        cout << "  > Please enter year to look for: ";
+        cin >> year;
+        vector<Computer> computers  = _service.searchForComputersByType(year);
+
+        if(computers.size() == 0)
+        {
+            cout << "  > Year not found!" << endl;
+        }
+        else
+        {
+            printComputer(computers);
+        }
+        computerSearchMenu();
+    }
+
+    else if(list == 'b' || list == 'B')   //Go back to main menu.
+    {
+        computerMenu();
+    }
+
+    else if(list == 'q' || list == 'Q')
+    {
+        quitSystem();
+    }
+
+    cout << "  Invalid input!" << endl;
+    cout << endl;
+    computerSearchMenu();
+}
 void ConsoleUI::computerListMenu()
 {
     char list = ' ';
+
     computerListMenuPrint();
     cin >> list;
 
@@ -782,94 +895,9 @@ void ConsoleUI::computerListMenu()
     {
         computerListAllMenu();
     }
-    else if(list == '2')        //Specific computer name.
+    else if(list == '2')
     {
-
-        //senda int list og streng með nafninu. Fá allt stakið úr vektornum ef match finnst.
-        //string searchString;
-
-        cout << "  (Electornic, mechanical, micro-computer, tenary or transistor). ";
-        cout << "  Her geturu leitad af T0LVU!" << endl;
-        do
-        {
-            cout << "  Please enter a name of a scientist: ";
-            cin >> searchString;
-            if(searchString == "q" || searchString == "Q")
-            {
-                quitSystem();
-            }
-
-
-        }
-        while(!_service.inputNameValid(searchString));
-
-        vector<Scientist> scientists = _service.searchForScientistsByName(searchString);
-        //printScientists(scientists);
-
-        for(unsigned int i = 0; i < scientists.size(); i++)
-        {
-            cout << scientists[i];
-        }
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-        computerListMenu();
-
-    }
-    else if(list == '3')      //specific specific built year.
-    {
-
-        string year;
-
-        cout << "  Please enter the year in question: ";
-
-        cin >> year;
-        vector<Scientist> result;
-
-
-
-        result = _service.searchOfSciencetistsByYearOfBirth(year);
-
-        if(result.size() == 0)
-        {
-            cout << "  Year not found!" << endl;
-        }
-        else
-        {
-            scientistNameColumn();
-
-            void printScientists(vector<Scientist> scientists);
-
-            scientistListMenu();
-        }
-
-        cout << "  Her geturu leitad af hvenær TÖLVAN VAR BYGGÐ!" << endl;
-        computerListMenu();
-    }
-    else if(list == '4')      //specific computer type
-    {
-
-        string year;
-        cout << "  Please enter year to look for: ";
-        cin >> year;
-        vector<Scientist> result;
-
-        result = _service.searchOfSciencetistsByYearOfDeath(year);
-
-        if(result.size() == 0)
-        {
-            cout << "  Year not found!" << endl;
-        }
-        else
-        {
-            scientistNameColumn();
-
-            void printScientists(vector<Scientist> scientists);
-        }
-
-
-        cout << "Her geturu leitad af TYPU AF TOLVU!" << endl;
-        computerListMenu();
+        computerSearchMenu();
     }
     else if(list == 'b' || list == 'B')   //Go back to main menu.
     {
@@ -1055,14 +1083,29 @@ void ConsoleUI::computerListAllDevelopmentMenu()
     computerListAllDevelopmentMenu();
 }
     //Computers - Print functions.
+void ConsoleUI::computerWhatToDoPrint()
+{
+    cout << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |                                     MODIFY MENU                                       | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1 - Add computer.                                         2 - Delete computer.        | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
 void ConsoleUI::printComputer(vector<Computer> temp)
 {
+    cout << endl;
+    cout << "  =======================================================================================" << endl;
     for(unsigned int i = 0; i < temp.size(); i++)
     {
         cout << temp[i];
     }
-    int print = temp.size();
     cout << "  =======================================================================================" << endl;
+    int print = temp.size();
+
     cout << " | ";
     cout << setfill(' ') << setw(50);
     cout << right << "Number of results return: ";
@@ -1072,9 +1115,12 @@ void ConsoleUI::printComputer(vector<Computer> temp)
 }
 void ConsoleUI::computerMenuPrint()
 {
+    cout << endl;
     cout << "  ======================================================================================= " << endl;
-    cout << " |     1. List - List of computers.                            2. Add - Add computer.    | " << endl;
-    cout << " |     3. Developer - Enter the ID of a Computer for a list of developers                | " << endl;
+    cout << " |                                   COMPUTER MENU                                       | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |     1. List - List of computers.                                                      | " << endl;
+    cout << " |     2. Developer - Enter the ID of a Computer for a list of developers                | " << endl;
     cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  =======================================================================================  " << endl;
@@ -1082,9 +1128,24 @@ void ConsoleUI::computerMenuPrint()
 }
 void ConsoleUI::computerListMenuPrint()
 {
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                   COMPUTER MENU                                       | " << endl;
     cout << "  =======================================================================================  " << endl;
-    cout << " |     1. All.                     2. Specific computer.       3. Specific build year.   | " << endl;
-    cout << " |     4. Specific type                                                                  | " << endl;
+    cout << " |     1 - List all computers.                               2 - Search for computers.   | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << "  > Please enter a number: ";
+
+}
+void ConsoleUI::computerSearchMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                 COMPUTER SEARCH MENU                                  | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |  1 - Specific computer.       2 - Specific build year.          3 - Specific type.    | " << endl;
     cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  =======================================================================================  " << endl;
@@ -1093,6 +1154,9 @@ void ConsoleUI::computerListMenuPrint()
 }
 void ConsoleUI::computerListAllMenuPrint()
 {
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                 COMPUTER LIST MENU                                    | " << endl;
     cout << "  ======================================================================================= " << endl;
     cout << " |     1. A-Z.                    2. Z-A.                       3. Type.                 | " << endl;
     cout << " |     4. Built Year.             5. Original/Developed.                                 | " << endl;
@@ -1103,6 +1167,9 @@ void ConsoleUI::computerListAllMenuPrint()
 }
 void ConsoleUI::computerListAllTypeMenuPrint()
 {
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                               COMPUTER LIST TYPE MENU                                 | " << endl;
     cout << "  =======================================================================================  " << endl;
     cout << " |     1. Type(A-Z)                  2. Electronic              3. Mechanical            | " << endl;
     cout << " |     4. Electronic/Mechanical      5. Transistor              6. Microcomputer         | " << endl;
@@ -1114,6 +1181,9 @@ void ConsoleUI::computerListAllTypeMenuPrint()
 }
 void ConsoleUI::computerListAllYearBuiltMenuPrint()
 {
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                               COMPUTER LIST BUILT YEAR MENU                           | " << endl;
     cout << "  ======================================================================================= " << endl;
     cout << " |     1. Built year(oldest to newest).             2. Built year(newest to oldest).     |" << endl;
     cout << " |                                                                                       |" << endl;
@@ -1123,7 +1193,10 @@ void ConsoleUI::computerListAllYearBuiltMenuPrint()
 }
 void ConsoleUI::computerListAllDevelopmentMenuPrint()
 {
-    cout << "  ===================================================================================== " << endl;
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                           COMPUTER LIST DEVELOPMENT MENU                              | " << endl;
+    cout << "  ======================================================================================= " << endl;
     cout << " |     1. Only Original.          2. Only Developed.            3. All.                  | " << endl;
     cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
@@ -1133,7 +1206,36 @@ void ConsoleUI::computerListAllDevelopmentMenuPrint()
     //Computers - Other functions.
 void ConsoleUI::addComputer()
 {
+    string name, yearBuilt, type, development;
 
+    cin.ignore();                                                                                    //NAME
+    cout << endl;
+    cout << "  =======================================================================================" << endl;
+    cout << "  > Input name of computer: ";
+    getline(cin, name);
+
+    cout << "  > Input built year (if the computer was build): ";
+    getline(cin, yearBuilt);
+
+    cout << "  > Input type of computer(Electronic, mechanic, electronic/mechanic, transistor, microcomputer or ternary.): ";
+    getline(cin, type);
+
+    cout << "  > Input computer Development(Original or developed): ";
+    getline(cin, development);
+
+
+    if(_service.isAddSComputerValid(name, yearBuilt, type, development))
+    {
+        _service.addComputerToData(name, yearBuilt, type, development);
+
+        computerMenu();
+    }
+    else
+    {
+        cout << "  > Invalid input!" << endl;
+
+        computerMenu();
+    }
 }
 void ConsoleUI::workedOn()
 {
@@ -1160,6 +1262,9 @@ void ConsoleUI::computerNameColumn()
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
 }
-
-*/
+void ConsoleUI::quitSystem()
+{
+    cout << "Quitting program..." << endl;
+    exit(1);
+}
 

@@ -181,7 +181,7 @@ vector<Scientist> DataAccess::searchForScientistsByYearOfDeathAtoZ(string yearTo
 
 }
     //Scientist - other functions.
-void DataAccess::removeScientist(int idOfScientist)
+void DataAccess::removeScientistFromDatabase(int idOfScientist)
 {
     QSqlQuery query;
     query.prepare("DELETE FROM Scientists where ID = (:id)");
@@ -193,6 +193,8 @@ void DataAccess::removeScientist(int idOfScientist)
     }
     else
     {
+
+
         cout << "Thorir er bestur" << endl;
     }
 
@@ -261,7 +263,6 @@ vector<Scientist> DataAccess::connectComputerToScientist(int idNumber)
 
     return allScientists;
 }
-
 vector<Computer> DataAccess::connectScientistToComputer(int idNumber)
 {
     vector<Computer> allComputers;
@@ -296,6 +297,18 @@ vector<Computer> DataAccess::connectScientistToComputer(int idNumber)
 
 //-- Computers--//
     //All Computers - functions.
+void DataAccess::addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO Computers (ComputerName, YearBuilt, Type, Development) VALUES (:computername, :yearbuilt, :type, :development)");
+
+     query.bindValue(":computername", QString::fromStdString(inputName));
+     query.bindValue(":yearbuilt",   atoi(inputYearBuilt.c_str()));
+     query.bindValue(":type", QString::fromStdString(inputType));
+     query.bindValue(":development", QString::fromStdString(inputDevelopment));
+     query.exec();
+
+}
 vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)
 {
     vector<Computer> allComputers;
@@ -398,7 +411,7 @@ vector<Computer> DataAccess::searchForComputersByName(string inputName)
     while(query.next())
     {
         int id = query.value(query.record().indexOf("Cid")).toUInt();
-        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString name = query.value(query.record().indexOf("ComputerName")).toString();
         QString type = query.value(query.record().indexOf("Type")).toString();
         int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
         QString development = query.value(query.record().indexOf("Development")).toString();
@@ -425,13 +438,14 @@ vector<Computer> DataAccess::searchForComputersByYearBuilt(string yearBuiltToFin
 
     QSqlQuery query;
 
-    query.prepare("SELECT * FROM Computer WHERE YearBuilt = (:something) ORDER BY ComputerName Asc");
+
+    query.prepare("SELECT * FROM Computers WHERE YearBuilt = (:something) ORDER BY ComputerName Asc");
     query.bindValue(":something", yearBuilt);
     query.exec();
 
     while(query.next())
     {
-        int id = query.value(query.record().indexOf("ID")).toUInt();
+        int id = query.value(query.record().indexOf("Cid")).toUInt();
         QString name = query.value(query.record().indexOf("ComputerName")).toString();
         QString type = query.value(query.record().indexOf("Type")).toString();
         int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
@@ -465,7 +479,7 @@ vector<Computer> DataAccess::searchForComputersByType(string typeToFind)
     while(query.next())
     {
         int id = query.value(query.record().indexOf("cId")).toUInt();
-        QString name = query.value(query.record().indexOf("Name")).toString();
+        QString name = query.value(query.record().indexOf("ComputerName")).toString();
         QString type = query.value(query.record().indexOf("Type")).toString();
         int yearBuilt = query.value(query.record().indexOf("YearBuilt")).toUInt();
         QString development = query.value(query.record().indexOf("Development")).toString();

@@ -48,20 +48,24 @@ public:
         //Computer scientist - Other functions.
     void scientistNameColumn();
     void addScientist();
-    void removeScientist();
+    void removeScientistFromDataBase();
+
 
     //-- Computers --//
 
         //--Computer - Menu functions.
     void computerMenu();
     void computerListMenu();
+    void computerSearchMenu();
     void computerListAllMenu();
     void computerListAllTypeMenu();
     void computerListAllBuildYearMenu();
     void computerListAllDevelopmentMenu();
         //Computers - Print functions.
+    void computerWhatToDoPrint();
     void printComputer(vector<Computer> temp);
     void computerMenuPrint();
+    void computerSearchMenuPrint();
     void computerListMenuPrint();
     void computerListAllMenuPrint();
     void computerListAllTypeMenuPrint();

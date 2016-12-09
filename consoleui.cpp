@@ -103,8 +103,8 @@ void ConsoleUI::mainMenu()
     }
     else
     {
-    cout << "  Invalid input!" << endl;
-    mainMenu();
+        cout << "  Invalid input!" << endl;
+        mainMenu();
 
     }
 }
@@ -346,7 +346,6 @@ void ConsoleUI::scientistListMenu()
 
     scientistListMenuPrint();
     cin >> listCommand;
-    cout << endl;
 
     if(listCommand == '1')           //A-Z
     {
@@ -571,6 +570,9 @@ void ConsoleUI::scientistListAllDeadOrAliveMenu()
     }
 
 }
+/*
+ * This function is used to prin
+ * */
 void ConsoleUI::scientistListAllYearOfBirthMenu()
 {
     scientistListAllYearOfBirthMenuPrint();
@@ -661,10 +663,14 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
             scientistListAllYearOfBirthMenu();
         }
     }
+    else if (goBackOrQuit(yearOfBirth))
+    {
+        scientistListMenu();
+    }
     else
     {
         cout << "  > Invalid input!" << endl;
-        scientistListAllYearOfBirthMenu();  
+        scientistListAllYearOfBirthMenu();
     }
 
 }
@@ -675,6 +681,8 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
  * */
 void ConsoleUI::scientistWhatToDoPrint()
 {
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                      OPTIONS                                          | " << endl;
     cout << "  ======================================================================================= " << endl;
     cout << " | 1 - Add scientist.                                         2 - Delete scientist.      | " << endl;
     cout << " | 3 - More info about the scientist.                         4 - Add relation.          | " << endl;
@@ -774,22 +782,27 @@ void ConsoleUI::scientistListAllYearOfBirthMenuPrint()
     cout << "  ======================================================================================== " << endl;
     cout << " > Please enter a number: ";
 }
-
+/*
+ * This function is used to print out a vector of class computers and then it prints out
+ * how many are in the list.
+ * */
 void ConsoleUI::printScientist(vector<Scientist> temp)
 {
     for(unsigned int i = 0; i < temp.size(); i++)
     {
         cout << temp[i];
     }
-    cout << "  =======================================================================================" << endl;
-    size_t print = temp.size();
+
+    cout << " |                                       - - -                                           | " << endl;
+    int print = temp.size();
+
     cout << " | ";
     cout << setfill(' ') << setw(50);
     cout << right << "Number of results return: ";
     cout << setw(36);
     cout << left << print;
     cout << setw(1) << "|" << endl;
-    cout << "  ======================================================================================= " << endl;
+    cout << " |                                                                                       | " << endl;
 }
 //Computer scientists - Other functions.
 /*
@@ -798,9 +811,10 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
  * */
 void ConsoleUI::removeScientistFromDataBase()
 {
+
     int idOfScientist;
     char areYouSure;
-    scientistWhatToDoPrint();
+
 
     cout << "  > Enter id of scientist to remove from the list: ";
     cin >> idOfScientist;
@@ -811,6 +825,7 @@ void ConsoleUI::removeScientistFromDataBase()
     if(areYouSure == 'y' || areYouSure == 'Y')
     {
         _service.removeScientistFromDataBase(idOfScientist);
+        cout << "  > Scientist has been deleted!" << endl;
         mainMenu();
     }
     else if(areYouSure == 'b' || areYouSure == 'B')
@@ -826,7 +841,7 @@ void ConsoleUI::removeScientistFromDataBase()
 
 }
 /*
- * This function is used to add Sceintist to the database, we take in a command and call add function from
+ * This function is used to add Scientist to the database, we take in a command and call add function from
  * service layer and add the scientist from to the database.
  * */
 
@@ -855,14 +870,16 @@ void ConsoleUI::addScientist()
 
     cout << "  > Input year of death if applicable, if not please enter N/A): ";
     getline(cin, yearOfDeath);
+    cout << endl;
 
-    char yesOrNo = ' ';
+    //char yesOrNo = ' ';
 
 
     if(_service.isAddScientistValid(name, gender, yearOfBirth, yearOfDeath))
     {
         _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
 
+        /*
         cout << "Is this scientist connected to any famous computers ?" << endl;
 
         cin >> yesOrNo;
@@ -887,6 +904,8 @@ void ConsoleUI::addScientist()
         {
             cout << "Invalid input! " << endl;
         }
+        */
+        cout << "  > Scientest has been added to databes! " << endl;
 
     }
 
@@ -925,8 +944,8 @@ void ConsoleUI::scientistWorkedOn()
 //-- Computers--//
 //Computers - Menu function
 /*
- * This function is used to show the Computer menu, we take in a command and navigate based on what the
- * input was.
+ * This function is used to show the Computer menu, we take in a command and navigate based on
+ * what the input input is.
  * */
 void ConsoleUI::computerMenu()
 {
@@ -961,7 +980,10 @@ void ConsoleUI::computerMenu()
     }
 
 }
-
+/*
+ * This function is used to search for a specific computer name, specific computer built year
+ * and specific year.
+ * */
 void ConsoleUI::computerSearchMenu()
 {
     char list = ' ';
@@ -1001,9 +1023,9 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!" << endl;
-                computerSearchMenu();
-                //removeComputerFromDataBase();
+                cout << "Eftir ad klara - Remove computer!!!!hundur" << endl;
+                //computerSearchMenu();
+                removeComputerFromDataBase();
             }
             else if(wantToModify == '3')
             {
@@ -1021,11 +1043,13 @@ void ConsoleUI::computerSearchMenu()
             {
                 computerSearchMenu();
             }
+            else
+            {
+                cout << ">  Invalid Input!" << endl;
+                computerSearchMenu();
+            }
         }
-
-        computerSearchMenu();
-    }
-
+     }
     else if(list == '2')      //specific specific built year.
     {
         string year;
@@ -1052,9 +1076,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!" << endl;
-                computerSearchMenu();
-                //removeComputerFromDataBase();
+                removeComputerFromDataBase();
             }
             else if(wantToModify == '3')
             {
@@ -1105,9 +1127,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!" << endl;
-                computerSearchMenu();
-                //removeComputerFromDataBase();
+                removeComputerFromDataBase();
             }
             else if(wantToModify == '3')
             {
@@ -1150,7 +1170,6 @@ void ConsoleUI::computerSearchMenu()
         computerSearchMenu();
     }
 }
-
 /*
  * This function is used to print out the computer list menu.
  * */
@@ -1189,10 +1208,6 @@ void ConsoleUI::computerListAllMenu()
         vector<Computer> computers = _service.getAllComputersAtoZ();
         computerNameColumn();
         printComputer(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
-
         computerWhatToDoPrint();
         cin >> wantToModify;
 
@@ -1202,9 +1217,7 @@ void ConsoleUI::computerListAllMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1235,9 +1248,6 @@ void ConsoleUI::computerListAllMenu()
         vector<Computer> computers = _service.getAllComputersZtoA();
         computerNameColumn();
         printComputer(computers);
-
-        cout << "  ======================================================================================= " << endl << endl;
-
         computerWhatToDoPrint();
         cin >> wantToModify;
 
@@ -1247,9 +1257,7 @@ void ConsoleUI::computerListAllMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1342,9 +1350,7 @@ void ConsoleUI::computerListAllTypeMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1408,9 +1414,7 @@ void ConsoleUI::computerListAllBuildYearMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1475,9 +1479,7 @@ void ConsoleUI::computerListAllDevelopmentMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1510,30 +1512,37 @@ void ConsoleUI::computerListAllDevelopmentMenu()
 void ConsoleUI::computerWhatToDoPrint()
 {
     cout << "  ======================================================================================= " << endl;
+    cout << " |                                      OPTIONS                                          | " << endl;
+    cout << "  ======================================================================================= " << endl;
     cout << " | 1 - Add computer.                                         2 - Delete computer.        | " << endl;
     cout << " | 3 - More info about computer                              4 - Add relation.           | " << endl;
     cout << " | 5 - Continue.                                                                         | " << endl;
+    cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
 }
+/*
+ * This function is used to print out a vector of class scientists and then it prints out
+ * how many are in the list.
+ * */
 void ConsoleUI::printComputer(vector<Computer> temp)
 {
-    cout << endl;
-    cout << "  =======================================================================================" << endl;
     for(unsigned int i = 0; i < temp.size(); i++)
     {
         cout << temp[i];
     }
-    cout << "  =======================================================================================" << endl;
-    size_t print = temp.size();
+
+    cout << " |                                       - - -                                           | " << endl;
+    int print = temp.size();
 
     cout << " | ";
     cout << setfill(' ') << setw(50);
-    cout << right << "Number of results return: ";
+    cout << right << "Number of results returned: ";
     cout << setw(36);
     cout << left << print;
     cout << setw(1) << "|" << endl;
+
 }
 /*
  * This function is used to print out the computer menu.
@@ -1544,7 +1553,8 @@ void ConsoleUI::computerMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << " |                                   COMPUTER MENU                                       | " << endl;
     cout << "  ======================================================================================= " << endl;
-    cout << " |     1 - List of computers.                                                            | " << endl;
+    cout << " |     1. List - List of computers.                                                      | " << endl;
+    cout << " |     2. Developer - Enter the ID of a Computer for a list of developers                | " << endl;
     cout << " |                                                                                       | " << endl;
     cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
     cout << "  =======================================================================================  " << endl;
@@ -1598,6 +1608,9 @@ void ConsoleUI::computerListAllMenuPrint()
     cout << "  =======================================================================================  " << endl;
     cout << " > Please enter a number: ";
 }
+/*
+ * This function is used to print out the computer list type menu.
+ * */
 void ConsoleUI::computerListAllTypeMenuPrint()
 {
     cout << endl;
@@ -1612,6 +1625,9 @@ void ConsoleUI::computerListAllTypeMenuPrint()
     cout << "  =======================================================================================  " << endl;
     cout << " > Please enter a number: ";
 }
+/*
+ * This function is used to print out the computer list built menu.
+ * */
 void ConsoleUI::computerListAllYearBuiltMenuPrint()
 {
     cout << endl;
@@ -1624,6 +1640,9 @@ void ConsoleUI::computerListAllYearBuiltMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << " > Please enter a number: ";
 }
+/*
+ * This function is used to print out the computer list development menu.
+ * */
 void ConsoleUI::computerListAllDevelopmentMenuPrint()
 {
     cout << endl;
@@ -1637,6 +1656,10 @@ void ConsoleUI::computerListAllDevelopmentMenuPrint()
     cout << " > Please enter a number: ";
 }
 //Computers - Other functions.
+/*
+ * This function is used to add computer to the database, we take in a command and call add function from
+ * service layer and add the computer from to the database.
+ * */
 void ConsoleUI::addComputer()
 {
     string name, yearBuilt, type, development;
@@ -1663,7 +1686,7 @@ void ConsoleUI::addComputer()
 
 
 
-    if(_service.isAddSComputerValid(name, yearBuilt, type, development))
+    if(_service.isAddComputerValid(name, yearBuilt, type, development))
     {
         _service.addComputerToData(name, yearBuilt, type, development);
 
@@ -1676,6 +1699,42 @@ void ConsoleUI::addComputer()
         computerMenu();
     }
 }
+/*
+ * This function is used to add Sceintist to the database, we take in a command and call add function from
+ * service layer and add the scientist from to the database.
+ * */
+void ConsoleUI::removeComputerFromDataBase()
+{
+    int idOfComputer;
+    char areYouSure;
+
+
+    cout << "  > Enter id of computer to remove from the list: ";
+    cin >> idOfComputer;
+
+    cout << "  > Are you sure you want to remove computer with id " << idOfComputer << "(Y/N)? " ;
+    cin >> areYouSure;
+
+    if(areYouSure == 'y' || areYouSure == 'Y')
+    {
+        _service.removeComputerFromDataBase(idOfComputer);
+        cout << endl;
+        cout << "  > Computer has been deleted!" << endl;
+        mainMenu();
+    }
+    else if(areYouSure == 'b' || areYouSure == 'B')
+    {
+        mainMenu();
+        //utfaera location breytu til ad vita hvert a ad fara.
+    }
+
+    else if(goBackOrQuit(areYouSure))
+    {
+        computerListMenu();
+    }
+
+}
+
 void ConsoleUI::computerWorkedOn()
 {
     int idNumber;
@@ -1685,8 +1744,12 @@ void ConsoleUI::computerWorkedOn()
     scientistNameColumn();
     //printScientist(scientists);
 }
+/*
+ * This function is used to make the console look nice, the output is in consistant table.
+ * */
 void ConsoleUI::computerNameColumn()
 {
+    cout << endl;
     cout << "  ======================================================================================= " << endl;
     cout.width(8);
     cout << left << " | ID:";
@@ -1701,6 +1764,9 @@ void ConsoleUI::computerNameColumn()
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
 }
+/*
+ * This function is used so the user can quit the program.
+ * */
 void ConsoleUI::quitSystem()
 {
     cout << "  > Quitting program..." << endl;

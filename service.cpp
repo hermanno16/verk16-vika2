@@ -254,6 +254,11 @@ void Service::addComputerToData(string inputName, string inputYearBuilt, string 
 {
     _dAccess.addComputerToDataBase(inputName, inputYearBuilt, inputType, inputDevelopment);
 }
+void Service::removeComputerFromDataBase(int idOfComputer)
+{
+    _dAccess.removeComputerFromDatabase(idOfComputer);
+}
+
 bool Service::inputNameValid(string input)
 {
     if(atoi(input.c_str()) && input.length() < 40)
@@ -296,6 +301,7 @@ bool Service::isAddScientistValid(string name, string gender, string yearOfBirth
     return (checkName && checkGender && checkYearOfBirth && checkYearOfDeath);
 
 }
+
 void Service::fixInputNameScientist(string& inputName)
 {
         inputName = inputName.substr(0,40);
@@ -372,7 +378,9 @@ void Service::fixInputDevelopmentComputer(string& inputDevelopment)
         }
 }
 
-bool Service::isAddSComputerValid(string name, string yearBuilt, string type, string development)
+
+bool Service::isAddComputerValid(string name, string yearBuilt, string type, string development)
+
 {
     bool checkName = false;             // Beisik bool-föll til að athuga hvort input
     bool checkYearBuilt = false;           // uppfylli okkar skilyrði

@@ -315,7 +315,7 @@ vector<Computer> DataAccess::getAllComputersTypeElectronic()
 }
 vector<Computer> DataAccess::getAllComputersTypeElectronicMechanical()
 {
-    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Type = 'Electronic/Mechancial' ORDER BY ComputerName Asc");
+    return getAllComputerInfoFromDataBase("SELECT * FROM Computers WHERE Type = 'Electronic/Mechanical' ORDER BY ComputerName Asc");
 }
 vector<Computer> DataAccess::getAllComputersTypeMechanical()
 {

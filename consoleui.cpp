@@ -5,11 +5,15 @@
 
 using namespace std;
 
-//--Sjálfgefinn Smiður--//
+//--Constructor--//
 ConsoleUI::ConsoleUI()
 {
 
 }
+/*
+ * This function is used to go back or quit the program,
+ * we take in a command and navigate based on what the input was.
+ * */
 bool ConsoleUI::goBackOrQuit(char command)
 {
     if(command == 'b' || command == 'B')
@@ -27,6 +31,9 @@ bool ConsoleUI::goBackOrQuit(char command)
 }
 //-- Booting functions --//
 //Booting - Print functions.
+/*
+ * This function is used to print out just in the begining of the program.
+ * */
 void ConsoleUI::beginingOfProgramPrint()
 {
     cout << endl << endl;
@@ -56,6 +63,9 @@ void ConsoleUI::beginingOfProgramPrint()
     cout << "   |                                1 2 3  |  " << endl;
     cout << "   |_______________________________________|\n" << endl;
 }
+/*
+ * This function is used to print out the main menu.
+ * */
 void ConsoleUI::mainMenuPrint()
 {
     cout << "  =======================================================================================  " << endl;
@@ -68,6 +78,9 @@ void ConsoleUI::mainMenuPrint()
     cout << "  > Please enter a number: ";
 }
 //Booting - Other functions.
+/*
+ * This function is used to show the menu, we take in a command and navigate based on what the input was.
+ * */
 void ConsoleUI::mainMenu()
 {
     char mainCommand = ' ';
@@ -86,10 +99,16 @@ void ConsoleUI::mainMenu()
     {
         mainMenu();
     }
-
+    else
+    {
     cout << "  Invalid input!" << endl;
     mainMenu();
+
+    }
 }
+/*
+ * This function run the program.
+ * */
 void ConsoleUI::run()
 {
     beginingOfProgramPrint();
@@ -100,6 +119,10 @@ void ConsoleUI::run()
  * This function is used to show the menu, we take in a command and navigate based on what the input was.
  * */
 //Computer scientists - Menu functions.
+/*
+ * This function is used to show the Scientist menu, we take in a command and navigate based on what the
+ * input was.
+ * */
 void ConsoleUI::scientistMenu()
 {
     char command = ' ';
@@ -121,9 +144,12 @@ void ConsoleUI::scientistMenu()
     {
         mainMenu();
     }
+    else
+    {
+        cout << "  > Invalid input!" << endl;
+        scientistMenu();
 
-    cout << "  > Invalid input!" << endl;
-    scientistMenu();
+    }
 }
 void ConsoleUI::scientistSearchMenu()
 {
@@ -422,10 +448,11 @@ void ConsoleUI::scientistListMenu()
     {
         scientistMenu();
     }
-
-    cout << "  > Invalid input!" << endl;
-    scientistListMenu();
-
+    else
+    {
+        cout << "  > Invalid input!" << endl;
+        scientistListMenu();
+    }
 }
 void ConsoleUI::scientistListAllGenderMenu()
 {
@@ -640,6 +667,10 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
 
 }
 //Computer scientists - Print functions.
+/*
+ * This function is used to print out modify menu, the user can add, edit and delete scientis from the database
+ * after he/her see the list they asked for.
+ * */
 void ConsoleUI::scientistWhatToDoPrint()
 {
     cout << "  ======================================================================================= " << endl;
@@ -652,6 +683,9 @@ void ConsoleUI::scientistWhatToDoPrint()
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
 }
+/*
+ * This function is used to print out the scientist menu.
+ * */
 void ConsoleUI::scientistMenuPrint()
 {
     cout << endl;
@@ -664,6 +698,9 @@ void ConsoleUI::scientistMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
 }
+/*
+ * This function is used to print out the scientist list menu.
+ * */
 void ConsoleUI::scientistListMenuPrint()
 {
     cout << endl;
@@ -677,6 +714,9 @@ void ConsoleUI::scientistListMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
 }
+/*
+ * This function is used to print out the scientist serch menu.
+ * */
 void ConsoleUI::scientistSearchMenuPrint()
 {   cout << endl;
     cout << "  =======================================================================================  " << endl;
@@ -689,6 +729,9 @@ void ConsoleUI::scientistSearchMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
 }
+/*
+ * This function is used to print out the scientist gender list menu.
+ * */
 void ConsoleUI::scientistListAllGenderMenuPrint()
 {
     cout << endl;
@@ -701,6 +744,9 @@ void ConsoleUI::scientistListAllGenderMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
 }
+/*
+ * This function is used to print out the menu for scientist to check if she/he is alive, deceased or both.
+ * */
 void ConsoleUI::scientistListAllDeadOrAliveMenuPrint()
 {
     cout << endl;
@@ -713,6 +759,9 @@ void ConsoleUI::scientistListAllDeadOrAliveMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << "  > Please enter a number: ";
 }
+/*
+ * This function is used to print out the menu for scientist to check his/her birth year, asc or desc.
+ * */
 void ConsoleUI::scientistListAllYearOfBirthMenuPrint()
 {
     cout << endl;
@@ -725,14 +774,17 @@ void ConsoleUI::scientistListAllYearOfBirthMenuPrint()
     cout << "  ======================================================================================== " << endl;
     cout << " > Please enter a number: ";
 }
+
 void ConsoleUI::printScientist(vector<Scientist> temp)
 {
     for(unsigned int i = 0; i < temp.size(); i++)
     {
         cout << temp[i];
     }
+
     cout << " |                                       - - -                                           | " << endl;
     int print = temp.size();
+
     cout << " | ";
     cout << setfill(' ') << setw(50);
     cout << right << "Number of results return: ";
@@ -742,6 +794,10 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     cout << " |                                                                                       | " << endl;
 }
 //Computer scientists - Other functions.
+/*
+ * This function is used to remove Sceintist from database, we take in a command and call remove function from
+ * service layer and remove the scientist from the database.
+ * */
 void ConsoleUI::removeScientistFromDataBase()
 {
     int idOfScientist;
@@ -771,6 +827,10 @@ void ConsoleUI::removeScientistFromDataBase()
     }
 
 }
+/*
+ * This function is used to add Sceintist to the database, we take in a command and call add function from
+ * service layer and add the scientist from to the database.
+ * */
 void ConsoleUI::addScientist()
 {
     string name, gender, yearOfBirth, yearOfDeath;
@@ -826,6 +886,9 @@ void ConsoleUI::addScientist()
     scientistMenu();
 
 }
+/*
+ * This function is used to make the console look nice, the output is in consistant table.
+ * */
 void ConsoleUI::scientistNameColumn()
 {
     cout << "  ======================================================================================= " << endl;
@@ -854,6 +917,10 @@ void ConsoleUI::scientistWorkedOn()
 
 //-- Computers--//
 //Computers - Menu function
+/*
+ * This function is used to show the Computer menu, we take in a command and navigate based on what the
+ * input was.
+ * */
 void ConsoleUI::computerMenu()
 {
     char list = ' ';
@@ -887,6 +954,7 @@ void ConsoleUI::computerMenu()
     }
 
 }
+
 void ConsoleUI::computerSearchMenu()
 {
     char list = ' ';
@@ -1070,12 +1138,38 @@ void ConsoleUI::computerSearchMenu()
     {
         quitSystem();
     }
-
-    cout << "  Invalid input!" << endl;
-    cout << endl;
-    computerSearchMenu();
+    else
+    {
+        cout << "  Invalid input!" << endl;
+        cout << endl;
+        computerSearchMenu();
+    }
 }
 
+/*
+ * This function is used to print out the computer list menu.
+ * */
+void ConsoleUI::computerListMenu()
+{
+    char list = ' ';
+
+    computerListMenuPrint();
+    cin >> list;
+
+    if(list == '1')     //All
+    {
+        computerListAllMenu();
+    }
+    else if(list == '2')
+    {
+        computerSearchMenu();
+    }
+    else if(list == 'b' || list == 'B')   //Go back to main menu.
+    {
+        computerMenu();
+    }
+
+}
 
 void ConsoleUI::computerListAllMenu()
 {
@@ -1331,6 +1425,7 @@ void ConsoleUI::computerListAllBuildYearMenu()
 
     }
 }
+
 void ConsoleUI::computerListAllDevelopmentMenu()
 {
     string development = " ";
@@ -1397,6 +1492,10 @@ void ConsoleUI::computerListAllDevelopmentMenu()
     }
 }
 //Computers - Print functions.
+/*
+ * This function is used to print out modify menu, the user can add, edit and delete computer from the database
+ * after he/her see the list they asked for.
+ * */
 void ConsoleUI::computerWhatToDoPrint()
 {
     cout << "  ======================================================================================= " << endl;
@@ -1416,16 +1515,22 @@ void ConsoleUI::printComputer(vector<Computer> temp)
     {
         cout << temp[i];
     }
+
     cout << " |                                       - - -                                           | " << endl;
     int print = temp.size();
+
     cout << " | ";
     cout << setfill(' ') << setw(50);
     cout << right << "Number of results returned: ";
     cout << setw(36);
     cout << left << print;
     cout << setw(1) << "|" << endl;
-    cout << " |                                                                                       | " << endl;
+
 }
+
+/*
+ * This function is used to print out the computer list menu.
+ * */
 void ConsoleUI::computerListMenuPrint()
 {
     cout << endl;
@@ -1439,6 +1544,9 @@ void ConsoleUI::computerListMenuPrint()
     cout << "  > Please enter a number: ";
 
 }
+/*
+ * This function is used to print out the computer search all menu.
+ * */
 void ConsoleUI::computerSearchMenuPrint()
 {
     cout << endl;
@@ -1452,6 +1560,9 @@ void ConsoleUI::computerSearchMenuPrint()
     cout << "  > Please enter a number: ";
 
 }
+/*
+ * This function is used to print out the computer list all menu.
+ * */
 void ConsoleUI::computerListAllMenuPrint()
 {
     cout << endl;
@@ -1524,7 +1635,7 @@ void ConsoleUI::addComputer()
     getline(cin, development);
 
 
-    if(_service.isAddSComputerValid(name, yearBuilt, type, development))
+    if(_service.isAddComputerValid(name, yearBuilt, type, development))
     {
         _service.addComputerToData(name, yearBuilt, type, development);
 

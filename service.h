@@ -43,6 +43,8 @@ public:
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
+    //Computer - other functions
+    void removeComputerFromDataBase(int idOfComputer);
     //Connection tables
     vector<Scientist> connectComputerToScientist(int idNumber);
     //--Check functions--//

@@ -796,9 +796,10 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
  * */
 void ConsoleUI::removeScientistFromDataBase()
 {
+
     int idOfScientist;
     char areYouSure;
-    scientistWhatToDoPrint();
+
 
     cout << "  > Enter id of scientist to remove from the list: ";
     cin >> idOfScientist;
@@ -809,6 +810,7 @@ void ConsoleUI::removeScientistFromDataBase()
     if(areYouSure == 'y' || areYouSure == 'Y')
     {
         _service.removeScientistFromDataBase(idOfScientist);
+        cout << "  > Scientist has been deleted!" << endl;
         mainMenu();
     }
     else if(areYouSure == 'b' || areYouSure == 'B')
@@ -845,14 +847,16 @@ void ConsoleUI::addScientist()
 
     cout << "  > Input year of death if applicable, if not please enter N/A): ";
     getline(cin, yearOfDeath);
+    cout << endl;
 
-    char yesOrNo = ' ';
+    //char yesOrNo = ' ';
 
 
     if(_service.isAddScientistValid(name, gender, yearOfBirth, yearOfDeath))
     {
         _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
 
+       /*
         cout << "Is this scientist connected to any famous computers ?" << endl;
 
         cin >> yesOrNo;
@@ -877,6 +881,8 @@ void ConsoleUI::addScientist()
         {
             cout << "Invalid input! " << endl;
         }
+        */
+        cout << "  > Scientest has been added to databes! " << endl;
 
     }
 
@@ -991,9 +997,9 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!" << endl;
-                computerSearchMenu();
-                //removeComputerFromDataBase();
+                cout << "Eftir ad klara - Remove computer!!!!hundur" << endl;
+                //computerSearchMenu();
+                removeComputerFromDataBase();
             }
             else if(wantToModify == '3')
             {
@@ -1044,9 +1050,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!" << endl;
-                computerSearchMenu();
-                //removeComputerFromDataBase();
+                removeComputerFromDataBase();
             }
             else if(wantToModify == '3')
             {
@@ -1097,9 +1101,7 @@ void ConsoleUI::computerSearchMenu()
             }
             else if(wantToModify == '2')
             {
-                cout << "Eftir ad klara - Remove computer!!!!" << endl;
-                computerSearchMenu();
-                //removeComputerFromDataBase();
+                removeComputerFromDataBase();
             }
             else if(wantToModify == '3')
             {
@@ -1195,9 +1197,7 @@ void ConsoleUI::computerListAllMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1240,9 +1240,7 @@ void ConsoleUI::computerListAllMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1335,9 +1333,7 @@ void ConsoleUI::computerListAllTypeMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1401,9 +1397,7 @@ void ConsoleUI::computerListAllBuildYearMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1468,9 +1462,7 @@ void ConsoleUI::computerListAllDevelopmentMenu()
         }
         else if(wantToModify == '2')
         {
-            cout << "Eftir ad klara - Remove computer!!!!" << endl;
-            computerSearchMenu();
-            //removeComputerFromDataBase();
+            removeComputerFromDataBase();
         }
         else if(wantToModify == '3')
         {
@@ -1663,6 +1655,39 @@ void ConsoleUI::addComputer()
         computerMenu();
     }
 }
+void ConsoleUI::removeComputerFromDataBase()
+{
+    int idOfComputer;
+    char areYouSure;
+
+
+    cout << "  > Enter id of computer to remove from the list: ";
+    cin >> idOfComputer;
+
+    cout << "  > Are you sure you want to remove computer with id " << idOfComputer << "(Y/N)? " ;
+    cin >> areYouSure;
+
+    if(areYouSure == 'y' || areYouSure == 'Y')
+    {
+        _service.removeComputerFromDataBase(idOfComputer);
+        cout << endl;
+        cout << "  > Computer has been deleted!" << endl;
+        mainMenu();
+    }
+    else if(areYouSure == 'b' || areYouSure == 'B')
+    {
+        mainMenu();
+        //utfaera location breytu til ad vita hvert a ad fara.
+    }
+
+    else if(goBackOrQuit(areYouSure))
+    {
+        computerListMenu();
+    }
+
+}
+
+
 void ConsoleUI::computerWorkedOn()
 {
     int idNumber;

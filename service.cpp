@@ -255,6 +255,11 @@ void Service::addComputerToData(string inputName, string inputYearBuilt, string 
 {
     _dAccess.addComputerToDataBase(inputName, inputYearBuilt, inputType, inputDevelopment);
 }
+void Service::removeComputerFromDataBase(int idOfComputer)
+{
+    _dAccess.removeComputerFromDatabase(idOfComputer);
+}
+
 bool Service::inputNameValid(string input)
 {
     if(atoi(input.c_str()))

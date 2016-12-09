@@ -2,20 +2,13 @@
 #include "scientist.h"
 #include "service.h"
 #include <iomanip>
-
 using namespace std;
-const int MAXSIZEOFNAME = 80;
 
-
-//--Constructor--//
+//-- Constructor --//
 ConsoleUI::ConsoleUI()
 {
 
 }
-/*
- * This function is used to go back or quit the program,
- * we take in a command and navigate based on what the input was.
- * */
 bool ConsoleUI::goBackOrQuit(char command)
 {
     if(command == 'b' || command == 'B')
@@ -31,11 +24,9 @@ bool ConsoleUI::goBackOrQuit(char command)
     return false;
 
 }
-//-- Booting functions --//
-//Booting - Print functions.
-/*
- * This function is used to print out just in the begining of the program.
- * */
+//-- Booting --//
+//-- Booting - functions.
+//-- Booting - Print functions.
 void ConsoleUI::beginingOfProgramPrint()
 {
     cout << endl << endl;
@@ -65,9 +56,6 @@ void ConsoleUI::beginingOfProgramPrint()
     cout << "   |                                1 2 3  |  " << endl;
     cout << "   |_______________________________________|\n" << endl;
 }
-/*
- * This function is used to print out the main menu.
- * */
 void ConsoleUI::mainMenuPrint()
 {
     cout << "  =======================================================================================  " << endl;
@@ -79,10 +67,6 @@ void ConsoleUI::mainMenuPrint()
     cout << "  =======================================================================================  " << endl;
     cout << "  > Please enter a number: ";
 }
-//Booting - Other functions.
-/*
- * This function is used to show the menu, we take in a command and navigate based on what the input was.
- * */
 void ConsoleUI::mainMenu()
 {
     char mainCommand = ' ';
@@ -108,23 +92,13 @@ void ConsoleUI::mainMenu()
 
     }
 }
-/*
- * This function run the program.
- * */
 void ConsoleUI::run()
 {
     beginingOfProgramPrint();
     mainMenu();
 }
-//-- Computer scientists --//
-/*
- * This function is used to show the menu, we take in a command and navigate based on what the input was.
- * */
-//Computer scientists - Menu functions.
-/*
- * This function is used to show the Scientist menu, we take in a command and navigate based on what the
- * input was.
- * */
+//-- Scientist --//
+//-- Scientist -- functions.
 void ConsoleUI::scientistMenu()
 {
     char command = ' ';
@@ -570,9 +544,6 @@ void ConsoleUI::scientistListAllDeadOrAliveMenu()
     }
 
 }
-/*
- * This function is used to prin
- * */
 void ConsoleUI::scientistListAllYearOfBirthMenu()
 {
     scientistListAllYearOfBirthMenuPrint();
@@ -674,141 +645,6 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
     }
 
 }
-//Computer scientists - Print functions.
-/*
- * This function is used to print out modify menu, the user can add, edit and delete scientis from the database
- * after he/her see the list they asked for.
- * */
-void ConsoleUI::scientistWhatToDoPrint()
-{
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                                      OPTIONS                                          | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " | 1 - Add scientist.                                         2 - Delete scientist.      | " << endl;
-    cout << " | 3 - More info about the scientist.                         4 - Add relation.          | " << endl;
-    cout << " | 5 - Continue.                                                                         | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << "  > Please enter a number: ";
-}
-/*
- * This function is used to print out the scientist menu.
- * */
-void ConsoleUI::scientistMenuPrint()
-{
-    cout << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " |                                   SCIENTIST MENU                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " | 1 - List all scientists.                            2 - Search for scientists         | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << "  > Please enter a number: ";
-}
-/*
- * This function is used to print out the scientist list menu.
- * */
-void ConsoleUI::scientistListMenuPrint()
-{
-    cout << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " |                                 SCIENTIST LIST MENU                                   | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " | 1 - A to Z.                       2 - Z to A.                          3 - Gender.    | " << endl;
-    cout << " | 4 - Year of birth.                5. Alive/deceased                                   | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << "  > Please enter a number: ";
-}
-/*
- * This function is used to print out the scientist serch menu.
- * */
-void ConsoleUI::scientistSearchMenuPrint()
-{   cout << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " |                                  SCIENTIST SEARCH MENU                                | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " | 1 - Specific name.                                    2 -  Specific year of birth.    | " << endl;
-    cout << " | 3 - Specific year of death.                                                           | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << "  > Please enter a number: ";
-}
-/*
- * This function is used to print out the scientist gender list menu.
- * */
-void ConsoleUI::scientistListAllGenderMenuPrint()
-{
-    cout << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " |                                SCIENTIST LIST GENDER MENU                             | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " | 1 - Only females.                     2 - Only males.                3 - All.         | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << "  > Please enter a number: ";
-}
-/*
- * This function is used to print out the menu for scientist to check if she/he is alive, deceased or both.
- * */
-void ConsoleUI::scientistListAllDeadOrAliveMenuPrint()
-{
-    cout << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " |                            SCIENTIST LIST DECEASED/ALIVE MENU                         | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " | 1 - Only Alive.                      2 - Only Deceased.             3 - All.          | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << "  > Please enter a number: ";
-}
-/*
- * This function is used to print out the menu for scientist to check his/her birth year, asc or desc.
- * */
-void ConsoleUI::scientistListAllYearOfBirthMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================== " << endl;
-    cout << " |                             SCIENTIST LIST YEAR OF BIRTH MENU                          | " << endl;
-    cout << "  ======================================================================================== " << endl;
-    cout << " |     1 - Year of birth(A-Z).                                  2 - Year of birth(Z-A).   |" << endl;
-    cout << " |                                                                                        |" << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                       |" << endl;
-    cout << "  ======================================================================================== " << endl;
-    cout << " > Please enter a number: ";
-}
-/*
- * This function is used to print out a vector of class computers and then it prints out
- * how many are in the list.
- * */
-void ConsoleUI::printScientist(vector<Scientist> temp)
-{
-    for(unsigned int i = 0; i < temp.size(); i++)
-    {
-        cout << temp[i];
-    }
-
-    cout << " |                                       - - -                                           | " << endl;
-    size_t print = temp.size();
-
-    cout << " | ";
-    cout << setfill(' ') << setw(50);
-    cout << right << "Number of results returned: ";
-    cout << setw(36);
-    cout << left << print;
-    cout << setw(1) << "|" << endl;
-    cout << " |                                                                                       | " << endl;
-}
-//Computer scientists - Other functions.
-/*
- * This function is used to remove Sceintist from database, we take in a command and call remove function from
- * service layer and remove the scientist from the database.
- * */
 void ConsoleUI::removeScientistFromDataBase()
 {
 
@@ -841,12 +677,6 @@ void ConsoleUI::removeScientistFromDataBase()
     }
 
 }
-/*
- * This function is used to add Scientist to the database, we take in a command and call add function from
- * service layer and add the scientist from to the database.
- * */
-
-
 bool ConsoleUI::notAddScientistError(string input)
 {
     if(input.length() == 0)
@@ -867,10 +697,6 @@ bool ConsoleUI::notAddScientistError(string input)
     return true;
 
 }
-
-
-
-
 void ConsoleUI::addScientist()
 {
     string name, gender, yearOfBirth, yearOfDeath;
@@ -922,9 +748,127 @@ void ConsoleUI::addScientist()
         }
     }
 }
-/*
- * This function is used to make the console look nice, the output is in consistant table.
- * */
+void ConsoleUI::scientistWorkedOn()
+{
+    int idNumber;
+    cout << "  > Please enter the ID of the scientist: ";
+    cin >> idNumber;
+
+    vector<Computer> computers = _service.connectScientistToComputer(idNumber);
+
+    connectScientistColumn(idNumber);
+    scientistNameColumn();
+    printComputer(computers);
+    mainMenu();
+}
+string ConsoleUI::getScientistName(int idNumber)
+{
+    return _service.getScientistName(idNumber);
+}
+//-- Scientist -- print functions.
+void ConsoleUI::scientistWhatToDoPrint()
+{
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                      OPTIONS                                          | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1 - Add scientist.                                         2 - Delete scientist.      | " << endl;
+    cout << " | 3 - More info about the scientist.                         4 - Add relation.          | " << endl;
+    cout << " | 5 - Continue.                                                                         | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
+void ConsoleUI::scientistMenuPrint()
+{
+    cout << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |                                   SCIENTIST MENU                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1 - List all scientists.                            2 - Search for scientists         | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
+void ConsoleUI::scientistListMenuPrint()
+{
+    cout << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |                                 SCIENTIST LIST MENU                                   | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1 - A to Z.                       2 - Z to A.                          3 - Gender.    | " << endl;
+    cout << " | 4 - Year of birth.                5. Alive/deceased                                   | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
+void ConsoleUI::scientistSearchMenuPrint()
+{   cout << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |                                  SCIENTIST SEARCH MENU                                | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1 - Specific name.                                    2 -  Specific year of birth.    | " << endl;
+    cout << " | 3 - Specific year of death.                                                           | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
+void ConsoleUI::scientistListAllGenderMenuPrint()
+{
+    cout << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |                                SCIENTIST LIST GENDER MENU                             | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1 - Only females.                     2 - Only males.                3 - All.         | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
+void ConsoleUI::scientistListAllDeadOrAliveMenuPrint()
+{
+    cout << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |                            SCIENTIST LIST DECEASED/ALIVE MENU                         | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1 - Only Alive.                      2 - Only Deceased.             3 - All.          | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
+void ConsoleUI::scientistListAllYearOfBirthMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================== " << endl;
+    cout << " |                             SCIENTIST LIST YEAR OF BIRTH MENU                          | " << endl;
+    cout << "  ======================================================================================== " << endl;
+    cout << " |     1 - Year of birth(A-Z).                                  2 - Year of birth(Z-A).   |" << endl;
+    cout << " |                                                                                        |" << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                       |" << endl;
+    cout << "  ======================================================================================== " << endl;
+    cout << " > Please enter a number: ";
+}
+void ConsoleUI::printScientist(vector<Scientist> temp)
+{
+    for(unsigned int i = 0; i < temp.size(); i++)
+    {
+        cout << temp[i];
+    }
+
+    cout << " |                                       - - -                                           | " << endl;
+    size_t print = temp.size();
+
+    cout << " | ";
+    cout << setfill(' ') << setw(50);
+    cout << right << "Number of results returned: ";
+    cout << setw(36);
+    cout << left << print;
+    cout << setw(1) << "|" << endl;
+    cout << " |                                                                                       | " << endl;
+}
 void ConsoleUI::scientistNameColumn()
 {
     cout << "  ======================================================================================= " << endl;
@@ -941,24 +885,19 @@ void ConsoleUI::scientistNameColumn()
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
 }
-void ConsoleUI::scientistWorkedOn()
+void ConsoleUI::connectScientistColumn(int idNumber)
 {
-    int idNumber;
-    cout << "  > Please enter the ID of the scientist: ";
-    cin >> idNumber;
-    vector<Computer> computers = _service.connectScientistToComputer(idNumber);
-
-    connectScientistColumn(idNumber);
-    scientistNameColumn();
-    printComputer(computers);
+    string scientistName = getScientistName(idNumber);
+    cout << "  ======================================================================================= " << endl;
+    cout << " |";
+    cout.width(26);
+    cout << right << "Computers develeped by ";
+    cout.width(60);
+    cout << left << scientistName;
+    cout << "|" << endl;
 }
-
-//-- Computers--//
-//Computers - Menu function
-/*
- * This function is used to show the Computer menu, we take in a command and navigate based on
- * what the input input is.
- * */
+//-- Computer --//
+//-- Computer -- functions.
 void ConsoleUI::computerMenu()
 {
     char list = ' ';
@@ -992,10 +931,6 @@ void ConsoleUI::computerMenu()
     }
 
 }
-/*
- * This function is used to search for a specific computer name, specific computer built year
- * and specific year.
- * */
 void ConsoleUI::computerSearchMenu()
 {
     char list = ' ';
@@ -1181,9 +1116,6 @@ void ConsoleUI::computerSearchMenu()
         computerSearchMenu();
     }
 }
-/*
- * This function is used to print out the computer list menu.
- * */
 void ConsoleUI::computerListMenu()
 {
     char list = ' ';
@@ -1439,7 +1371,6 @@ void ConsoleUI::computerListAllBuildYearMenu()
 
     }
 }
-
 void ConsoleUI::computerListAllDevelopmentMenu()
 {
     string development = " ";
@@ -1503,163 +1434,10 @@ void ConsoleUI::computerListAllDevelopmentMenu()
         }
     }
 }
-//Computers - Print functions.
-/*
- * This function is used to print out modify menu, the user can add, edit and delete computer from the database
- * after he/her see the list they asked for.
- * */
-void ConsoleUI::computerWhatToDoPrint()
+string ConsoleUI::getComputerName(int idNumber)
 {
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                                      OPTIONS                                          | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " | 1 - Add computer.                                         2 - Delete computer.        | " << endl;
-    cout << " | 3 - More info about computer                              4 - Add relation.           | " << endl;
-    cout << " | 5 - Continue.                                                                         | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << "  > Please enter a number: ";
+    return _service.getComputerName(idNumber);
 }
-/*
- * This function is used to print out a vector of class scientists and then it prints out
- * how many are in the list.
- * */
-void ConsoleUI::printComputer(vector<Computer> temp)
-{
-    for(unsigned int i = 0; i < temp.size(); i++)
-    {
-        cout << temp[i];
-    }
-
-    cout << " |                                       - - -                                           | " << endl;
-    size_t print = temp.size();
-
-    cout << " | ";
-    cout << setfill(' ') << setw(50);
-    cout << right << "Number of results returned: ";
-    cout << setw(36);
-    cout << left << print;
-    cout << setw(1) << "|" << endl;
-
-}
-/*
- * This function is used to print out the computer menu.
- * */
-void ConsoleUI::computerMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                                   COMPUTER MENU                                       | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |     1. List - List of computers.                                                      | " << endl;
-    cout << " |     2. Developer - Enter the ID of a Computer for a list of developers                | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << "  > Please enter a number: ";
-}
-/*
- * This function is used to print out the computer list menu.
- * */
-void ConsoleUI::computerListMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                                   COMPUTER MENU                                       | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " |     1 - List all computers.                               2 - Search for computers.   | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << "  > Please enter a number: ";
-
-}
-/*
- * This function is used to print out the computer search all menu.
- * */
-void ConsoleUI::computerSearchMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                                 COMPUTER SEARCH MENU                                  | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " |  1 - Specific computer.       2 - Specific build year.          3 - Specific type.    | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << "  > Please enter a number: ";
-
-}
-/*
- * This function is used to print out the computer list all menu.
- * */
-void ConsoleUI::computerListAllMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                                 COMPUTER LIST MENU                                    | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |     1. A-Z.                    2. Z-A.                       3. Type.                 | " << endl;
-    cout << " |     4. Built Year.             5. Original/Developed.                                 | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " > Please enter a number: ";
-}
-/*
- * This function is used to print out the computer list type menu.
- * */
-void ConsoleUI::computerListAllTypeMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                               COMPUTER LIST TYPE MENU                                 | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " |     1. Type(A-Z)                  2. Electronic              3. Mechanical            | " << endl;
-    cout << " |     4. Electronic/Mechanical      5. Transistor              6. Microcomputer         | " << endl;
-    cout << " |     7. Ternary                                                                        | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  =======================================================================================  " << endl;
-    cout << " > Please enter a number: ";
-}
-/*
- * This function is used to print out the computer list built menu.
- * */
-void ConsoleUI::computerListAllYearBuiltMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                               COMPUTER LIST BUILT YEAR MENU                           | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |     1. Built year(oldest to newest).             2. Built year(newest to oldest).     |" << endl;
-    cout << " |                                                                                       |" << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      |" << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " > Please enter a number: ";
-}
-/*
- * This function is used to print out the computer list development menu.
- * */
-void ConsoleUI::computerListAllDevelopmentMenuPrint()
-{
-    cout << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |                           COMPUTER LIST DEVELOPMENT MENU                              | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " |     1. Only Original.          2. Only Developed.            3. All.                  | " << endl;
-    cout << " |                                                                                       | " << endl;
-    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
-    cout << "  ======================================================================================= " << endl;
-    cout << " > Please enter a number: ";
-}
-//Computers - Other functions.
-/*
- * This function is used to add computer to the database, we take in a command and call add function from
- * service layer and add the computer from to the database.
- * */
-
 bool ConsoleUI::notAddComputerError(string input)
 {
     if(input.length() == 0)
@@ -1679,7 +1457,6 @@ bool ConsoleUI::notAddComputerError(string input)
     return true;
 
 }
-
 void ConsoleUI::addComputer()
 {
     string name, yearBuilt, type, development;
@@ -1735,11 +1512,6 @@ void ConsoleUI::addComputer()
 
         }
 }
-
-/*
- * This function is used to add Sceintist to the database, we take in a command and call add function from
- * service layer and add the scientist from to the database.
- * */
 void ConsoleUI::removeComputerFromDataBase()
 {
     int idOfComputer;
@@ -1771,9 +1543,6 @@ void ConsoleUI::removeComputerFromDataBase()
         computerListMenu();
     }
 }
-
-
-
 void ConsoleUI::computerWorkedOn()
 {
     int idNumber;
@@ -1783,10 +1552,130 @@ void ConsoleUI::computerWorkedOn()
     connectComputerColumn(idNumber);
     computerNameColumn();
     printScientist(scientists);
+    mainMenu();
 }
-/*
- * This function is used to make the console look nice, the output is in consistant table.
- * */
+//-- Computer -- print functions.
+void ConsoleUI::computerWhatToDoPrint()
+{
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                      OPTIONS                                          | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " | 1 - Add computer.                                         2 - Delete computer.        | " << endl;
+    cout << " | 3 - More info about computer                              4 - Add relation.           | " << endl;
+    cout << " | 5 - Continue.                                                                         | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << "  > Please enter a number: ";
+}
+void ConsoleUI::printComputer(vector<Computer> temp)
+{
+    for(unsigned int i = 0; i < temp.size(); i++)
+    {
+        cout << temp[i];
+    }
+
+    cout << " |                                       - - -                                           | " << endl;
+    size_t print = temp.size();
+
+    cout << " | ";
+    cout << setfill(' ') << setw(50);
+    cout << right << "Number of results returned: ";
+    cout << setw(36);
+    cout << left << print;
+    cout << setw(1) << "|" << endl;
+
+}
+void ConsoleUI::computerMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                   COMPUTER MENU                                       | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |     1. List - List of computers.                                                      | " << endl;
+    cout << " |     2. Developer - Enter the ID of a Computer for a list of developers                | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << "  > Please enter a number: ";
+}
+void ConsoleUI::computerListMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                   COMPUTER MENU                                       | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |     1 - List all computers.                               2 - Search for computers.   | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << "  > Please enter a number: ";
+
+}
+void ConsoleUI::computerSearchMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                 COMPUTER SEARCH MENU                                  | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |  1 - Specific computer.       2 - Specific build year.          3 - Specific type.    | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << "  > Please enter a number: ";
+
+}
+void ConsoleUI::computerListAllMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                                 COMPUTER LIST MENU                                    | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |     1. A-Z.                    2. Z-A.                       3. Type.                 | " << endl;
+    cout << " |     4. Built Year.             5. Original/Developed.                                 | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " > Please enter a number: ";
+}
+void ConsoleUI::computerListAllTypeMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                               COMPUTER LIST TYPE MENU                                 | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " |     1. Type(A-Z)                  2. Electronic              3. Mechanical            | " << endl;
+    cout << " |     4. Electronic/Mechanical      5. Transistor              6. Microcomputer         | " << endl;
+    cout << " |     7. Ternary                                                                        | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  =======================================================================================  " << endl;
+    cout << " > Please enter a number: ";
+}
+void ConsoleUI::computerListAllYearBuiltMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                               COMPUTER LIST BUILT YEAR MENU                           | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |     1. Built year(oldest to newest).             2. Built year(newest to oldest).     |" << endl;
+    cout << " |                                                                                       |" << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      |" << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " > Please enter a number: ";
+}
+void ConsoleUI::computerListAllDevelopmentMenuPrint()
+{
+    cout << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |                           COMPUTER LIST DEVELOPMENT MENU                              | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " |     1. Only Original.          2. Only Developed.            3. All.                  | " << endl;
+    cout << " |                                                                                       | " << endl;
+    cout << " | Press 'q' to quit the program or 'b' to go back.                                      | " << endl;
+    cout << "  ======================================================================================= " << endl;
+    cout << " > Please enter a number: ";
+}
 void ConsoleUI::computerNameColumn()
 {
     cout << "  ======================================================================================= " << endl;
@@ -1803,9 +1692,6 @@ void ConsoleUI::computerNameColumn()
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
 }
-/*
- * This function is used so the user can quit the program.
- * */
 void ConsoleUI::quitSystem()
 {
     cout << "  > Quitting program..." << endl;
@@ -1822,23 +1708,4 @@ void ConsoleUI::connectComputerColumn(int idNumber)
     cout << left << computerName;
     cout << "|" << endl;
 
-}
-void ConsoleUI::connectScientistColumn(int idNumber)
-{
-    string scientistName = getScientistName(idNumber);
-    cout << "  ======================================================================================= " << endl;
-    cout << " |";
-    cout.width(26);
-    cout << right << "Computers develeped by ";
-    cout.width(60);
-    cout << left << scientistName;
-    cout << "|" << endl;
-}
-string ConsoleUI::getComputerName(int idNumber)
-{
-    return _service.getComputerName(idNumber);
-}
-string ConsoleUI::getScientistName(int idNumber)
-{
-    return _service.getScientistName(idNumber);
 }

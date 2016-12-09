@@ -5,7 +5,7 @@
 #include <QSqlDatabase>
 
 using namespace std;
-//-- Constructors --//
+//-- Constructor --//
 DataAccess::DataAccess()
 {
     openDataBase();
@@ -14,7 +14,7 @@ DataAccess::~DataAccess()
 {
     _dataBaseMain.close();
 }
-//--Scientists--//
+//-- Scientist --//
 //Scientist - SQL functions.
 vector<Scientist> DataAccess::getAllScientistInfoFromDataBase(QString queryCommand)
 {

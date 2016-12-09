@@ -49,7 +49,7 @@ public:
     void scientistNameColumn();
     void addScientist();
     void removeScientistFromDataBase();
-
+    void scientistWorkedOn();
 
     //-- Computers --//
 
@@ -71,14 +71,14 @@ public:
     void computerListAllTypeMenuPrint();
     void computerListAllYearBuiltMenuPrint();
     void computerListAllDevelopmentMenuPrint();
-
+    void computerAskMenuPrint();
 
         //Computer scientist - Other functions.
     void computerNameColumn();
     void addComputer();
 
         //Computers and computer scientists --//
-    void workedOn();
+    void computerWorkedOn();
     void run();
     void openDataBase();
 

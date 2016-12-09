@@ -81,6 +81,10 @@ public:
     void computerNameColumn();
     void addComputer();
     //--Computers and computer scientists --//
+    void connectComputerColumn(int idNumber);
+    void connectScientistColumn(int idNumber);
+    string getComputerName(int idNumber);
+    string getScientistName(int idNumber);
 
     void run();
     void openDataBase();

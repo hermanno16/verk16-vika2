@@ -787,7 +787,7 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
 
     cout << " | ";
     cout << setfill(' ') << setw(50);
-    cout << right << "Number of results return: ";
+    cout << right << "Number of results returned: ";
     cout << setw(36);
     cout << left << print;
     cout << setw(1) << "|" << endl;
@@ -905,14 +905,16 @@ void ConsoleUI::scientistNameColumn()
     cout << "|" << endl;
     cout << "  ======================================================================================= " << endl;
 }
-void ConsoleUI::scientistWorkedOn()
+void ConsoleUI::computerWorkedOn()
 {
     int idNumber;
     cout << "  > Please enter the ID of the scientist: ";
     cin >> idNumber;
-    //vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
+    vector<Computer> computers = _service.connectScientistToComputer(idNumber);
+
+    connectScientistColumn(idNumber);
     scientistNameColumn();
-    //printScientist(scientists);
+    printComputer(computers);
 }
 
 //-- Computers--//
@@ -1648,18 +1650,18 @@ void ConsoleUI::addComputer()
         computerMenu();
     }
 }
-void ConsoleUI::computerWorkedOn()
+void ConsoleUI::scientistWorkedOn()
 {
     int idNumber;
-    cout << "  > Please enter the ID of the Computer: ";
+    cout << "  > Please enter the ID of the computer: ";
     cin >> idNumber;
-    //vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
-    scientistNameColumn();
-    //printScientist(scientists);
+    vector<Scientist> scientists = _service.connectComputerToScientist(idNumber);
+    connectComputerColumn(idNumber);
+    computerNameColumn();
+    printScientist(scientists);
 }
 void ConsoleUI::computerNameColumn()
 {
-    cout << endl;
     cout << "  ======================================================================================= " << endl;
     cout.width(8);
     cout << left << " | ID:";
@@ -1678,5 +1680,36 @@ void ConsoleUI::quitSystem()
 {
     cout << "  > Quitting program..." << endl;
     exit(1);
+}
+void ConsoleUI::connectComputerColumn(int idNumber)
+{
+    string prump = getComputerName(idNumber);
+    cout << "  ======================================================================================= " << endl;
+    cout << " |";
+    cout.width(15);
+    cout << right << "Developers of ";
+    cout.width(72);
+    cout << left << prump;
+    cout << "|" << endl;
+
+}
+void ConsoleUI::connectScientistColumn(int idNumber)
+{
+    string prump = getScientistName(idNumber);
+    cout << "  ======================================================================================= " << endl;
+    cout << " |";
+    cout.width(26);
+    cout << right << "Computers develeped by ";
+    cout.width(60);
+    cout << left << prump;
+    cout << "|" << endl;
+}
+string ConsoleUI::getComputerName(int idNumber)
+{
+    return _service.getComputerName(idNumber);
+}
+string ConsoleUI::getScientistName(int idNumber)
+{
+    return _service.getScientistName(idNumber);
 }
 

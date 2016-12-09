@@ -1,7 +1,6 @@
 #include "service.h"
 #include <cctype>
 
-const int YEARTODAY = 2016;
 
 Service::Service()
 {
@@ -279,9 +278,14 @@ void Service::addComputerToData(string inputName, string inputYearBuilt, string 
 {
     _dAccess.addComputerToDataBase(inputName, inputYearBuilt, inputType, inputDevelopment);
 }
+void Service::removeComputerFromDataBase(int idOfComputer)
+{
+    _dAccess.removeComputerFromDatabase(idOfComputer);
+}
+
 bool Service::inputNameValid(string input)
 {
-    if(atoi(input.c_str()))
+    if(atoi(input.c_str()) && input.length() < 40)
     {
         return false;
     }
@@ -321,7 +325,86 @@ bool Service::isAddScientistValid(string name, string gender, string yearOfBirth
     return (checkName && checkGender && checkYearOfBirth && checkYearOfDeath);
 
 }
+
+void Service::fixInputNameScientist(string& inputName)
+{
+        inputName = inputName.substr(0,40);
+
+        inputName.at(0) = toupper(inputName.at(0));
+
+        for(unsigned int i = 1; i < inputName.size(); i++)
+        {
+            if (inputName.at(i - 1) == ' ')
+            {
+                inputName.at(i) = toupper(inputName.at(i));
+            }
+            else
+            {
+                inputName.at(i) = tolower(inputName.at(i));
+            }
+        }
+}
+void Service::fixInputGenderScientist(string& inputGender)
+{
+        //Max size of input is 6, if string is longer,the rest will be cut off.
+        inputGender = inputGender.substr(0,6);
+        //First letter to upper case.
+        inputGender.at(0) = toupper(inputGender.at(0));
+        //Rest of the letters to lower case.
+        for(unsigned int i = 1; i < inputGender.size(); i++)
+        {
+            inputGender.at(i) = tolower(inputGender.at(i));
+
+        }
+}
+void Service::fixInputNameComputer(string& inputName)
+{
+        inputName = inputName.substr(0, 23);
+
+        inputName.at(0) = toupper(inputName.at(0));
+
+        for(unsigned int i = 1; i < inputName.size(); i++)
+        {
+            if (inputName.at(i - 1) == ' ')
+            {
+                inputName.at(i) = toupper(inputName.at(i));
+            }
+            else
+            {
+                inputName.at(i) = tolower(inputName.at(i));
+            }
+        }
+}
+void Service::fixInputTypeComputer(string& inputType)
+{
+        inputType = inputType.substr(0,21);
+
+        inputType.at(0) = toupper(inputType.at(0));
+
+        for(unsigned int i = 1; i < inputType.size(); i++)
+        {
+            inputType.at(i) = tolower(inputType.at(i));
+
+        }
+
+}
+void Service::fixInputDevelopmentComputer(string& inputDevelopment)
+{
+
+        inputDevelopment = inputDevelopment.substr(0,9);
+
+        inputDevelopment.at(0) = toupper(inputDevelopment.at(0));
+
+        for(unsigned int i = 1; i < inputDevelopment.size(); i++)
+        {
+            inputDevelopment.at(i) = tolower(inputDevelopment.at(i));
+
+        }
+}
+
+
 bool Service::isAddComputerValid(string name, string yearBuilt, string type, string development)
+
 {
     bool checkName = false;             // Beisik bool-föll til að athuga hvort input
     bool checkYearBuilt = false;           // uppfylli okkar skilyrði
@@ -355,6 +438,7 @@ bool Service::isAddComputerValid(string name, string yearBuilt, string type, str
     return (checkName && checkYearBuilt && checkType && checkDevelopment);
 
 }
+
 //--Operators overload--//
 ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overloader fyrir cout << Scientist.
 {

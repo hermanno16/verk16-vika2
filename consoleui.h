@@ -80,6 +80,7 @@ public:
     //Computer scientist - Other functions.
     void computerNameColumn();
     void addComputer();
+    void removeComputerFromDataBase();
     //--Computers and computer scientists --//
     void connectComputerColumn(int idNumber);
     void connectScientistColumn(int idNumber);

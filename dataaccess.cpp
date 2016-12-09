@@ -182,14 +182,9 @@ void DataAccess::removeScientistFromDatabase(int idOfScientist)
     query.prepare("DELETE FROM Scientists where ID = (:id)");
     query.bindValue(":id",idOfScientist);
 
-    if(query.exec())
-    {
-        cout << "Reynir i stjornina!" << endl;
-    }
-    else
-    {
-        cout << "Thorir er bestur" << endl;
-    }
+    query.exec();
+
+
 }
 void DataAccess::addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)
 {
@@ -225,6 +220,16 @@ void DataAccess::addComputerToDataBase(string inputName, string inputYearBuilt, 
     query.exec();
 
 }
+
+void DataAccess::removeComputerFromDatabase(int idOfComputer)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM Computers where CID = (:cid)");
+    query.bindValue(":cid",idOfComputer);
+    query.exec();
+}
+
+
 vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)
 {
     vector<Computer> allComputers;

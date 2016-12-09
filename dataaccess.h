@@ -69,6 +69,7 @@ public:
     string getScientistName(int idNumber);
     //--Computer other functions--//
     void addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
+    void removeComputerFromDatabase(int idOfComputer);
     //--Scientists and computers--//
     vector<Scientist> connectComputerToScientist(int idNumber);
     vector<Computer> connectScientistToComputer(int idNumber);

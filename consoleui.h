@@ -48,8 +48,14 @@ public:
     void scientistNameColumn();
     void addScientist();
     void removeScientistFromDataBase();
-    //--Computers--//
+
+    void scientistWorkedOn();
+
+    //-- Computers --//
+
+
     //Computers - Menu functions.
+
     void computerMenu();
     void computerListMenu();
     void computerSearchMenu();
@@ -67,11 +73,16 @@ public:
     void computerListAllTypeMenuPrint();
     void computerListAllYearBuiltMenuPrint();
     void computerListAllDevelopmentMenuPrint();
+    void computerAskMenuPrint();
+
+    //Computers and computer scientists --//
+    void computerWorkedOn();
     //Computer scientist - Other functions.
     void computerNameColumn();
     void addComputer();
+    void removeComputerFromDataBase();
     //--Computers and computer scientists --//
-    void workedOn();
+
     void run();
     void openDataBase();
     void quitSystem();

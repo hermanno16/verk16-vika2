@@ -186,6 +186,39 @@ void DataAccess::removeScientistFromDatabase(int idOfScientist)
 
 
 }
+bool DataAccess::isScientistAlreadyInDatabase(string& inputName)
+{
+    QString qSearchName = QString::fromStdString(inputName);
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Scientists WHERE (FirstName) LIKE '%"+qSearchName+"%'");
+
+    if(query.exec())
+    {
+        if (query.next())
+        {
+            return true;
+        }
+    }
+    return false;
+}
+bool DataAccess::isComputerNameAlreadyInDatabase(string& inputName)
+{
+    cout << inputName << endl;
+    QString qSearchName = QString::fromStdString(inputName);
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Computers WHERE (ComputerName) LIKE '%"+qSearchName+"%'");
+
+    if(query.exec())
+    {
+        if (query.next())
+        {
+            return true;
+        }
+    }
+    return false;
+}
 void DataAccess::addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath)
 {
     QSqlQuery query;
@@ -218,9 +251,7 @@ void DataAccess::addComputerToDataBase(string inputName, string inputYearBuilt, 
     query.bindValue(":type", QString::fromStdString(inputType));
     query.bindValue(":development", QString::fromStdString(inputDevelopment));
     query.exec();
-
 }
-
 void DataAccess::removeComputerFromDatabase(int idOfComputer)
 {
     QSqlQuery query;
@@ -228,8 +259,6 @@ void DataAccess::removeComputerFromDatabase(int idOfComputer)
     query.bindValue(":cid",idOfComputer);
     query.exec();
 }
-
-
 vector<Computer> DataAccess::getAllComputerInfoFromDataBase(QString queryCommand)
 {
     vector<Computer> allComputers;
@@ -494,3 +523,4 @@ vector<Computer> DataAccess::connectScientistToComputer(int idNumber)
 
     return allComputers;
 }
+

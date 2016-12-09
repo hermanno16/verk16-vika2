@@ -268,23 +268,38 @@ bool Service::inputNameValid(string input)
 
     return true;
 }
+/*
+ * Functions to check if information about scientist who is about to be added is valid.
+ * */
 bool Service::isAddScientistValid(string name, string gender, string yearOfBirth, string yearOfDeath)
 {
-    bool checkName = false;             // Beisik bool-föll til að athuga hvort input
-    bool checkGender = false;           // uppfylli okkar skilyrði
+    bool checkIfNameIsAlreadyInDataBase = true;
+    bool checkName = false;
+    bool checkGender = false;
     bool checkYearOfBirth = false;
     bool checkYearOfDeath = false;
 
-    transform(gender.begin(), gender.end(), gender.begin(), ::tolower);
+    if(_dAccess.isScientistAlreadyInDatabase(name) == true)
+    {
+        checkIfNameIsAlreadyInDataBase = false;
+    }
 
     if(name.length() > 0)
     {
         checkName = true;
     }
 
-    if(gender == "male" || gender == "female")
+    if(gender.length() > 3)
     {
-        checkGender = true;
+        for(unsigned int i = 0; i < gender.size(); i++)
+        {
+           gender.at(i) = tolower(gender.at(i));
+        }
+
+        if(gender == "male" || gender == "female")
+        {
+            checkGender = true;
+        }
     }
 
     if(atoi(yearOfBirth.c_str()) <= YEARTODAY && atoi(yearOfBirth.c_str()) > 0)
@@ -297,8 +312,7 @@ bool Service::isAddScientistValid(string name, string gender, string yearOfBirth
         checkYearOfDeath = true;
     }
 
-
-    return (checkName && checkGender && checkYearOfBirth && checkYearOfDeath);
+    return (checkIfNameIsAlreadyInDataBase && checkName && checkGender && checkYearOfBirth && checkYearOfDeath);
 
 }
 
@@ -333,24 +347,6 @@ void Service::fixInputGenderScientist(string& inputGender)
 
         }
 }
-void Service::fixInputNameComputer(string& inputName)
-{
-        inputName = inputName.substr(0, 23);
-
-        inputName.at(0) = toupper(inputName.at(0));
-
-        for(unsigned int i = 1; i < inputName.size(); i++)
-        {
-            if (inputName.at(i - 1) == ' ')
-            {
-                inputName.at(i) = toupper(inputName.at(i));
-            }
-            else
-            {
-                inputName.at(i) = tolower(inputName.at(i));
-            }
-        }
-}
 void Service::fixInputTypeComputer(string& inputType)
 {
         inputType = inputType.substr(0,21);
@@ -377,18 +373,18 @@ void Service::fixInputDevelopmentComputer(string& inputDevelopment)
 
         }
 }
-
-
 bool Service::isAddComputerValid(string name, string yearBuilt, string type, string development)
-
 {
-    bool checkName = false;             // Beisik bool-föll til að athuga hvort input
-    bool checkYearBuilt = false;           // uppfylli okkar skilyrði
+    bool checkIfNameIsAlreadyInDataBase = true;
+    bool checkName = false;
+    bool checkYearBuilt = false;
     bool checkType = false;
     bool checkDevelopment = false;
 
-    transform(type.begin(), type.end(), type.begin(), ::tolower);
-    transform(development.begin(), development.end(), development.begin(), ::tolower);
+    if(_dAccess.isComputerNameAlreadyInDatabase(name) == true)
+    {
+        checkIfNameIsAlreadyInDataBase = false;
+    }
 
     if(name.length() > 0)
     {
@@ -400,18 +396,34 @@ bool Service::isAddComputerValid(string name, string yearBuilt, string type, str
         checkYearBuilt = true;
     }
 
-    if(type == "electronic" || type == "mechanical" || type == "electronic/mechanical" || type == "transistor" || type == "microcomputer" || type == "ternary")
-    {
-        checkType = true;
+    if(type.length() > 6)
+    {   
+        //Switch to lower case to check if input matches the correct string.
+        for(unsigned int i = 0; i < type.size(); i++)
+        {
+           type.at(i) = tolower(type.at(i));
+        }
+
+        if(type == "electronic" || type == "mechanical" || type == "electronic/mechanical" || type == "transistor" || type == "microcomputer" || type == "ternary")
+        {
+            checkType = true;
+        }
     }
 
-    if(development == "developed" || development == "original")
+    if(development.length() > 7)
     {
+        for(unsigned int i = 0; i < development.size(); i++)
+        {
+           development.at(i) = tolower(development.at(i));
+        }
 
-        checkDevelopment = true;
+        if(development == "developed" || development == "original")
+        {
+            checkDevelopment = true;
+        }
     }
 
-    return (checkName && checkYearBuilt && checkType && checkDevelopment);
+    return (checkIfNameIsAlreadyInDataBase && checkName && checkYearBuilt && checkType && checkDevelopment);
 
 }
 

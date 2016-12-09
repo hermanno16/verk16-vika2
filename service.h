@@ -56,7 +56,6 @@ public:
     bool inputNameValid(string input);
     void fixInputNameScientist(string& inputName);
     void fixInputGenderScientist(string& inputGender);
-    void fixInputNameComputer(string& inputName);
     void fixInputTypeComputer(string& inputType);
     void fixInputDevelopmentComputer(string& inputDevelopment);
 private:

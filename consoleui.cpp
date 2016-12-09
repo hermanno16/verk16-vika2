@@ -879,35 +879,15 @@ void ConsoleUI::addScientist()
     {
         _service.addScientistToData(name, gender, yearOfBirth, yearOfDeath);
 
-        /*
-        cout << "Is this scientist connected to any famous computers ?" << endl;
-
-        cin >> yesOrNo;
-        if(yesOrNo == 'Y' || yesOrNo == 'y')
-        {
-            int howMany = 0;
-            int idNumber = 0;
-            cout << "How many computers is he/she connected with?" << endl;
-            cin >> howMany;
-            for(int i = 0; i < howMany; i++)
-            {
-                //_service.addComputerToData();
-                _service.connectComputerToScientist(idNumber);
-
-            }
-        }
-        else if(yesOrNo == 'n' || yesOrNo == 'N')
-        {
-            scientistMenu();
-        }
-        else
-        {
-            cout << "Invalid input! " << endl;
-        }
-        */
-        cout << "  > Scientest has been added to databes! " << endl;
+        cout << "  > Scientest has been added to database! " << endl;
 
     }
+    else
+    {
+        cout << "  > Input was not valid..." << endl;
+        cout << "  > Scientist was not added to database." << endl;
+    }
+
 
     scientistMenu();
 
@@ -1669,7 +1649,6 @@ void ConsoleUI::addComputer()
     cout << "  > Input name of computer: ";
     getline(cin, name);
 
-
     cout << "  > Input built year (if the computer was build): ";
     getline(cin, yearBuilt);
 
@@ -1680,7 +1659,7 @@ void ConsoleUI::addComputer()
     getline(cin, development);
 
     //Make sure input will be fixed so that string has uppercase first letter and the rest lower case.
-    _service.fixInputNameComputer(name);
+
     _service.fixInputTypeComputer(type);
     _service.fixInputDevelopmentComputer(development);
 
@@ -1690,14 +1669,16 @@ void ConsoleUI::addComputer()
     {
         _service.addComputerToData(name, yearBuilt, type, development);
 
+        cout << "  > Computer has been added to database! " << endl;
         computerMenu();
     }
     else
     {
-        cout << "  > Invalid input!" << endl;
+        cout << "  > Input was not valid..." << endl;
+        cout << "  > Computer was not added to database." << endl;
 
         computerMenu();
-    }
+    }    
 }
 /*
  * This function is used to add Sceintist to the database, we take in a command and call add function from

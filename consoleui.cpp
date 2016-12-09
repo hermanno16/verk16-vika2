@@ -1325,9 +1325,9 @@ void ConsoleUI::computerListAllTypeMenu()
         computerListAllMenu();
     }
 
-    else if(type > '0' && type < 8)
+    else
     {
-        {
+
             vector<Computer> computerType = _service.getAllTypesComputersAtoZ(type);
             computerNameColumn();
             printComputer(computerType);
@@ -1365,40 +1365,6 @@ void ConsoleUI::computerListAllTypeMenu()
                 computerListAllTypeMenu();
             }
         }
-    }
-    else
-    {
-        cout << "  > Invalid Input!" << endl;
-
-        computerWhatToDoPrint();
-        cin >> wantToModify;
-
-        if(wantToModify == '1')
-        {
-            addComputer();
-        }
-        else if(wantToModify == '2')
-        {
-            removeComputerFromDataBase();
-        }
-        else if(wantToModify == '3')
-        {
-            computerWorkedOn();
-        }
-        else if(wantToModify == '4')
-        {
-            cout << "TENGITENGI TENGITAFLA-- EFTIR AD GERA!!!" << endl;
-        }
-        else if(wantToModify == '5')
-        {
-            computerListAllTypeMenu();
-        }
-        else if(goBackOrQuit(wantToModify))
-        {
-            computerListAllTypeMenu();
-        }
-    }
-
 }
 void ConsoleUI::computerListAllBuildYearMenu()
 {

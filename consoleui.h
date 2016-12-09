@@ -14,18 +14,17 @@
 class ConsoleUI
 {
 public:
+    //--Constructor--//
     ConsoleUI();
-
-    //-- Booting functions --//
-        //Booting - Print functions.
+    //--Booting functions--//
+    //Booting - Print functions.
     void beginingOfProgramPrint();
     void mainMenuPrint();
-        //Booting - Other functions.
+    //Booting - Other functions.
     void mainMenu();
     bool goBackOrQuit(char command);
-
-    //-- Computer scientists --//
-        //Computer scientist - Menu functions.
+    //--Scientists--//
+    //Scientists - Menu functions.
     void scientistWhatToDo();
     void scientistMenu();
     void scientistSearchMenu();
@@ -34,7 +33,7 @@ public:
     void scientistListAllGenderMenu();
     void scientistListAllDeadOrAliveMenu();
     void scientistListAllYearOfBirthMenu();
-        //Computer scientist - Print functions.
+    //Scientist - Print functions.
     void scientistWhatToDoPrint();
     void printScientist(vector<Scientist> temp);
     void scientistMenuPrint();
@@ -45,15 +44,18 @@ public:
     void scientistListAllDeadOrAliveMenuPrint();
     void scientistListAllYearOfBirthMenuPrint();
     bool wantToModifyOrNot(char command);
-        //Computer scientist - Other functions.
+    //Scientist - Other functions.
     void scientistNameColumn();
     void addScientist();
     void removeScientistFromDataBase();
+
     void scientistWorkedOn();
 
     //-- Computers --//
 
-        //--Computer - Menu functions.
+
+    //Computers - Menu functions.
+
     void computerMenu();
     void computerListMenu();
     void computerSearchMenu();
@@ -61,7 +63,7 @@ public:
     void computerListAllTypeMenu();
     void computerListAllBuildYearMenu();
     void computerListAllDevelopmentMenu();
-        //Computers - Print functions.
+    //Computers - Print functions.
     void computerWhatToDoPrint();
     void printComputer(vector<Computer> temp);
     void computerMenuPrint();
@@ -73,17 +75,16 @@ public:
     void computerListAllDevelopmentMenuPrint();
     void computerAskMenuPrint();
 
-        //Computer scientist - Other functions.
+    //Computers and computer scientists --//
+    void computerWorkedOn();
+    //Computer scientist - Other functions.
     void computerNameColumn();
     void addComputer();
+    //--Computers and computer scientists --//
 
-        //Computers and computer scientists --//
-    void computerWorkedOn();
     void run();
     void openDataBase();
-
     void quitSystem();
-
     void otherMenu();
 
 private:
@@ -94,4 +95,4 @@ private:
 ostream& operator <<(ostream& os, Scientist& TempClass);
 ostream& operator <<(ostream& os, Computer& TempClass);
 
-#endif // CONSOLEUI_H
+#endif // CONSOLEUI_

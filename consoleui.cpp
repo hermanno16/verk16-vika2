@@ -26,7 +26,7 @@ bool ConsoleUI::goBackOrQuit(char command)
 
 }
 //-- Booting functions --//
-    //Booting - Print functions.
+//Booting - Print functions.
 void ConsoleUI::beginingOfProgramPrint()
 {
     cout << endl << endl;
@@ -67,7 +67,7 @@ void ConsoleUI::mainMenuPrint()
     cout << "  =======================================================================================  " << endl;
     cout << "  > Please enter a number: ";
 }
-    //Booting - Other functions.
+//Booting - Other functions.
 void ConsoleUI::mainMenu()
 {
     char mainCommand = ' ';
@@ -96,11 +96,10 @@ void ConsoleUI::run()
     mainMenu();
 }
 //-- Computer scientists --//
-    //Computer scientists - Menu functions.
 /*
  * This function is used to show the menu, we take in a command and navigate based on what the input was.
  * */
-
+//Computer scientists - Menu functions.
 void ConsoleUI::scientistMenu()
 {
     char command = ' ';
@@ -638,8 +637,9 @@ void ConsoleUI::scientistListAllYearOfBirthMenu()
         cout << "  > Invalid input!" << endl;
         scientistListAllYearOfBirthMenu();  
     }
+
 }
-     //Computer scientists - Print functions.
+//Computer scientists - Print functions.
 void ConsoleUI::scientistWhatToDoPrint()
 {
     cout << "  ======================================================================================= " << endl;
@@ -739,7 +739,7 @@ void ConsoleUI::printScientist(vector<Scientist> temp)
     cout << setw(1) << "|" << endl;
     cout << "  ======================================================================================= " << endl;
 }
-    //Computer scientists - Other functions.
+//Computer scientists - Other functions.
 void ConsoleUI::removeScientistFromDataBase()
 {
     int idOfScientist;
@@ -852,7 +852,7 @@ void ConsoleUI::scientistWorkedOn()
 }
 
 //-- Computers--//
-    //Computers - Menu function
+//Computers - Menu function
 void ConsoleUI::computerMenu()
 {
     char list = ' ';
@@ -945,14 +945,9 @@ void ConsoleUI::computerSearchMenu()
             {
                 computerSearchMenu();
             }
-            else
-            {
-                cout << "  > Invalid input!" << endl;
-                computerSearchMenu();
-            }
+
+
         }
-
-
 
         computerSearchMenu();
     }
@@ -1008,7 +1003,6 @@ void ConsoleUI::computerSearchMenu()
                 cout << "  > Invalid input!" << endl;
                 computerSearchMenu();
             }
-
         }
     }
 
@@ -1063,8 +1057,8 @@ void ConsoleUI::computerSearchMenu()
                 computerSearchMenu();
             }
 
-
         }
+
     }
     else if(list == 'b' || list == 'B')   //Go back to main menu.
     {
@@ -1075,13 +1069,12 @@ void ConsoleUI::computerSearchMenu()
     {
         quitSystem();
     }
-    else
-    {
-        cout << "  Invalid input!" << endl;
-        cout << endl;
-        computerSearchMenu();
-    }
+
+    cout << "  Invalid input!" << endl;
+    cout << endl;
+    computerSearchMenu();
 }
+
 
 void ConsoleUI::computerListAllMenu()
 {
@@ -1276,6 +1269,7 @@ void ConsoleUI::computerListAllTypeMenu()
             computerListAllTypeMenu();
         }
     }
+
 }
 void ConsoleUI::computerListAllBuildYearMenu()
 {
@@ -1342,7 +1336,6 @@ void ConsoleUI::computerListAllBuildYearMenu()
         }
 
     }
-
 }
 void ConsoleUI::computerListAllDevelopmentMenu()
 {
@@ -1409,7 +1402,7 @@ void ConsoleUI::computerListAllDevelopmentMenu()
         }
     }
 }
-    //Computers - Print functions.
+//Computers - Print functions.
 void ConsoleUI::computerWhatToDoPrint()
 {
     cout << "  ======================================================================================= " << endl;
@@ -1527,7 +1520,7 @@ void ConsoleUI::computerListAllDevelopmentMenuPrint()
     cout << "  ======================================================================================= " << endl;
     cout << " > Please enter a number: ";
 }
-    //Computers - Other functions.
+//Computers - Other functions.
 void ConsoleUI::addComputer()
 {
     string name, yearBuilt, type, development;

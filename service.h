@@ -24,19 +24,15 @@ public:
     vector<Scientist> getAllScientistsByYearOfBirthAsc();
     vector<Scientist> getAllScientistsByYearOfBirthDes();
     vector<Scientist> getAllDeadOrAliveScientistsAtoZ(char input);
-        //Scientist - search functions.
+    //Scientist - search functions.
     vector<Scientist> searchForScientistsByName(string searchString);
     vector<Scientist> searchForScientistsByYearOfBirthAtoZ(string yearToFind);
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
     vector<Scientist> getScientistsByGenderAtoZ(char gender);
     vector<Scientist> getAllDeceasedScientistsAtoZ();
-        //Scientist - other functions.
+    //Scientist - other functions.
     void removeScientistFromDataBase(int idOfScientist);
-
-    //--Scientists and computers--//
-
-
-    //Computer Sort functions
+    //--Computer--//
     vector<Computer> getAllComputersAtoZ();
     vector<Computer> getAllComputersZtoA();
     vector<Computer> getAllTypesComputersAtoZ(string type);
@@ -48,7 +44,6 @@ public:
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
     //Connection tables
-
     vector<Scientist> connectComputerToScientist(int idNumber);
     //--Check functions--//
     bool isAddScientistValid(string name, string gender, string yearOfBirth, string yearOfDeath);
@@ -61,8 +56,6 @@ public:
 private:
     DataAccess _dAccess;
 };
-
-
 
 
 #endif // Service_H

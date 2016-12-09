@@ -37,16 +37,14 @@ public:
     vector<Scientist> getAllFemaleScientistsAtoZ();
     vector<Scientist> getAllAliveScientistsAtoZ();
     vector<Scientist> getAllDeceasedScientistsAtoZ();
+    //--Scientist search functions
     vector<Scientist> searchForScientistsByName(string input);
     vector<Scientist> searchForScientistsByYearOfBirthAtoZ(string yearToFind);
     vector<Scientist> searchForScientistsByYearOfDeathAtoZ(string yearToFind);
+    //--Scientist other functions
     void addScientistToDataBase(string inputName, string inputGender, string inputYearOfBirth, string inputYearOfDeath);
-
     void removeScientistFromDatabase(int idOfScientist);
-
     void addScientistToComputer(int inputID, int inputCid);
-
-
     //--Computers--//
     vector<Computer> getAllComputerInfoFromDataBase(QString queryCommand);
     vector<Computer> getAllComputersAtoZ();
@@ -63,11 +61,12 @@ public:
     vector<Computer> getAllComputersDeveloped();
     vector<Computer> getAllComputersOriginal();
     vector<Computer> getAllComputersDevelopedAndOriginal();
-    void addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
-
+    //--Computer search functions
     vector<Computer> searchForComputersByName(string inputName);
     vector<Computer> searchForComputersByYearBuilt(string yearBuiltToFind);
     vector<Computer> searchForComputersByType(string typeToFind);
+    //--Computer other functions--//
+    void addComputerToDataBase(string inputName, string inputYearBuilt, string inputType, string inputDevelopment);
     //--Scientists and computers--//
     vector<Scientist> connectComputerToScientist(int idNumber);
     vector<Computer> connectScientistToComputer(int idNumber);

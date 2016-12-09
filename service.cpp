@@ -1,15 +1,13 @@
 #include "service.h"
 #include <cctype>
 
-
 const int YEARTODAY = 2016;
 
 Service::Service()
 {
 
 }
-
-//--Scientists--//
+//--Scientists functions--//
 vector<Scientist> Service::getAllScientistsAtoZ()
 {
     vector<Scientist> allScientists;
@@ -44,9 +42,7 @@ vector<Scientist> Service::getAllScientistsByYearOfBirthDes()
 }
 vector<Scientist> Service::getAllDeadOrAliveScientistsAtoZ(char input)
 {
-
-
-vector<Scientist> deadOrAliveScientists;
+    vector<Scientist> deadOrAliveScientists;
 
     if(input == '1')
     {
@@ -58,16 +54,15 @@ vector<Scientist> deadOrAliveScientists;
     }
     else
     {
-            deadOrAliveScientists = _dAccess.getAllAliveScientistsAtoZ();
+        deadOrAliveScientists = _dAccess.getAllAliveScientistsAtoZ();
 
-            for(unsigned int i = 0; i < _dAccess.getAllDeceasedScientistsAtoZ().size(); i++)
-            {
-               deadOrAliveScientists.push_back(_dAccess.getAllDeceasedScientistsAtoZ()[i]);
-            }
+        for(unsigned int i = 0; i < _dAccess.getAllDeceasedScientistsAtoZ().size(); i++)
+        {
+            deadOrAliveScientists.push_back(_dAccess.getAllDeceasedScientistsAtoZ()[i]);
+        }
     }
 
     return deadOrAliveScientists;
-
 }
 vector<Scientist> Service::getAllDeceasedScientistsAtoZ()
 {
@@ -77,7 +72,7 @@ vector<Scientist> Service::getAllDeceasedScientistsAtoZ()
 
     return allScientists;
 }
-    //Scientist - search functions.
+//Scientist - search functions.
 vector<Scientist> Service::searchForScientistsByName(string searchString)
 {
     vector<Scientist> allScientists;
@@ -102,7 +97,6 @@ vector<Scientist> Service::searchForScientistsByYearOfDeathAtoZ(string yearToFin
 
     return allScientists;
 }
-    //Scientist - search functions.
 vector<Scientist> Service::getScientistsByGenderAtoZ(char gender)
 {
     vector<Scientist> genderScientists;
@@ -113,7 +107,7 @@ vector<Scientist> Service::getScientistsByGenderAtoZ(char gender)
     }
     else if(gender == '2')
     {
-       genderScientists = _dAccess.getAllMaleScientistsAtoZ();
+        genderScientists = _dAccess.getAllMaleScientistsAtoZ();
     }
     else
     {
@@ -131,7 +125,6 @@ void Service::removeScientistFromDataBase(int idOfScientist)
 {
     _dAccess.removeScientistFromDatabase(idOfScientist);
 }
-
 //--Computer and Scientist functions--//
 vector<Scientist> Service::connectComputerToScientist(int idNumber)
 {
@@ -141,9 +134,7 @@ vector<Scientist> Service::connectComputerToScientist(int idNumber)
 
     return allScientists;
 }
-
-
-//-- Computer functions --//
+//--Computer functions--//
 vector<Computer> Service::getAllComputersAtoZ()
 {
     vector<Computer> allComputers;
@@ -154,24 +145,11 @@ vector<Computer> Service::getAllComputersAtoZ()
 }
 vector<Computer> Service::getAllComputersZtoA()
 {
-
     vector<Computer> allComputers;
 
     allComputers = _dAccess.getAllComputersZtoA();
 
     return allComputers;
-
-}
-ostream& operator <<(ostream& os, Computer& TempClass)    // Operator Overloader fyrir cout << Computer.
-{
-        os << " | ";os.width(5); os << left << TempClass.getId();
-        os.width(24); os << left << TempClass.getName();
-        os << "  " ;os.width(21); os << left << TempClass.getType();
-        os << "  " ;os.width(13); os << left << TempClass.getYearBuilt();
-        os << "  " ;os.width(17); os << left << TempClass.getDevelopment() << "|";
-        os << endl;
-
-    return os;
 }
 vector<Computer> Service::getAllTypesComputersAtoZ(string type)
 {
@@ -183,28 +161,29 @@ vector<Computer> Service::getAllTypesComputersAtoZ(string type)
     }
     else if(type == "2")
     {
-       typeComputer = _dAccess.getAllComputersTypeElectronic();
+        typeComputer = _dAccess.getAllComputersTypeElectronic();
     }
     else if(type == "3")
     {
-       typeComputer = _dAccess.getAllComputersTypeMechanical();
+        typeComputer = _dAccess.getAllComputersTypeMechanical();
     }
     else if(type == "4")
     {
-       typeComputer = _dAccess.getAllComputersTypeElectronicMechanical();
+        typeComputer = _dAccess.getAllComputersTypeElectronicMechanical();
     }
     else if(type == "5")
     {
-       typeComputer = _dAccess.getAllComputersTransistor();
+        typeComputer = _dAccess.getAllComputersTransistor();
     }
     else if(type == "6")
     {
-       typeComputer = _dAccess.getAllComputersTypeMicrocomputer();
+        typeComputer = _dAccess.getAllComputersTypeMicrocomputer();
     }
     else if (type == "7")
     {
         typeComputer = _dAccess.getAllComputersTypeTernary();
     }
+
     return typeComputer;
 }
 vector<Computer> Service::getAllBuildYearComputers(string yearBuilt)
@@ -217,7 +196,7 @@ vector<Computer> Service::getAllBuildYearComputers(string yearBuilt)
     }
     else if(yearBuilt == "2")
     {
-       yearBuiltComputer = _dAccess.getAllComputersYearBuiltZtoA();
+        yearBuiltComputer = _dAccess.getAllComputersYearBuiltZtoA();
     }
 
     return yearBuiltComputer;
@@ -242,7 +221,7 @@ vector<Computer> Service::getAllDevelopmentAndOriginalComputers(string developme
 
     return developmentComputer;
 }
-//-- Computer Search Functions --//
+//--Computer Search Functions
 vector<Computer> Service::searchForComputersByName(string inputName)
 {
     vector<Computer> allComputers;
@@ -328,23 +307,20 @@ bool Service::isAddSComputerValid(string name, string yearBuilt, string type, st
     transform(type.begin(), type.end(), type.begin(), ::tolower);
     transform(development.begin(), development.end(), development.begin(), ::tolower);
 
-
     if(name.length() > 0)
     {
-
-        checkName = true;
+       checkName = true;
     }
+
     if(atoi(yearBuilt.c_str()) <= YEARTODAY && atoi(yearBuilt.c_str()) > 0)
     {
         checkYearBuilt = true;
     }
 
-    if(type == "electronic" || type == "mechanical" || type == "electronic/mechanical" || type == "transistor" || type == "microcomputer" || type == "ternary");
+    if(type == "electronic" || type == "mechanical" || type == "electronic/mechanical" || type == "transistor" || type == "microcomputer" || type == "ternary")
     {
-
         checkType = true;
     }
-
 
     if(development == "developed" || development == "original")
     {
@@ -352,10 +328,10 @@ bool Service::isAddSComputerValid(string name, string yearBuilt, string type, st
         checkDevelopment = true;
     }
 
-
     return (checkName && checkYearBuilt && checkType && checkDevelopment);
 
 }
+//--Operators overload--//
 ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overloader fyrir cout << Scientist.
 {
     if(TempClass.getYearOfDeath()==0)
@@ -376,6 +352,17 @@ ostream& operator <<(ostream& os , Scientist& TempClass)    // Operator Overload
         os << "  " ;os.width(17); os << left << TempClass.getYearOfDeath() << "|";
         os << endl;
     }
+
+    return os;
+}
+ostream& operator <<(ostream& os, Computer& TempClass)    // Operator Overloader fyrir cout << Computer.
+{
+    os << " | ";os.width(5); os << left << TempClass.getId();
+    os.width(24); os << left << TempClass.getName();
+    os << "  " ;os.width(21); os << left << TempClass.getType();
+    os << "  " ;os.width(13); os << left << TempClass.getYearBuilt();
+    os << "  " ;os.width(17); os << left << TempClass.getDevelopment() << "|";
+    os << endl;
 
     return os;
 }

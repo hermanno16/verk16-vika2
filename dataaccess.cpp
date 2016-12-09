@@ -186,6 +186,14 @@ void DataAccess::removeScientistFromDatabase(int idOfScientist)
 
 
 }
+void DataAccess::removeRelationFromDatabase(int id, int cID)
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM ConnectionTable WHERE ID = (:id) AND Cid = (:cid)");
+    query.bindValue(":id", id);
+    query.bindValue(":cid", cID);
+    query.exec();
+}
 bool DataAccess::isScientistAlreadyInDatabase(string& inputName)
 {
     QString qSearchName = QString::fromStdString(inputName);
@@ -230,14 +238,44 @@ void DataAccess::addScientistToDataBase(string inputName, string inputGender, st
     query.bindValue(":yearofdeath", atoi(inputYearOfDeath.c_str()));
     query.exec();
 }
-void DataAccess::addScientistToComputer(int inputID, int inputCid)
+bool DataAccess::addScientistToComputer(int ID, int Cid)
 {
-    QSqlQuery query;
-    query.prepare("INSERT INTO ConnectionTable (Cid, ID) VALUES (:name, :gender)");
+    bool existCheck = false;
 
-    query.bindValue(":id", (inputID));
-    query.bindValue(":cid", (inputCid));
-    query.exec();
+    vector<Scientist> relationCheck = connectComputerToScientist(Cid); // Checks if there are results of realation to a computer.
+    if(relationCheck.size() == 0)
+    {
+        QSqlQuery query;
+        query.prepare("INSERT INTO ConnectionTable (Cid, ID) VALUES (:cid, :id)");
+        query.bindValue(":cid", Cid);
+        query.bindValue(":id", ID);
+        query.exec();
+
+    }
+    else if(relationCheck.size() > 0)
+    {
+        for(unsigned int i = 0; i < relationCheck.size(); i++)
+        {
+            if(relationCheck[i].getID() == ID)
+            {
+                existCheck = true;
+            }
+        }
+    }
+    if(existCheck == true)
+    {
+        return false;
+    }
+    else if(existCheck == false)
+    {
+        QSqlQuery query;
+        query.prepare("INSERT INTO ConnectionTable (Cid, ID) VALUES (:cid, :id)");
+        query.bindValue(":cid", Cid);
+        query.bindValue(":id", ID);
+        query.exec();
+
+        return true;
+    }
 }
 //-- Computers--//
 //Computers - SQL functions.

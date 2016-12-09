@@ -4,7 +4,7 @@
 #include <iomanip>
 using namespace std;
 
-//-- Constructor --//
+//-- Constructor--//
 ConsoleUI::ConsoleUI()
 {
 
